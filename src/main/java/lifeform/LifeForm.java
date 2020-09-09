@@ -4,10 +4,11 @@ package lifeform;
  * Keeps track of the information associated with as simple life form. Also
  * provides the functionality related to the life form.
  */
-public class LifeForm {
+public abstract class LifeForm {
 
-  String myName;
-  int currentLifePoints;
+  private String myName;
+  protected int currentLifePoints;
+  protected int attackStrength;
 
   /**
    * Creates an instance
@@ -18,6 +19,34 @@ public class LifeForm {
   public LifeForm(String string, int i) {
     myName = string;
     currentLifePoints = i;
+    attackStrength = 1;
+  }
+
+  /**
+   * Creates an instance
+   * 
+   * @param string the name of the life form
+   * @param i      the current starting life points of the life form
+   * @param atk    the attack strength of the LifeForm
+   */
+  public LifeForm(String string, int i, int atk) {
+    this(string, i);
+    attackStrength = atk;
+  }
+
+  /**
+   * The LifeForm's life points are reduced by the damage taken. If the damage
+   * causes life points to drop below zero, they are set to zero.
+   * 
+   * @param damage the amount of damage to be subtracted from the life points.
+   */
+  public void takeHit(int damage) {
+    int lp = currentLifePoints - damage;
+    if (lp < 0) {
+      currentLifePoints = 0;
+    } else {
+      currentLifePoints = lp;
+    }
   }
 
   /**

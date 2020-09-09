@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 import lifeform.LifeForm;
+import lifeform.MockLifeForm;
 
 /**
  * The test cases for the Environment class
@@ -32,7 +33,7 @@ public class TestEnvironment {
   @Test
   public void testAddLifeForm() {
     Environment environment = new Environment(2, 3);
-    LifeForm lf = new LifeForm("Adam", 20);
+    LifeForm lf = new MockLifeForm("Adam", 20);
     environment.addLifeForm(lf, 1, 2);
     assertEquals(lf, environment.getLifeForm(1, 2));
   }
@@ -45,7 +46,7 @@ public class TestEnvironment {
   @Test
   public void testRemoveLifeForm() {
     Environment environment = new Environment(2, 3);
-    LifeForm lf = new LifeForm("Emily", 18);
+    LifeForm lf = new MockLifeForm("Emily", 18);
     environment.addLifeForm(lf, 1, 2);
     environment.removeLifeForm(1, 2);
     assertNull(environment.getLifeForm(1, 2));
@@ -62,7 +63,7 @@ public class TestEnvironment {
   @Test
   public void testLowerRowBound() {
     Environment environment = new Environment(2, 3);
-    LifeForm lf = new LifeForm("Andrew", 14);
+    LifeForm lf = new MockLifeForm("Andrew", 14);
     boolean success = environment.addLifeForm(lf, -1, 3);
     assertFalse(success);
   }
@@ -74,7 +75,7 @@ public class TestEnvironment {
   @Test
   public void testUpperRowBound() {
     Environment environment = new Environment(2, 3);
-    LifeForm lf = new LifeForm("Eric", 14);
+    LifeForm lf = new MockLifeForm("Eric", 14);
     boolean success = environment.addLifeForm(lf, 10, 3);
     assertFalse(success);
   }
@@ -87,7 +88,7 @@ public class TestEnvironment {
   @Test
   public void testLowerColBound() {
     Environment environment = new Environment(2, 3);
-    LifeForm lf = new LifeForm("Craig", 48);
+    LifeForm lf = new MockLifeForm("Craig", 48);
     boolean success = environment.addLifeForm(lf, 2, -1);
     assertFalse(success);
   }
@@ -100,7 +101,7 @@ public class TestEnvironment {
   @Test
   public void testUpperColBound() {
     Environment environment = new Environment(2, 3);
-    LifeForm lf = new LifeForm("Sheryl", 48);
+    LifeForm lf = new MockLifeForm("Sheryl", 48);
     boolean success = environment.addLifeForm(lf, 2, 10);
     assertFalse(success);
   }
