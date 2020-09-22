@@ -50,6 +50,18 @@ public abstract class LifeForm {
   }
 
   /**
+   * Deals damage equal to the attack strength of this LifeForm to an opposing
+   * LifeForm. No damage can be dealt if this LifeForm is dead.
+   * 
+   * @param opponent the opposing LifeForm that will be taking damage
+   */
+  public void attack(LifeForm opponent) {
+    if (currentLifePoints > 0) {
+      opponent.takeHit(attackStrength);
+    }
+  }
+
+  /**
    * @return the name of the life form
    */
   public String getName() {
@@ -61,6 +73,13 @@ public abstract class LifeForm {
    */
   public int getCurrentLifePoints() {
     return currentLifePoints;
+  }
+
+  /**
+   * @return the attack strength possessed by this life form
+   */
+  public int getAttackStrength() {
+    return attackStrength;
   }
 
 }

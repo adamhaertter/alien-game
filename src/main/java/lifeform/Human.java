@@ -18,17 +18,22 @@ public class Human extends LifeForm {
     } else {
       armor = arm;
     }
+    attackStrength = 5;
   }
 
   /**
-   * Deals a given amount of damage to the human
+   * Deals a given amount of damage to the human. An initial amount of damage will
+   * be absorbed by the armor.
    * 
    * @param damage the amount of damage to be dealt to the Human
    */
   public void takeHit(int damage) {
-    super.takeHit(damage);
-    // Currently no different from LifeForm's method,
-    // but will eventually account for armor
+    int damageBuffer = armor - damage;
+    if (damageBuffer < 0) {
+      super.takeHit(Math.abs(damageBuffer));
+    }
+    // If armor - damage is 0 or greater, all impact damage will be absorbed by
+    // armor, dealing no damage to the Human.
   }
 
   /**

@@ -1,14 +1,16 @@
 package lifeform;
 
 import exceptions.RecoveryRateException;
+import gameplay.TimerObserver;
 import recovery.RecoveryBehavior;
 import recovery.RecoveryNone;
 
-public class Alien extends LifeForm {
+public class Alien extends LifeForm implements TimerObserver {
 
   private int recoveryRate;
   private int maxHealth;
   private RecoveryBehavior recoveryBehavior;
+  private int currentRound;
 
   /**
    * Creates an Alien with a name and HP value
@@ -44,7 +46,7 @@ public class Alien extends LifeForm {
    * @param behavior the type of RecoveryBehavior to be used by the alien
    * @param rate     the HP recovery rate of the alien
    */
-  public Alien(String string, int maxHp, RecoveryBehavior behavior, int rate) 
+  public Alien(String string, int maxHp, RecoveryBehavior behavior, int rate)
       throws RecoveryRateException {
     this(string, maxHp, behavior);
     recoveryRate = rate;
@@ -68,10 +70,30 @@ public class Alien extends LifeForm {
   }
 
   /**
+   * @return the current round of the timer the Alien is observing.
+   */
+  public int getCurrentRound() {
+    return currentRound;
+  }
+
+  /**
    * Restores the Alien's HP in accordance with its Recovery Behavior and Rate
    */
   protected void recover() {
     currentLifePoints = recoveryBehavior.calculateRecovery(currentLifePoints, maxHealth);
+  }
+
+  /**
+   * Updates the time using the passed round and executes any necessary processes
+   * 
+   * @param time the current round number
+   */
+  @Override
+  public void updateTime(int time) {
+    currentRound = time;
+    if (recoveryRate != 0 && time % recoveryRate == 0) {
+      recover();
+    }
   }
 
 }

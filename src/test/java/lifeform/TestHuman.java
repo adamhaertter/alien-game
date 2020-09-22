@@ -1,6 +1,7 @@
 package lifeform;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -15,6 +16,16 @@ public class TestHuman {
     Human human = new Human("Bart", 40, 0);
     assertEquals(human.getName(), "Bart");
     assertEquals(human.getCurrentLifePoints(), 40);
+  }
+
+  /**
+   * Creates a new Human and checks that the default attackStrength of 5 is
+   * properly set at initialization.
+   */
+  @Test
+  public void testDefaultStrength() {
+    Human h = new Human("Daryl", 40, 0);
+    assertEquals(h.getAttackStrength(), 5);
   }
 
   /**
@@ -47,4 +58,38 @@ public class TestHuman {
     assertEquals(human.getArmorPoints(), 0);
   }
 
+  /**
+   * Creates a new instance of Human and deals damage less than the Human's
+   * armorPoints. This test checks to ensure that the Human remains undamaged.
+   */
+  @Test
+  public void testArmorAbsorb() {
+    Human human = new Human("Brian", 20, 10);
+    human.takeHit(5);
+    assertEquals(human.getCurrentLifePoints(), 20);
+  }
+
+  /**
+   * Creates a new instance of Human and deals damage greater than the Human's
+   * armorPoints. This test checks to ensure that the Human takes damage reduced
+   * by its own armor.
+   */
+  @Test
+  public void testArmorReduce() {
+    Human human = new Human("Raven", 20, 10);
+    human.takeHit(15);
+    assertEquals(human.getCurrentLifePoints(), 15);
+  }
+
+  /**
+   * Creates a new instance of Human and deals damage equal to the Human's
+   * armorPoints. This test checks to ensure that the Human remains undamaged in
+   * this specific scenario.
+   */
+  @Test
+  public void testArmorPerfect() {
+    Human human = new Human("Nishant", 20, 10);
+    human.takeHit(10);
+    assertEquals(human.getCurrentLifePoints(), 20);
+  }
 }

@@ -1,6 +1,7 @@
 package lifeform;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -52,5 +53,33 @@ public class TestLifeForm {
     assertEquals(35, entity.getCurrentLifePoints());
     entity.takeHit(15);
     assertEquals(20, entity.getCurrentLifePoints());
+  }
+
+  /**
+   * Sets up two LifeForms, both with 50 HP. When one takes damage from the other,
+   * this test checks to make sure that the default attack damage of 1 is dealt to
+   * the other.
+   */
+  @Test
+  public void testAttack() {
+    MockLifeForm one = new MockLifeForm("One", 50);
+    MockLifeForm two = new MockLifeForm("Two", 50);
+
+    one.attack(two);
+    assertEquals(two.getCurrentLifePoints(), 49);
+  }
+
+  /**
+   * Sets up two LifeForms, one of which is already dead. This test ensures that
+   * the dead LifeForm cannot deal damage to the other LifeForm using the attack()
+   * method.
+   */
+  @Test
+  public void testAttackWhenDead() {
+    MockLifeForm one = new MockLifeForm("One", 0);
+    MockLifeForm two = new MockLifeForm("Two", 50);
+
+    one.attack(two);
+    assertEquals(two.getCurrentLifePoints(), 50);
   }
 }
