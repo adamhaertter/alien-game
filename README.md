@@ -43,16 +43,16 @@ Answer: We will make use of the provided table below to organize our work, updat
 regularly to reflect the needs of the group. As of right now, we plan to work together and
 split the workload of the code, while tasks like the PDF submission will be decided later.
 
-| Task | Assignee | Deadline | Progress (date) | # ALL ARE SUBJECT TO CHANGE
+| Task | Assignee | Deadline | Progress (date) | # ALL ARE SUBJECT TO CHANGE |
 |---|---|---|---|
-| Weapon Interface | Brennan Mulligan | 9/26/20 | No Progress |
-| Scope and Stabilizer classes | Evan Paules | 9/28/20 | No progress |
-| Power Booster and Attachments classes | Joshua Lewis | 9/28/20 | No Progress |
-| Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 9/30/20 | No Progress | # MIGHT BE TOO MUCH WORK FOR ONE PERSON
-| Draw new UML | Joshua Lewis | 9/30/20 | No Progress |
-| Generic Weapon / Mock WEapon | Evan Paules | 9/30/20 | No Progress |
-| Update Logs | Adam Haertter | 9/30/20 | No Progress |
-| Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/4/20 | No Progress | # Date may change once we know Deadline
+| Weapon Interface | Brennan Mulligan | 9/26/20 | No Progress | # Comment Here |
+| Scope and Stabilizer classes | Evan Paules | 9/28/20 | No progress | # Comment Here |
+| Power Booster and Attachments classes | Joshua Lewis | 9/28/20 | No Progress | # Comment Here |
+| Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 9/30/20 | No Progress | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
+| Draw new UML | Joshua Lewis | 9/30/20 | No Progress | # Comment Here |
+| Generic Weapon / Mock WEapon | Evan Paules | 9/30/20 | No Progress | # Comment Here |
+| Update Logs | Adam Haertter | 9/30/20 | No Progress | # Comment Here |
+| Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/4/20 | No Progress | # Date may change once we know Deadline |
 
  
 # Team Meeting Log
