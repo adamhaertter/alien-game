@@ -52,7 +52,7 @@ split the workload of the code, while tasks like the PDF submission will be deci
 | Draw new UML | Joshua Lewis | 9/30/20 | No Progress |
 | Generic Weapon / Mock WEapon | Evan Paules | 9/30/20 | No Progress |
 | Update Logs | Adam Haertter | 9/30/20 | No Progress |
-| Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/4/20 | No Progress # Date may change once we know Deadline
+| Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/4/20 | No Progress | # Date may change once we know Deadline
 
  
 # Team Meeting Log
