@@ -44,7 +44,7 @@ regularly to reflect the needs of the group. As of right now, we plan to work to
 split the workload of the code, while tasks like the PDF submission will be decided later.
 
 | Task | Assignee | Deadline | Progress (date) | # ALL ARE SUBJECT TO CHANGE |
-|---|---|---|---|
+|---|---|---|---|---|
 | Weapon Interface | Brennan Mulligan | 9/26/20 | No Progress | # Comment Here |
 | Scope and Stabilizer classes | Evan Paules | 9/28/20 | No progress | # Comment Here |
 | Power Booster and Attachments classes | Joshua Lewis | 9/28/20 | No Progress | # Comment Here |
