@@ -45,14 +45,14 @@ split the workload of the code, while tasks like the PDF submission will be deci
 
 | Task | Assignee | Deadline | Progress (date) | # ALL ARE SUBJECT TO CHANGE |
 |---|---|---|---|---|
-| Weapon Interface | Brennan Mulligan | 9/26/20 | No Progress | # Comment Here |
-| Scope and Stabilizer classes | Evan Paules | 9/28/20 | No progress | # Comment Here |
-| Power Booster and Attachments classes | Joshua Lewis | 9/28/20 | No Progress | # Comment Here |
-| Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 9/30/20 | No Progress | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
-| Draw new UML | Joshua Lewis | 9/30/20 | No Progress | # Comment Here |
-| Generic Weapon / Mock WEapon | Evan Paules | 9/30/20 | No Progress | # Comment Here |
-| Update Logs | Adam Haertter | 9/30/20 | No Progress | # Comment Here |
-| Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/4/20 | No Progress | # Date may change once we know Deadline |
+| Weapon Interface | Brennan Mulligan | 9/28/20 | No Progress | # Comment Here |
+| Scope and Stabilizer classes | Evan Paules | 9/30/20 | No progress | # Comment Here |
+| Power Booster and Attachments classes | Joshua Lewis | 9/30/20 | No Progress | # Comment Here |
+| Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 10/1/20 | No Progress | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
+| Draw new UML | Joshua Lewis | 10/3/20 | No Progress | # Comment Here |
+| Generic Weapon / Mock WEapon | Evan Paules | 10/3/20 | No Progress | # Comment Here |
+| Update Logs | Adam Haertter | 10/3/20 | No Progress | # Comment Here |
+| Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/6/20 | No Progress |  |
 
  
 # Team Meeting Log
