@@ -50,7 +50,7 @@ split the workload of the code, while tasks like the PDF submission will be deci
 | Power Booster and Attachments classes | Joshua Lewis | 9/30/20 | No Progress | # Comment Here |
 | Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 10/1/20 | No Progress | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
 | Draw new UML | Joshua Lewis | 10/3/20 | No Progress | # Comment Here |
-| Generic Weapon / Mock WEapon | Evan Paules | 10/3/20 | No Progress | # Comment Here |
+| Generic Weapon / Mock Weapon | Evan Paules | 10/3/20 | No Progress | # Comment Here |
 | Update Logs | Adam Haertter | 10/3/20 | No Progress | # Comment Here |
 | Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/6/20 | No Progress |  |
 
