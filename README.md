@@ -63,3 +63,4 @@ of class.
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
 | 1 | 11a-12:20a 9/23/2020 | Zoom | Adam, Brennan, Josh | Meet the team & Planning |
+| 2 | 7p - 8p 9/30/2020 | Zoom | Adam, Brennan, Josh, Evan | Progress Updates & Adjusting Workloads |
