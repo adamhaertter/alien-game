@@ -48,9 +48,10 @@ split the workload of the code, while tasks like the PDF submission will be deci
 | Weapon Interface | Brennan Mulligan | 9/28/20 | Finished | May Be Subject To Change As More Items Are Finished |
 | Scope and Stabilizer classes | Evan Paules | 10/1/20 | No progress | # Comment Here |
 | Power Booster and Attachments classes | Joshua Lewis | 10/1/20 | Attachments Finished | # Comment Here |
-| Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 10/1/20 | Progress with Weapons | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
+| Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 10/1/20 | Finished | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
 | Draw new UML | Joshua Lewis | 10/5/20 | Finished | |
-| Generic Weapon / Mock Weapon | Evan Paules | 10/3/20 | Generic Weapon Finished | # Comment Here |
+| Generic Weapon / Mock Weapon | Evan Paules | 10/3/20 | Almost Finished | # Comment Here |
+| LifeForm Implementation | Adam Haertter and Brennan Mulligan | 10/6/20 | In Progress | # Comment Here |
 | Update Logs | Adam Haertter and Brennan Mulligan | 10/5/20 | Being Done Regularly | # Comment Here |
 | Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/6/20 | No Progress |  |
 
