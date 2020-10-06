@@ -50,6 +50,6 @@ public class PlasmaCannon extends GenericWeapon {
    *  @TODO: Implement specific toString printable
    */
   public String toString() {
-    return null;
+    return "PlasmaCannon";
   }
 }

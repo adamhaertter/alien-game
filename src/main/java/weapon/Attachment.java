@@ -1,5 +1,7 @@
 package weapon;
 
+import exceptions.WeaponException;
+
 public abstract class Attachment extends Object implements Weapon {
   
   /**
@@ -9,7 +11,7 @@ public abstract class Attachment extends Object implements Weapon {
   
   public Attachment() { }
   
-  public abstract int fire(int distance);
+  public abstract int fire(int distance) throws WeaponException;
   
   public int getBaseDamage() {
     return base.getBaseDamage();
@@ -43,8 +45,8 @@ public abstract class Attachment extends Object implements Weapon {
     base.reload();
   }
   
-  public void updateTime() {
-    base.getShotsLeft();
+  public void updateTime(int time) {
+    base.reload();
   }
   
 }

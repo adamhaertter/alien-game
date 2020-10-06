@@ -28,4 +28,6 @@ public interface Weapon extends TimerObserver {
   public void reload();
   
   public String toString();
+  
+
 }

@@ -51,6 +51,6 @@ public class Pistol extends GenericWeapon {
    *  @TODO: Implement specific toString printable
    */
   public String toString() {
-    return null;
+    return "Pistol";
   }
 }

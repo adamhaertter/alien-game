@@ -53,7 +53,7 @@ public abstract class GenericWeapon extends Object implements Weapon{
   public abstract String toString();
   
   public void updateTime(int time) {
-    shotsLeft = shotsLeft - time;
+    reload();
   }
   
 }
