@@ -64,3 +64,4 @@ of class.
 |---|---|---|---|---|
 | 1 | 11a-12:20a 9/23/2020 | Zoom | Adam, Brennan, Josh | Meet the team & Planning |
 | 2 | 7p - 8p 9/30/2020 | Zoom | Adam, Brennan, Josh, Evan | Progress Updates & Adjusting Workloads |
+| 3 | 8p - 9p 10/5/2020 | Discord | Adam, Brennan, Josh, Evan | Working together and fixing errors |
