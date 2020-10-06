@@ -18,6 +18,7 @@ public class Pistol extends GenericWeapon {
     rateOfFire = 2;
     maxAmmo = 10;
     currentAmmo = maxAmmo;
+    shotsLeft = rateOfFire;
   }
 
   /**
@@ -31,8 +32,7 @@ public class Pistol extends GenericWeapon {
     if (distance < 0) {
       throw new WeaponException("Negative distance");
     }
-    if (currentAmmo <= 0) {
-      currentAmmo = 0;
+    if (currentAmmo <= 0 || shotsLeft <= 0) {
       return 0;
     }
 
@@ -41,6 +41,7 @@ public class Pistol extends GenericWeapon {
     ret /= maxRange;
     ret *= baseDamage;
     currentAmmo--;
+    shotsLeft--;
 
     if (distance > maxRange) {
       return 0;

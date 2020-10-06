@@ -2,8 +2,8 @@ package weapon;
 
 import exceptions.WeaponException;
 
-public abstract class GenericWeapon extends Object implements Weapon{
-  
+public abstract class GenericWeapon extends Object implements Weapon {
+
   /**
    * @author Joshua Lewis
    */
@@ -13,47 +13,48 @@ public abstract class GenericWeapon extends Object implements Weapon{
   protected int maxRange;
   protected int rateOfFire;
   protected int shotsLeft;
-  
-  public GenericWeapon() { }
-  
-  public abstract int fire(int damage) throws WeaponException;
-  
+
+  public GenericWeapon() {  }
+
+  public abstract int fire(int distance) throws WeaponException;
+
   public int getBaseDamage() {
     return baseDamage;
   }
-  
+
   public int getCurrentAmmo() {
     return currentAmmo;
   }
-  
+
   public int getMaxAmmo() {
     return maxAmmo;
   }
-  
+
   public int getMaxRange() {
     return maxRange;
   }
-  
+
   public int getNumAttachments() {
     return 0;
   }
-  
+
   public int getRateOfFire() {
     return rateOfFire;
   }
-  
+
   public int getShotsLeft() {
     return shotsLeft;
   }
-  
+
   public void reload() {
-    shotsLeft = maxAmmo;
+    currentAmmo = maxAmmo;
   }
-  
+
   public abstract String toString();
-  
+
   public void updateTime(int time) {
     reload();
+    shotsLeft = rateOfFire;
   }
-  
+
 }

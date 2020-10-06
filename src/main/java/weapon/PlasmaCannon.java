@@ -18,6 +18,7 @@ public class PlasmaCannon extends GenericWeapon {
     rateOfFire = 1;
     maxAmmo = 4;
     currentAmmo = maxAmmo;
+    shotsLeft = rateOfFire;
   }
 
   /**
@@ -31,8 +32,7 @@ public class PlasmaCannon extends GenericWeapon {
     if (distance < 0) {
       throw new WeaponException("Negative distance");
     }
-    if (currentAmmo <= 0) {
-      currentAmmo = 0;
+    if (currentAmmo <= 0 || shotsLeft <= 0) {
       return 0;
     }
 
@@ -41,7 +41,8 @@ public class PlasmaCannon extends GenericWeapon {
     ret /= maxAmmo;
     ret *= baseDamage;
     currentAmmo--;
-
+    shotsLeft--;
+    
     if (distance > maxRange) {
       return 0;
     }

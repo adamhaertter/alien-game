@@ -9,8 +9,8 @@ import exceptions.WeaponException;
 public class ChainGun extends GenericWeapon {
 
   /**
-   * By default, a Chain Gun deals 15 base damage within a range of 60 feet.
-   * It has a rate of fire of 4 and a maximum ammo of 40.
+   * By default, a Chain Gun deals 15 base damage within a range of 60 feet. It
+   * has a rate of fire of 4 and a maximum ammo of 40.
    */
   public ChainGun() {
     baseDamage = 15;
@@ -18,6 +18,7 @@ public class ChainGun extends GenericWeapon {
     rateOfFire = 4;
     maxAmmo = 40;
     currentAmmo = maxAmmo;
+    shotsLeft = rateOfFire;
   }
 
   /**
@@ -31,8 +32,7 @@ public class ChainGun extends GenericWeapon {
     if (distance < 0) {
       throw new WeaponException("Negative distance");
     }
-    if (currentAmmo <= 0) {
-      currentAmmo = 0;
+    if (currentAmmo <= 0 || shotsLeft <= 0) {
       return 0;
     }
 
@@ -41,6 +41,7 @@ public class ChainGun extends GenericWeapon {
     ret /= maxRange;
     ret *= baseDamage;
     currentAmmo--;
+    shotsLeft--;
 
     if (distance > maxRange) {
       return 0;
@@ -49,7 +50,7 @@ public class ChainGun extends GenericWeapon {
   }
 
   /**
-   *  Prints "Chain Gun"
+   * Prints "Chain Gun"
    */
   public String toString() {
     return "Chain Gun";
