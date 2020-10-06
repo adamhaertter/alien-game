@@ -49,7 +49,7 @@ split the workload of the code, while tasks like the PDF submission will be deci
 | Scope and Stabilizer classes | Evan Paules | 10/1/20 | No progress | # Comment Here |
 | Power Booster and Attachments classes | Joshua Lewis | 10/1/20 | Attachments Finished | # Comment Here |
 | Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 10/1/20 | Progress with Weapons | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
-| Draw new UML | Joshua Lewis | 10/5/20 | No Progress | # FINISH SOONER RATHER THAN LATER |
+| Draw new UML | Joshua Lewis | 10/5/20 | Finished | |
 | Generic Weapon / Mock Weapon | Evan Paules | 10/3/20 | Generic Weapon Finished | # Comment Here |
 | Update Logs | Adam Haertter and Brennan Mulligan | 10/5/20 | Being Done Regularly | # Comment Here |
 | Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/6/20 | No Progress |  |
