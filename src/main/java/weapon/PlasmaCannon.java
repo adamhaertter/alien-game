@@ -42,7 +42,7 @@ public class PlasmaCannon extends GenericWeapon {
     ret *= baseDamage;
     currentAmmo--;
     shotsLeft--;
-    
+
     if (distance > maxRange) {
       return 0;
     }
@@ -50,7 +50,7 @@ public class PlasmaCannon extends GenericWeapon {
   }
 
   /**
-   *  Prints "Plasma Cannon"
+   * Prints "Plasma Cannon"
    */
   public String toString() {
     return "Plasma Cannon";

@@ -14,7 +14,8 @@ public abstract class GenericWeapon extends Object implements Weapon {
   protected int rateOfFire;
   protected int shotsLeft;
 
-  public GenericWeapon() {  }
+  public GenericWeapon() {
+  }
 
   public abstract int fire(int distance) throws WeaponException;
 

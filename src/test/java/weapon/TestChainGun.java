@@ -18,6 +18,7 @@ public class TestChainGun {
     cg.reload();
     int damage = cg.fire(cg.getMaxRange() - 1);
     int tooFar = cg.fire(cg.getMaxRange() + 1);
+
     // Does it do proper damage?
     assertNotEquals(damage, 0);
     // Can it fire outside of range?

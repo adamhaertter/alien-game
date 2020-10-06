@@ -12,7 +12,7 @@ public class MockWeapon extends GenericWeapon {
     currentAmmo = maxAmmo;
     shotsLeft = rateOfFire;
   }
-  
+
   /**
    * Calculates the damage to be dealt to the enemy when the weapon is fired. No
    * damage is dealt if no ammo is present or the target is out of range. Contains

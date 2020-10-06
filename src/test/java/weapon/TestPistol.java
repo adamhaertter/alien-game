@@ -18,6 +18,7 @@ public class TestPistol {
     pistol.reload();
     int damage = pistol.fire(pistol.getMaxRange() - 1);
     int tooFar = pistol.fire(pistol.getMaxRange() + 1);
+
     // Does it do proper damage?
     assertNotEquals(damage, 0);
     // Can it fire outside of range?

@@ -18,6 +18,7 @@ public class TestPlasmaCannon {
     pc.reload();
     int damage = pc.fire(pc.getMaxRange() - 1);
     int tooFar = pc.fire(pc.getMaxRange() + 1);
+
     // Does it do proper damage?
     assertNotEquals(damage, 0);
     // Can it fire outside of range?
