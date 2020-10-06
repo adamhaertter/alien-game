@@ -1,5 +1,7 @@
 package lifeform;
 
+import weapon.Weapon;
+
 /**
  * Keeps track of the information associated with as simple life form. Also
  * provides the functionality related to the life form.
@@ -82,4 +84,15 @@ public abstract class LifeForm {
     return attackStrength;
   }
 
+  public Weapon dropWeapon() {
+    return null;
+  }
+  
+  public boolean hasWeapon() {
+    return false;
+  }
+  
+  public boolean pickUpWeapon(Weapon weapon) {
+    return false;
+  }
 }
