@@ -47,11 +47,11 @@ split the workload of the code, while tasks like the PDF submission will be deci
 |---|---|---|---|---|
 | Weapon Interface | Brennan Mulligan | 9/28/20 | Finished | May Be Subject To Change As More Items Are Finished |
 | Scope and Stabilizer classes | Evan Paules | 10/1/20 | No progress | # Comment Here |
-| Power Booster and Attachments classes | Joshua Lewis | 10/1/20 | No Progress | # Comment Here |
-| Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 10/1/20 | No Progress | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
-| Draw new UML | Joshua Lewis | 10/3/20 | No Progress | # Comment Here |
-| Generic Weapon / Mock Weapon | Evan Paules | 10/3/20 | No Progress | # Comment Here |
-| Update Logs | Adam Haertter | 10/3/20 | No Progress | # Comment Here |
+| Power Booster and Attachments classes | Joshua Lewis | 10/1/20 | Attachments Finished | # Comment Here |
+| Pistol, Plasma Cannon, Chain Gun | Adam Haertter | 10/1/20 | Progress with Weapons | # MIGHT BE TOO MUCH WORK FOR ONE PERSON |
+| Draw new UML | Joshua Lewis | 10/5/20 | No Progress | # FINISH SOONER RATHER THAN LATER |
+| Generic Weapon / Mock Weapon | Evan Paules | 10/3/20 | Generic Weapon Finished | # Comment Here |
+| Update Logs | Adam Haertter and Brennan Mulligan | 10/5/20 | Being Done Regularly | # Comment Here |
 | Combine PDFs and Prepare for Uploading | Brennan Mulligan | 10/6/20 | No Progress |  |
 
  
@@ -64,3 +64,4 @@ of class.
 |---|---|---|---|---|
 | 1 | 11a-12:20a 9/23/2020 | Zoom | Adam, Brennan, Josh | Meet the team & Planning |
 | 2 | 7p - 8p 9/30/2020 | Zoom | Adam, Brennan, Josh, Evan | Progress Updates & Adjusting Workloads |
+| 3 | 8p - 10p 10/5/2020 | Discord | Adam, Brennan, Josh, Evan | Working together and fixing errors |
