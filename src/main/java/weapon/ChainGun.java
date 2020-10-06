@@ -17,6 +17,7 @@ public class ChainGun extends GenericWeapon {
     maxRange = 60;
     rateOfFire = 4;
     maxAmmo = 40;
+    currentAmmo = maxAmmo;
   }
 
   /**
@@ -36,7 +37,8 @@ public class ChainGun extends GenericWeapon {
     }
 
     float ret = 0.0f;
-    ret = distance / maxRange;
+    ret = distance;
+    ret /= maxRange;
     ret *= baseDamage;
     currentAmmo--;
 
@@ -47,7 +49,7 @@ public class ChainGun extends GenericWeapon {
   }
 
   /**
-   *  @TODO: Implement specific toString printable
+   *  Prints "Chain Gun"
    */
   public String toString() {
     return "Chain Gun";

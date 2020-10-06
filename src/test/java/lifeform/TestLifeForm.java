@@ -82,4 +82,60 @@ public class TestLifeForm {
     one.attack(two);
     assertEquals(two.getCurrentLifePoints(), 50);
   }
+  
+  /**
+   * @TODO
+   */
+  @Test
+  public void testPickupWeapon() {
+    
+  }
+  
+  /**
+   * @TODO
+   */
+  @Test
+  public void testCarryingWeapon() {
+    
+  }
+  
+  /**
+   * @TODO
+   */
+  @Test
+  public void testDropWeapon() {
+    
+  }
+  
+  /**
+   * @TODO
+   */
+  @Test
+  public void testFireWeapon() {
+    
+  }
+  
+  /**
+   * @TODO
+   */
+  @Test
+  public void testMeleeDamage() {
+    
+  }
+  
+  /**
+   * @TODO
+   */
+  @Test
+  public void testMeleeBounds() {
+    
+  }
+  
+  /**
+   * @TODO
+   */
+  @Test
+  public void testReloadWeapon() {
+    
+  }
 }

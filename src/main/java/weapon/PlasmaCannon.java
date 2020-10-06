@@ -17,6 +17,7 @@ public class PlasmaCannon extends GenericWeapon {
     maxRange = 40;
     rateOfFire = 1;
     maxAmmo = 4;
+    currentAmmo = maxAmmo;
   }
 
   /**
@@ -36,7 +37,8 @@ public class PlasmaCannon extends GenericWeapon {
     }
 
     float ret = 0.0f;
-    ret = currentAmmo / maxAmmo;
+    ret = currentAmmo;
+    ret /= maxAmmo;
     ret *= baseDamage;
     currentAmmo--;
 
@@ -47,9 +49,9 @@ public class PlasmaCannon extends GenericWeapon {
   }
 
   /**
-   *  @TODO: Implement specific toString printable
+   *  Prints "Plasma Cannon"
    */
   public String toString() {
-    return "PlasmaCannon";
+    return "Plasma Cannon";
   }
 }

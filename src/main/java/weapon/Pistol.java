@@ -9,14 +9,15 @@ import exceptions.WeaponException;
 public class Pistol extends GenericWeapon {
 
   /**
-   * By default, a Pistol deals 10 base damage within a range of 50 feet.
-   * It has a rate of fire of 2 and a maximum ammo of 10.
+   * By default, a Pistol deals 10 base damage within a range of 50 feet. It has a
+   * rate of fire of 2 and a maximum ammo of 10.
    */
   public Pistol() {
     baseDamage = 10;
     maxRange = 50;
     rateOfFire = 2;
     maxAmmo = 10;
+    currentAmmo = maxAmmo;
   }
 
   /**
@@ -48,7 +49,7 @@ public class Pistol extends GenericWeapon {
   }
 
   /**
-   *  @TODO: Implement specific toString printable
+   * Prints "Pistol"
    */
   public String toString() {
     return "Pistol";
