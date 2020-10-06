@@ -1,16 +1,20 @@
 package lifeform;
 
+import exceptions.WeaponException;
 import weapon.Weapon;
 
 /**
  * Keeps track of the information associated with as simple life form. Also
  * provides the functionality related to the life form.
+ * 
+ * @author Adam Haertter - modified by Brennan Mulligan with Weapon methods
  */
 public abstract class LifeForm {
 
   private String myName;
   protected int currentLifePoints;
   protected int attackStrength;
+  protected Weapon weapon;
 
   /**
    * Creates an instance
@@ -56,10 +60,19 @@ public abstract class LifeForm {
    * LifeForm. No damage can be dealt if this LifeForm is dead.
    * 
    * @param opponent the opposing LifeForm that will be taking damage
+   * @param distance the distance between the two life forms
    */
-  public void attack(LifeForm opponent) {
+  public void attack(LifeForm opponent, int distance) {
     if (currentLifePoints > 0) {
-      opponent.takeHit(attackStrength);
+      if (weapon != null && weapon.getShotsLeft() != 0) {
+        try {
+          opponent.takeHit(weapon.fire(distance));
+        } catch (WeaponException e) {
+          e.printStackTrace();
+        }
+      } else if (distance <= 5) {
+        opponent.takeHit(attackStrength);
+      }
     }
   }
 
@@ -84,15 +97,43 @@ public abstract class LifeForm {
     return attackStrength;
   }
 
+  /**
+   * The Life form "drops" the weapon by setting it to null and the method returns
+   * the weapon the life form was holding
+   * 
+   * @return dropped_weapon the weapon the life form was holding
+   */
   public Weapon dropWeapon() {
-    return null;
+    Weapon dropped_weapon = weapon;
+    weapon = null;
+    return dropped_weapon;
   }
-  
+
+  /**
+   * Checks to see if the life form has a weapon equipped
+   * 
+   * @return a boolean of true or false
+   */
   public boolean hasWeapon() {
-    return false;
+    if (weapon == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
-  
-  public boolean pickUpWeapon(Weapon weapon) {
-    return false;
+
+  /**
+   * If the life form doesn't have a weapon, it will take possession of a new one
+   * 
+   * @param w the weapon that the life form will "pick up"
+   * @return a boolean based on if the life form took the new weapon or not
+   */
+  public boolean pickUpWeapon(Weapon w) {
+    if(weapon == null) {
+      weapon = w;
+      return true;
+    } else {
+      return false;
+    }
   }
 }
