@@ -16,6 +16,8 @@ public class Stabilizer extends Attachment implements Weapon, TimerObserver {
   public Stabilizer(Weapon baseWeapon) throws AttachmentException {
     if (base.getNumAttachments() < 2) {
       base = baseWeapon;
+    } else {
+      throw new AttachmentException("You already have two attachments");
     }
   }
 

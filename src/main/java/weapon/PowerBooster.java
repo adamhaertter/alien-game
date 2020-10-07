@@ -13,15 +13,17 @@ import gameplay.TimerObserver;
  */
 public class PowerBooster extends Attachment implements Weapon, TimerObserver {
   public PowerBooster(Weapon baseWeapon) throws AttachmentException {
-    if(base.getNumAttachments() < 2) {
+    if (base.getNumAttachments() < 2) {
       base = baseWeapon;
+    } else {
+      throw new AttachmentException("You already have two attachments");
     }
   }
-  
+
   public int fire(int distance) throws WeaponException {
     return (base.getBaseDamage() * (1 + (base.getCurrentAmmo() / base.getMaxAmmo())));
   }
-  
+
   public String toString() {
     return " + PowerBooster";
   }

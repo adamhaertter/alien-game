@@ -17,6 +17,8 @@ public class Scope extends Attachment implements Weapon, TimerObserver {
       Scope one = new Scope(base);
       one.getMaxRange();
       this.base = base;
+    } else {
+      throw new AttachmentException("You already have two attachments");
     }
   }
 

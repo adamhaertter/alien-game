@@ -22,10 +22,9 @@ public class TestStabilizer {
 
     Stabilizer stab = new Stabilizer(plasma);
     assertEquals(plasma.getBaseDamage(), 62);
-    plasma.fire(10);
-    plasma.fire(10);
-    plasma.fire(10);
-    plasma.fire(10);
+    for (int i = 0; i == plasma.getCurrentAmmo(); i++) {
+      plasma.fire(10);
+    }
     assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
   }
 
@@ -38,18 +37,16 @@ public class TestStabilizer {
 
     Stabilizer stab1 = new Stabilizer(plasma);
     assertEquals(plasma.getBaseDamage(), 62);
-    plasma.fire(10);
-    plasma.fire(10);
-    plasma.fire(10);
-    plasma.fire(10);
+    for (int i = 0; i == plasma.getMaxAmmo(); i++) {
+      plasma.fire(10);
+    }
     assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
 
     Stabilizer stab2 = new Stabilizer(plasma);
     assertEquals(plasma.getBaseDamage(), 77);
-    plasma.fire(10);
-    plasma.fire(10);
-    plasma.fire(10);
-    plasma.fire(10);
+    for (int i = 0; i == plasma.getMaxAmmo(); i++) {
+      plasma.fire(10);
+    }
     assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
   }
 
@@ -66,10 +63,9 @@ public class TestStabilizer {
 
     Stabilizer stab = new Stabilizer(pistol);
     assertEquals(pistol.getBaseDamage(), 18);
-    pistol.fire(10);
-    pistol.fire(10);
-    pistol.fire(10);
-    pistol.fire(10);
+    for (int i = 0; i == pistol.getCurrentAmmo(); i++) {
+      pistol.fire(10);
+    }
     assertEquals(pistol.getCurrentAmmo(), pistol.getMaxAmmo());
   }
 
@@ -77,18 +73,16 @@ public class TestStabilizer {
   public void TestChainPowerStabilizer() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
     assertEquals(chain.getBaseDamage(), 15);
-    assertEquals(chain.getMaxRange(), 60);
     assertEquals(chain.getCurrentAmmo(), chain.getMaxAmmo());
 
     PowerBooster boost = new PowerBooster(chain);
     assertEquals(chain.getBaseDamage(), 30);
 
     Stabilizer stab = new Stabilizer(chain);
-    assertEquals(chain.getBaseDamage(), 18);
-    chain.fire(10);
-    chain.fire(10);
-    chain.fire(10);
-    chain.fire(10);
+    assertEquals(chain.getBaseDamage(), 37);
+    for (int i = 0; i < chain.getCurrentAmmo(); i++) {
+      chain.fire(10);
+    }
     assertEquals(chain.getCurrentAmmo(), chain.getMaxAmmo());
   }
 }
