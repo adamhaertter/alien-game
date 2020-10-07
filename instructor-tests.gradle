@@ -14,7 +14,8 @@ task testZip(type: Zip) {
 }
 
 task downloadFile(type: Download) {
-  src 'https://www.dropbox.com/s/x6mjl3wvvnildra/lab4-instructor-tests.zip?dl=1'
+  quiet true
+  src 'https://www.dropbox.com/s/ynq048wbd2kyuk1/lab5-instructor-tests.zip?dl=1'
   dest new File(buildDir, 'dist/instructor-tests.zip')
 }
 
