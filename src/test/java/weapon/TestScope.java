@@ -30,11 +30,11 @@ public class TestScope {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
-    
+
     Scope scope1 = new Scope(pistol);
     assertEquals(pistol.getBaseDamage(), 15);
     assertEquals(pistol.getMaxRange(), 60);
-    
+
     Scope scope2 = new Scope(pistol);
     assertEquals(pistol.getBaseDamage(), 20);
     assertEquals(pistol.getMaxRange(), 70);
@@ -45,10 +45,10 @@ public class TestScope {
     Weapon chain = new ChainGun();
     assertEquals(chain.getBaseDamage(), 15);
     assertEquals(chain.getMaxRange(), 60);
-    
+
     PowerBooster boost = new PowerBooster(chain);
     assertEquals(chain.getBaseDamage(), 30);
-    
+
     Scope scope = new Scope(chain);
     assertEquals(chain.getBaseDamage(), 35);
     assertEquals(chain.getMaxRange(), 70);
@@ -58,18 +58,18 @@ public class TestScope {
   public void TestPlasmaStabilizerScope() throws AttachmentException, WeaponException {
     Weapon plasma = new PlasmaCannon();
     assertEquals(plasma.getBaseDamage(), 50);
-    assertEquals(plasma.getShotsLeft(), 4);
+    assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
     assertEquals(plasma.getMaxRange(), 40);
-    
+
     Stabilizer stab = new Stabilizer(plasma);
     assertEquals(plasma.getBaseDamage(), 62);
     plasma.fire(10);
     plasma.fire(10);
     plasma.fire(10);
     plasma.fire(10);
-    assertEquals(plasma.getShotsLeft(), 4);
-    
-    Scope scope= new Scope(plasma);
+    assertEquals(plasma.getCurrentAmmo(), 4);
+
+    Scope scope = new Scope(plasma);
     assertEquals(plasma.getBaseDamage(), 72);
     assertEquals(plasma.getMaxRange(), 50);
   }

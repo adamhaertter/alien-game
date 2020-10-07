@@ -5,15 +5,18 @@ import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
 /*
- * @Author Evan Paules
  * Stabilizer is an extension of Attachment and uses Weapon and TimerObserver Interfaces.
  * This Modifies a weapons damage and reload speed
+ * 
+ * @author Evan Paules
  */
 
 public class Stabilizer extends Attachment implements Weapon, TimerObserver {
 
   public Stabilizer(Weapon baseWeapon) throws AttachmentException {
-    base = baseWeapon;
+    if (base.getNumAttachments() < 2) {
+      base = baseWeapon;
+    }
   }
 
   /*

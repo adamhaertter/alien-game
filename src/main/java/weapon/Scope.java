@@ -5,14 +5,15 @@ import gameplay.TimerObserver;
 import exceptions.WeaponException;
 
 /*
- * @Author Evan Paules
  * Scope is an extension of Attachment and uses Weapon and TimerObserver Interfaces.
  * This Modifies a weapons damage and distance
+ * 
+ * @author Evan Paules
  */
 public class Scope extends Attachment implements Weapon, TimerObserver {
 
   public Scope(Weapon base) throws AttachmentException {
-    if(base.getNumAttachments() < 2) {
+    if (base.getNumAttachments() < 2) {
       Scope one = new Scope(base);
       one.getMaxRange();
       this.base = base;
