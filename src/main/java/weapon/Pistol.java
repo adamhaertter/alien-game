@@ -33,7 +33,7 @@ public class Pistol extends GenericWeapon {
     if (distance < 0) {
       throw new WeaponException("The distance cannot be negative!");
     }
-    if (this.getCurrentAmmo() <= 0 || shotsLeft <= 0) {
+    if (this.getCurrentAmmo() <= 0 || this.getShotsLeft() <= 0) {
       return 0;
     } else {
       shotsLeft--;
@@ -41,7 +41,8 @@ public class Pistol extends GenericWeapon {
     }
 
     return distance > this.getMaxRange() ? 0
-        : (int) (this.getBaseDamage() * ((double) distance / this.getMaxRange()));
+        : (int) (this.getBaseDamage() * ((double)
+        ((this.getMaxRange() - distance) + 10) / this.getMaxRange()));
   }
 
   /**
