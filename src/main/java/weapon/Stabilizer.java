@@ -25,11 +25,11 @@ public class Stabilizer extends Attachment implements Weapon, TimerObserver {
    */
   @Override
   public int fire(int distance) throws WeaponException {
-    int shot = base.fire(distance);
-    if (base.getCurrentAmmo() <= 0) {
-      base.reload();
+    int damage = (int) Math.floor(this.base.fire(distance) * 1.25);
+    if (this.base.getCurrentAmmo() == 0) {
+      this.base.reload();
     }
-    return (int) Math.floor(shot * 1.25);
+    return damage;
   }
 
   /**

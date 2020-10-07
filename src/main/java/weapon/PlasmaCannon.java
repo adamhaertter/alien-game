@@ -28,25 +28,21 @@ public class PlasmaCannon extends GenericWeapon {
    * 
    * @return the damage dealt by this weapon
    */
+  @Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
-      throw new WeaponException("Negative distance");
+      throw new WeaponException("The distance cannot be negative!");
     }
-    if (currentAmmo <= 0 || shotsLeft <= 0) {
+    if (this.getCurrentAmmo() <= 0 || this.getShotsLeft() <= 0) {
       return 0;
+    } else {
+      shotsLeft--;
+      super.currentAmmo--;
     }
 
-    float ret = 0.0f;
-    ret = currentAmmo;
-    ret /= maxAmmo;
-    ret *= baseDamage;
-    currentAmmo--;
-    shotsLeft--;
-
-    if (distance > maxRange) {
-      return 0;
-    }
-    return (int)Math.floor(ret);
+    return distance > this.getMaxRange() ? 0
+        : (int) (this.getBaseDamage() * ((double)
+        (this.getCurrentAmmo() + 1) / this.getMaxAmmo()));
   }
 
   /**

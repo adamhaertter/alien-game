@@ -23,16 +23,11 @@ public class Scope extends Attachment implements Weapon, TimerObserver {
    */
   @Override
   public int fire(int distance) throws WeaponException {
-    if (base.getMaxRange() < distance && distance <= getMaxRange()) {
-      return base.fire(base.getMaxRange()) + 5;
+    if (this.base.getMaxRange() < distance && distance <= this.getMaxRange()) {
+      return 5 + this.base.fire(this.base.getMaxRange());
     } else {
-      float ret = 0.0f;
-      ret = this.getMaxRange() - distance;
-      ret /= this.getMaxRange();
-      ret++;
-      ret *= base.fire(distance);
-
-      return (int) Math.floor(ret);
+      return (int) (this.base.fire(distance) * (1 + (double)
+          (this.getMaxRange() - distance) / this.getMaxRange()));
     }
   }
 

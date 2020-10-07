@@ -28,12 +28,13 @@ public class PowerBooster extends Attachment implements Weapon, TimerObserver {
    * 
    * @return the modified damage dealt by the booster.
    */
+  @Override
   public int fire(int distance) throws WeaponException {
-    double ret = 0.0;
-    ret = (double) base.getCurrentAmmo() / (double) base.getMaxAmmo();
-    ret = ret + 1.0;
-    ret *= base.fire(distance);
-    return (int) Math.floor(ret);
+    return Double
+        .valueOf(Math.floor(
+            (1 + ((double) this.base.getCurrentAmmo() / this.base.getMaxAmmo())
+            ) * this.base.fire(distance)))
+        .intValue();
   }
   
   /**
