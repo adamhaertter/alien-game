@@ -12,9 +12,11 @@ import exceptions.WeaponException;
 public class Scope extends Attachment implements Weapon, TimerObserver {
 
   public Scope(Weapon base) throws AttachmentException {
-    Scope one = new Scope(base);
-    one.getMaxRange();
-    this.base = base;
+    if(base.getNumAttachments() < 2) {
+      Scope one = new Scope(base);
+      one.getMaxRange();
+      this.base = base;
+    }
   }
 
   /*
