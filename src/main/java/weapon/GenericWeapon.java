@@ -13,8 +13,32 @@ public abstract class GenericWeapon implements Weapon {
   protected int maxRange;
   protected int rateOfFire;
   protected int shotsLeft;
-
+  
+  /**
+   * Creates a weapon with generic parameters
+   */
   public GenericWeapon() {
+    baseDamage = 10;
+    currentAmmo = 10;
+    maxAmmo = 10;
+    maxRange = 10;
+    rateOfFire = 10;
+    shotsLeft = 10;
+  }
+
+  /**
+   * @param dam Base Damage
+   * @param rang Max Range
+   * @param fire Rate of Fire
+   * @param max Max Ammo and Current Ammo
+   */
+  public GenericWeapon(int dam, int rang, int fire, int max) {
+    baseDamage = dam;
+    currentAmmo = max;
+    maxAmmo = max;
+    maxRange = rang;
+    rateOfFire = fire;
+    shotsLeft = fire;
   }
 
   /**

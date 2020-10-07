@@ -13,12 +13,7 @@ public class Pistol extends GenericWeapon {
    * rate of fire of 2 and a maximum ammo of 10.
    */
   public Pistol() {
-    baseDamage = 10;
-    maxRange = 50;
-    rateOfFire = 2;
-    maxAmmo = 10;
-    currentAmmo = maxAmmo;
-    shotsLeft = rateOfFire;
+    super(10, 50, 2, 10);
   }
 
   /**

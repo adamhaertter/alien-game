@@ -9,12 +9,7 @@ import exceptions.WeaponException;
 public class MockWeapon extends GenericWeapon {
 
   public MockWeapon() {
-    maxAmmo = 10;
-    baseDamage = 10;
-    rateOfFire = 10;
-    maxRange = 10;
-    currentAmmo = maxAmmo;
-    shotsLeft = rateOfFire;
+    super(10, 10, 10, 10);
   }
 
   /**

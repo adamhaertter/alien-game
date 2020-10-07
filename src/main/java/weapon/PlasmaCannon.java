@@ -13,12 +13,7 @@ public class PlasmaCannon extends GenericWeapon {
    * It has a rate of fire of 1 and a maximum ammo of 4.
    */
   public PlasmaCannon() {
-    baseDamage = 50;
-    maxRange = 40;
-    rateOfFire = 1;
-    maxAmmo = 4;
-    currentAmmo = maxAmmo;
-    shotsLeft = rateOfFire;
+    super(50, 40, 1, 4);
   }
 
   /**
