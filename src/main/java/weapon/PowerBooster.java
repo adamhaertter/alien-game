@@ -13,15 +13,41 @@ import gameplay.TimerObserver;
  */
 public class PowerBooster extends Attachment implements Weapon, TimerObserver {
 
+  /**
+   * The Power Booster amplifies the damage dealt based on how much ammo is left.
+   * 
+   * @param w the wrapped weapon by the decorator pattern
+   * @throws AttachmentException
+   */
   public PowerBooster(Weapon w) throws AttachmentException {
     super(w);
   }
 
+  /**
+   * Amplifies the damage dealt by a shot by the proportion of ammo remaining.
+   * 
+   * @return the modified damage dealt by the booster.
+   */
   public int fire(int distance) throws WeaponException {
-    return ((1 + (getCurrentAmmo() / getMaxAmmo())) * base.fire(distance));
+    double ret = 0.0;
+    ret = (double) base.getCurrentAmmo() / (double) base.getMaxAmmo();
+    ret = ret + 1.0;
+    ret *= base.fire(distance);
+    return (int) Math.floor(ret);
+  }
+  
+  /**
+   * Prints " +PowerBooster"
+   */
+  public String toString() {
+    return base + " +PowerBooster";
   }
 
-  public String toString() {
-    return " + PowerBooster";
+  /**
+   * @return 1 more than the number of attachments already applied before this
+   *         one.
+   */
+  public int getNumAttachments() {
+    return 1 + base.getNumAttachments();
   }
 }

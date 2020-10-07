@@ -213,4 +213,5 @@ public class TestLifeForm {
     pistol.reload();
     assertEquals(pistol.getCurrentAmmo(), pistol.getMaxAmmo());
   }
+  
 }

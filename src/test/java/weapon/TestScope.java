@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
+import gameplay.SimpleTimer;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 
@@ -15,6 +16,14 @@ import lifeform.MockLifeForm;
  * @author Brennan Mulligan
  */
 public class TestScope {
+
+  /**
+   * Creates a Pistol and attaches a Scope to it. Checks that the calculations are
+   * done properly at each step.
+   * 
+   * @throws AttachmentException
+   * @throws WeaponException
+   */
   @Test
   public void TestPistolAndScope() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
@@ -26,6 +35,13 @@ public class TestScope {
     assertEquals(scope.getMaxRange(), 60);
   }
 
+  /**
+   * Creates a Pistol and attaches 2 Scopes to it. Checks that the calculations
+   * are done properly at each step.
+   * 
+   * @throws AttachmentException
+   * @throws WeaponException
+   */
   @Test
   public void TestPistolTwoScopes() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
@@ -41,6 +57,13 @@ public class TestScope {
     assertEquals(scope2.getMaxRange(), 70);
   }
 
+  /**
+   * Creates a ChainGun and attaches a Scope and a Booster to it. Checks that the
+   * calculations are done properly at each step.
+   * 
+   * @throws AttachmentException
+   * @throws WeaponException
+   */
   @Test
   public void TestChainPowerScope() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
@@ -57,6 +80,13 @@ public class TestScope {
     assertEquals(scope.getMaxRange(), 70);
   }
 
+  /**
+   * Creates a PlasmaCannon and attaches a Stabilizer and a Scope to it. Checks
+   * that the calculations are done properly at each step.
+   * 
+   * @throws AttachmentException
+   * @throws WeaponException
+   */
   @Test
   public void TestPlasmaStabilizerScope() throws AttachmentException, WeaponException {
     Weapon plasma = new PlasmaCannon();
@@ -65,14 +95,19 @@ public class TestScope {
     assertEquals(plasma.getMaxRange(), 40);
 
     Stabilizer stab = new Stabilizer(plasma);
+    SimpleTimer timer = new SimpleTimer();
+    timer.addTimeObserver(stab);
     assertEquals(stab.fire(10), 62);
-    for (int i = stab.getMaxAmmo(); i >= 0; i--) {
+    System.out.println(stab.getCurrentAmmo());
+    for (int i = 0; i <= 3; i++) {
       stab.fire(10);
+      timer.timeChanged();
     }
     assertEquals(stab.getCurrentAmmo(), 4);
 
     Scope scope = new Scope(stab);
-    assertEquals(scope.fire(45), (stab.fire(stab.getMaxRange()) + 5));
+    assertEquals(scope.fire(45), 67);
     assertEquals(scope.getMaxRange(), 50);
   }
+
 }

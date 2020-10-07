@@ -46,13 +46,13 @@ public class ChainGun extends GenericWeapon {
     if (distance > maxRange) {
       return 0;
     }
-    return Math.round(ret);
+    return (int)Math.floor(ret);
   }
 
   /**
-   * Prints "Chain Gun"
+   * Prints "ChainGun"
    */
   public String toString() {
-    return "Chain Gun";
+    return "ChainGun";
   }
 }

@@ -9,7 +9,11 @@ import exceptions.WeaponException;
 public class TestPlasmaCannon {
 
   /**
-   * @TODO
+   * /**
+   * Creates a PlasmaCannon and tests its firing ranges at multiple distances,
+   * including those that work and those outside of its defined range. Checks the
+   * border conditions of the gun as well.
+   * 
    * @throws WeaponException
    */
   @Test

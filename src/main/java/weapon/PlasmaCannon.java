@@ -46,13 +46,13 @@ public class PlasmaCannon extends GenericWeapon {
     if (distance > maxRange) {
       return 0;
     }
-    return Math.round(ret);
+    return (int)Math.floor(ret);
   }
 
   /**
-   * Prints "Plasma Cannon"
+   * Prints "PlasmaCannon"
    */
   public String toString() {
-    return "Plasma Cannon";
+    return "PlasmaCannon";
   }
 }

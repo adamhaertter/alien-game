@@ -46,7 +46,7 @@ public class Pistol extends GenericWeapon {
     if (distance > maxRange) {
       return 0;
     }
-    return Math.round(ret);
+    return (int)Math.floor(ret);
   }
 
   /**

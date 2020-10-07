@@ -2,6 +2,10 @@ package weapon;
 
 import exceptions.WeaponException;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class MockWeapon extends GenericWeapon {
 
   public MockWeapon() {
@@ -40,11 +44,11 @@ public class MockWeapon extends GenericWeapon {
   }
 
   /**
-   * Prints "Generic Weapon", although this method is likely to never be used.
+   * Prints "GenericWeapon", although this method is likely to never be used.
    */
   @Override
   public String toString() {
-    return "Generic Weapon";
+    return "GenericWeapon";
   }
 
 }
