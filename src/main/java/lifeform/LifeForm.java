@@ -64,7 +64,7 @@ public abstract class LifeForm {
    */
   public void attack(LifeForm opponent, int distance) {
     if (currentLifePoints > 0) {
-      if (weapon != null && weapon.getShotsLeft() != 0) {
+      if (weapon != null && weapon.getCurrentAmmo() != 0) {
         try {
           opponent.takeHit(weapon.fire(distance));
         } catch (WeaponException e) {
@@ -104,9 +104,9 @@ public abstract class LifeForm {
    * @return dropped_weapon the weapon the life form was holding
    */
   public Weapon dropWeapon() {
-    Weapon dropped_weapon = weapon;
+    Weapon droppedWeapon = weapon;
     weapon = null;
-    return dropped_weapon;
+    return droppedWeapon;
   }
 
   /**
@@ -129,7 +129,7 @@ public abstract class LifeForm {
    * @return a boolean based on if the life form took the new weapon or not
    */
   public boolean pickUpWeapon(Weapon w) {
-    if(weapon == null) {
+    if (weapon == null) {
       weapon = w;
       return true;
     } else {

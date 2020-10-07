@@ -14,38 +14,47 @@ import exceptions.WeaponException;
  */
 public class TestPowerBooster {
   @Test
-  public void TestChainPower() throws AttachmentException {
+  public void TestChainPower() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
+    int shot = chain.fire(10);
+    chain.reload();
     assertEquals(chain.getBaseDamage(), 15);
 
     PowerBooster boost = new PowerBooster(chain);
-    assertEquals(chain.getBaseDamage(), 30);
+    assertEquals(boost.fire(10), (shot * 2));
   }
 
   @Test
-  public void TestPistolScopePower() throws AttachmentException {
+  public void TestPistolScopePower() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
 
     Scope scope = new Scope(pistol);
-    assertEquals(pistol.getBaseDamage(), 15);
-    assertEquals(pistol.getMaxRange(), 60);
+    assertEquals(scope.fire(55), (pistol.fire(pistol.getMaxRange()) + 5));
+    assertEquals(scope.getMaxRange(), 60);
 
-    PowerBooster boost = new PowerBooster(pistol);
-    assertEquals(pistol.getBaseDamage(), 30);
+    PowerBooster boost = new PowerBooster(scope);
+    int shot = scope.fire(10);
+    scope.reload();
+    assertEquals(boost.fire(10), (shot * 2));
   }
 
   @Test
-  public void TestChainTwoPowerBoosters() throws AttachmentException {
+  public void TestChainTwoPowerBoosters() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
     assertEquals(chain.getBaseDamage(), 15);
 
     PowerBooster boost1 = new PowerBooster(chain);
-    assertEquals(chain.getBaseDamage(), 30);
+    int shot = chain.fire(10);
+    chain.reload();
+    assertEquals(boost1.fire(10), (shot * 2));
+    boost1.reload();
 
-    PowerBooster boost2 = new PowerBooster(chain);
-    assertEquals(chain.getBaseDamage(), 60);
+    PowerBooster boost2 = new PowerBooster(boost1);
+    shot = boost1.fire(10);
+    boost1.reload();
+    assertEquals(boost2.fire(10), (shot * 2));
   }
 
   @Test
@@ -55,11 +64,16 @@ public class TestPowerBooster {
     assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
     assertEquals(plasma.getMaxRange(), 40);
 
-    Stabilizer stab1 = new Stabilizer(plasma);
-    assertEquals(plasma.getBaseDamage(), 62);
-    for (int i = 0; i == plasma.getCurrentAmmo(); i++) {
-      plasma.fire(10);
+    Stabilizer stab = new Stabilizer(plasma);
+    assertEquals(stab.fire(10), 62);
+    for (int i = stab.getMaxAmmo(); i >= 0; i--) {
+      stab.fire(10);
     }
-    assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
+    assertEquals(stab.getCurrentAmmo(), stab.getMaxAmmo());
+
+    PowerBooster boost = new PowerBooster(stab);
+    int shot = boost.fire(10);
+    boost.reload();
+    assertEquals(boost.fire(10), (shot * 2));
   }
 }

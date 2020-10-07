@@ -2,7 +2,7 @@ package weapon;
 
 import exceptions.WeaponException;
 
-public abstract class GenericWeapon extends Object implements Weapon {
+public abstract class GenericWeapon implements Weapon {
 
   /**
    * @author Joshua Lewis
@@ -15,6 +15,12 @@ public abstract class GenericWeapon extends Object implements Weapon {
   protected int shotsLeft;
 
   public GenericWeapon() {
+    baseDamage = 0;
+    currentAmmo = 0;
+    maxAmmo = 0;
+    maxRange = 0;
+    rateOfFire = 0;
+    shotsLeft = 0;
   }
 
   public abstract int fire(int distance) throws WeaponException;

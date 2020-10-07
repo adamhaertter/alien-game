@@ -1,5 +1,6 @@
 package weapon;
 
+import exceptions.AttachmentException;
 import exceptions.WeaponException;
 
 public abstract class Attachment extends Object implements Weapon {
@@ -9,7 +10,12 @@ public abstract class Attachment extends Object implements Weapon {
    */
   protected Weapon base;
 
-  public Attachment() {
+  public Attachment(Weapon w) throws AttachmentException {
+    if (w.getNumAttachments() < 2) {
+      this.base = w;
+    } else {
+      throw new AttachmentException("You already have two attachments");
+    }
   }
 
   public abstract int fire(int distance) throws WeaponException;

@@ -21,11 +21,11 @@ public class TestStabilizer {
     assertEquals(plasma.getMaxRange(), 40);
 
     Stabilizer stab = new Stabilizer(plasma);
-    assertEquals(plasma.getBaseDamage(), 62);
-    for (int i = 0; i == plasma.getCurrentAmmo(); i++) {
-      plasma.fire(10);
+    assertEquals(stab.fire(10), 62);
+    for (int i = stab.getMaxAmmo(); i >= 0; i--) {
+      stab.fire(10);
     }
-    assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
+    assertEquals(stab.getCurrentAmmo(), stab.getMaxAmmo());
   }
 
   @Test
@@ -36,18 +36,18 @@ public class TestStabilizer {
     assertEquals(plasma.getMaxRange(), 40);
 
     Stabilizer stab1 = new Stabilizer(plasma);
-    assertEquals(plasma.getBaseDamage(), 62);
-    for (int i = 0; i == plasma.getMaxAmmo(); i++) {
-      plasma.fire(10);
+    assertEquals(stab1.fire(10), 62);
+    for (int i = stab1.getMaxAmmo(); i >= 0; i--) {
+      stab1.fire(10);
     }
-    assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
+    assertEquals(stab1.getCurrentAmmo(), stab1.getMaxAmmo());
 
-    Stabilizer stab2 = new Stabilizer(plasma);
-    assertEquals(plasma.getBaseDamage(), 77);
-    for (int i = 0; i == plasma.getMaxAmmo(); i++) {
-      plasma.fire(10);
+    Stabilizer stab2 = new Stabilizer(stab1);
+    assertEquals(stab2.fire(10), (int) (stab1.fire(10) * 1.25));
+    for (int i = stab2.getMaxAmmo(); i >= 0; i--) {
+      stab2.fire(10);
     }
-    assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
+    assertEquals(stab2.getCurrentAmmo(), stab2.getMaxAmmo());
   }
 
   @Test
@@ -55,18 +55,17 @@ public class TestStabilizer {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
-    assertEquals(pistol.getCurrentAmmo(), pistol.getMaxAmmo());
 
     Scope scope = new Scope(pistol);
-    assertEquals(pistol.getBaseDamage(), 15);
-    assertEquals(pistol.getMaxRange(), 60);
+    assertEquals(scope.fire(55), (pistol.fire(pistol.getMaxRange()) + 5));
+    assertEquals(scope.getMaxRange(), 60);
 
-    Stabilizer stab = new Stabilizer(pistol);
-    assertEquals(pistol.getBaseDamage(), 18);
-    for (int i = 0; i == pistol.getCurrentAmmo(); i++) {
-      pistol.fire(10);
+    Stabilizer stab = new Stabilizer(scope);
+    assertEquals(stab.fire(55), (int) Math.floor(scope.fire(55) * 1.25));
+    for (int i = stab.getMaxAmmo(); i >= 0; i--) {
+      stab.fire(10);
     }
-    assertEquals(pistol.getCurrentAmmo(), pistol.getMaxAmmo());
+    assertEquals(stab.getCurrentAmmo(), stab.getMaxAmmo());
   }
 
   @Test
@@ -76,13 +75,15 @@ public class TestStabilizer {
     assertEquals(chain.getCurrentAmmo(), chain.getMaxAmmo());
 
     PowerBooster boost = new PowerBooster(chain);
-    assertEquals(chain.getBaseDamage(), 30);
+    int shot = chain.fire(10);
+    chain.reload();
+    assertEquals(boost.fire(10), (shot * 2));
 
-    Stabilizer stab = new Stabilizer(chain);
-    assertEquals(chain.getBaseDamage(), 37);
-    for (int i = 0; i < chain.getCurrentAmmo(); i++) {
-      chain.fire(10);
+    Stabilizer stab = new Stabilizer(boost);
+    assertEquals(stab.fire(10), (int) (boost.fire(10) * 1.25));
+    for (int i = stab.getMaxAmmo(); i >= 0; i--) {
+      stab.fire(10);
     }
-    assertEquals(chain.getCurrentAmmo(), chain.getMaxAmmo());
+    assertEquals(stab.getCurrentAmmo(), stab.getMaxAmmo());
   }
 }

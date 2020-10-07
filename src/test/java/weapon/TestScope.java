@@ -16,42 +16,45 @@ import lifeform.MockLifeForm;
  */
 public class TestScope {
   @Test
-  public void TestPistolAndScope() throws AttachmentException {
+  public void TestPistolAndScope() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
+
     Scope scope = new Scope(pistol);
-    assertEquals(pistol.getBaseDamage(), 15);
-    assertEquals(pistol.getMaxRange(), 60);
+    assertEquals(scope.fire(55), (pistol.fire(pistol.getMaxRange()) + 5));
+    assertEquals(scope.getMaxRange(), 60);
   }
 
   @Test
-  public void TestPistolTwoScopes() throws AttachmentException {
+  public void TestPistolTwoScopes() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
 
     Scope scope1 = new Scope(pistol);
-    assertEquals(pistol.getBaseDamage(), 15);
-    assertEquals(pistol.getMaxRange(), 60);
+    assertEquals(scope1.fire(55), (pistol.fire(pistol.getMaxRange()) + 5));
+    assertEquals(scope1.getMaxRange(), 60);
 
-    Scope scope2 = new Scope(pistol);
-    assertEquals(pistol.getBaseDamage(), 20);
-    assertEquals(pistol.getMaxRange(), 70);
+    Scope scope2 = new Scope(scope1);
+    assertEquals(scope2.fire(65), (scope1.fire(scope1.getMaxRange()) + 5));
+    assertEquals(scope2.getMaxRange(), 70);
   }
 
   @Test
-  public void TestChainPowerScope() throws AttachmentException {
+  public void TestChainPowerScope() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
     assertEquals(chain.getBaseDamage(), 15);
     assertEquals(chain.getMaxRange(), 60);
 
     PowerBooster boost = new PowerBooster(chain);
-    assertEquals(chain.getBaseDamage(), 30);
+    int shot = chain.fire(10);
+    chain.reload();
+    assertEquals(boost.fire(10), (shot * 2));
 
-    Scope scope = new Scope(chain);
-    assertEquals(chain.getBaseDamage(), 35);
-    assertEquals(chain.getMaxRange(), 70);
+    Scope scope = new Scope(boost);
+    assertEquals(scope.fire(65), (boost.fire(boost.getMaxRange()) + 5));
+    assertEquals(scope.getMaxRange(), 70);
   }
 
   @Test
@@ -62,15 +65,14 @@ public class TestScope {
     assertEquals(plasma.getMaxRange(), 40);
 
     Stabilizer stab = new Stabilizer(plasma);
-    assertEquals(plasma.getBaseDamage(), 62);
-    plasma.fire(10);
-    plasma.fire(10);
-    plasma.fire(10);
-    plasma.fire(10);
-    assertEquals(plasma.getCurrentAmmo(), 4);
+    assertEquals(stab.fire(10), 62);
+    for (int i = stab.getMaxAmmo(); i >= 0; i--) {
+      stab.fire(10);
+    }
+    assertEquals(stab.getCurrentAmmo(), 4);
 
-    Scope scope = new Scope(plasma);
-    assertEquals(plasma.getBaseDamage(), 72);
-    assertEquals(plasma.getMaxRange(), 50);
+    Scope scope = new Scope(stab);
+    assertEquals(scope.fire(45), (stab.fire(stab.getMaxRange()) + 5));
+    assertEquals(scope.getMaxRange(), 50);
   }
 }

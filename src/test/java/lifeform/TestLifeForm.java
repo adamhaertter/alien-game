@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import exceptions.WeaponException;
 import weapon.MockWeapon;
+import weapon.Pistol;
 import weapon.Weapon;
 
 /**
@@ -72,7 +73,7 @@ public class TestLifeForm {
     MockLifeForm one = new MockLifeForm("One", 50);
     MockLifeForm two = new MockLifeForm("Two", 50);
 
-    one.attack(two);
+    one.attack(two, 1);
     assertEquals(two.getCurrentLifePoints(), 49);
   }
 
@@ -86,7 +87,7 @@ public class TestLifeForm {
     MockLifeForm one = new MockLifeForm("One", 0);
     MockLifeForm two = new MockLifeForm("Two", 50);
 
-    one.attack(two);
+    one.attack(two, 1);
     assertEquals(two.getCurrentLifePoints(), 50);
   }
 
@@ -123,7 +124,7 @@ public class TestLifeForm {
   /**
    * Creates a LifeForm and a Weapon and makes sure the LifeForm properly picks up
    * the weapon. Then, drops the weapon. Makes sure this properly removes the
-   * weapon from the lifeform and that the same weapon is dropped as was picked
+   * weapon from the life form and that the same weapon is dropped as was picked
    * up.
    */
   @Test
@@ -151,11 +152,9 @@ public class TestLifeForm {
     Weapon weapon = new MockWeapon();
     range.pickUpWeapon(weapon);
     int meleeMaxHealth = melee.getCurrentLifePoints();
-    range.attack(melee);
+    range.attack(melee, 1);
     assertEquals(melee.getCurrentLifePoints(), meleeMaxHealth - weapon.fire(1));
     assertNotEquals(melee.getCurrentLifePoints(), meleeMaxHealth - range.getAttackStrength());
-    // TODO this test is going to need fixing once we figure out the LifeForm
-    // implementation
   }
 
   /**
@@ -176,11 +175,9 @@ public class TestLifeForm {
     while (weapon.getCurrentAmmo() > 0) {
       weapon.fire(1);
     }
-    range.attack(melee);
+    range.attack(melee, 1);
     assertNotEquals(melee.getCurrentLifePoints(), meleeMaxHealth - weapon.fire(1));
     assertEquals(melee.getCurrentLifePoints(), meleeMaxHealth - range.getAttackStrength());
-    // TODO this test is going to need fixing once we figure out the LifeForm
-    // implementation
   }
 
   /**
@@ -192,21 +189,28 @@ public class TestLifeForm {
   public void testMeleeBounds() {
     LifeForm range = new MockLifeForm("Range", 10, 1);
     LifeForm melee = new MockLifeForm("Melee", 10, 1);
-    Weapon weapon = new MockWeapon();
-    range.pickUpWeapon(weapon);
+
     int rangeMaxHealth = range.getCurrentLifePoints();
-    // TODO set their ranges to be over 5 apart
-    melee.attack(range);
+    melee.attack(range, 10);
     assertEquals(range.getCurrentLifePoints(), rangeMaxHealth);
-    // TODO this test is going to need fixing once we figure out the LifeForm
-    // implementation
   }
 
   /**
-   * @TODO
+   * Creates a LifeForm which is given a Pistol weapon. The LifeForm fires once.
+   * Checks to see that there is one less shot. The LifeForm reloads. Checks to
+   * see that its at max ammo.
    */
   @Test
   public void testReloadWeapon() {
-    fail("Not yet implemented");
+    LifeForm lf = new MockLifeForm("Test", 10, 1);
+    LifeForm opponent = new MockLifeForm("Enemy", 10, 1);
+    Pistol pistol = new Pistol();
+
+    lf.pickUpWeapon(pistol);
+    assertEquals(pistol.getCurrentAmmo(), pistol.getMaxAmmo());
+    lf.attack(opponent, 10);
+    assertEquals(pistol.getCurrentAmmo(), (pistol.getMaxAmmo() - 1));
+    pistol.reload();
+    assertEquals(pistol.getCurrentAmmo(), pistol.getMaxAmmo());
   }
 }

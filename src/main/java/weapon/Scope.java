@@ -12,14 +12,8 @@ import exceptions.WeaponException;
  */
 public class Scope extends Attachment implements Weapon, TimerObserver {
 
-  public Scope(Weapon base) throws AttachmentException {
-    if (base.getNumAttachments() < 2) {
-      Scope one = new Scope(base);
-      one.getMaxRange();
-      this.base = base;
-    } else {
-      throw new AttachmentException("You already have two attachments");
-    }
+  public Scope(Weapon w) throws AttachmentException {
+    super(w);
   }
 
   /*
@@ -27,12 +21,11 @@ public class Scope extends Attachment implements Weapon, TimerObserver {
    */
   @Override
   public int fire(int distance) throws WeaponException {
-
-    if (base.getMaxRange() < distance && distance <= base.getMaxRange() + 10) {
-      return base.getBaseDamage() + 5;
-    } else
-      return base.getBaseDamage() * (1 + (base.getBaseDamage() + 5 - distance) / base.getBaseDamage() + 5);
-
+    if (base.getMaxRange() < distance && distance <= getMaxRange()) {
+      return base.fire(base.getMaxRange()) + 5;
+    } else {
+      return base.fire(distance) * (1 + (getMaxRange() - distance) / getMaxRange());
+    }
   }
 
   @Override

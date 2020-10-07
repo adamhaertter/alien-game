@@ -13,12 +13,8 @@ import gameplay.TimerObserver;
 
 public class Stabilizer extends Attachment implements Weapon, TimerObserver {
 
-  public Stabilizer(Weapon baseWeapon) throws AttachmentException {
-    if (base.getNumAttachments() < 2) {
-      base = baseWeapon;
-    } else {
-      throw new AttachmentException("You already have two attachments");
-    }
+  public Stabilizer(Weapon w) throws AttachmentException {
+    super(w);
   }
 
   /*
@@ -30,8 +26,7 @@ public class Stabilizer extends Attachment implements Weapon, TimerObserver {
     if (base.getShotsLeft() == 0) {
       base.reload();
     }
-    int damage = (int) Math.floor(base.fire(distance) * 1.25);
-    return damage;
+    return (int) Math.floor(base.fire(distance) * 1.25);
   }
 
   @Override
