@@ -1,6 +1,7 @@
 package environment;
 
 import lifeform.LifeForm;
+import weapon.Weapon;
 
 /**
  * A Cell that can hold a LifeForm.
@@ -9,6 +10,8 @@ import lifeform.LifeForm;
 public class Cell {
 
   LifeForm entity;
+  Weapon wOne;
+  Weapon wTwo;
 
   /**
    * Constructs an empty cell in which entity is automatically null until a
@@ -47,5 +50,46 @@ public class Cell {
   public LifeForm getLifeForm() {
     return entity;
   }
-
+  
+  public boolean addWeapon(Weapon weapon) {
+    if (wOne == null) {
+      wOne = weapon;
+      return true;
+    } else if(wTwo == null) {
+      wTwo = weapon;
+      return true;
+    }
+    return false;
+  }
+  
+  public Weapon getWeapon1() {
+    return wOne;
+  }
+  
+  public Weapon getWeapon2() {
+    return wTwo;
+  }
+  
+  public int getWeaonsCount() {
+    int count = 0;
+    if (wOne != null) {
+      count++;
+    }
+    if (wTwo != null) {
+      count++;
+    }
+    return count;
+  }
+  
+  public Weapon removeWeapon(Weapon weapon) {
+    if (wOne == weapon) {
+      wOne = null;
+      return weapon;
+    }
+    if (wTwo == weapon) {
+      wTwo = null;
+      return weapon;
+    }
+    return null;
+  }
 }
