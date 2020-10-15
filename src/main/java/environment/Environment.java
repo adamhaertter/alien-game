@@ -7,7 +7,8 @@ import lifeform.LifeForm;
  *
  */
 public class Environment {
-
+  
+  private static Environment e;
   Cell[][] cells;
 
   /**
@@ -16,13 +17,21 @@ public class Environment {
    * @param rows the number of rows for the Cell matrix
    * @param cols the number of columns for the Cell matrix
    */
-  public Environment(int rows, int cols) {
+  private Environment(int rows, int cols) {
     cells = new Cell[rows][cols];
     for (int r = 0; r < rows; r++) {
       for (int c = 0; c < cols; c++) {
         cells[r][c] = new Cell();
       }
     }
+  }
+  
+  public Environment getEnvironment(int row, int col) {
+    if(e == null) {
+      e = new Environment(row, col);      
+    }
+
+    return e;
   }
 
   /**
