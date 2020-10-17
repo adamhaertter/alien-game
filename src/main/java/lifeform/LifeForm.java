@@ -7,7 +7,8 @@ import weapon.Weapon;
  * Keeps track of the information associated with as simple life form. Also
  * provides the functionality related to the life form.
  * 
- * @author Adam Haertter - modified by Brennan Mulligan with Weapon methods
+ * @author Adam Haertter - modified by Brennan Mulligan with Weapon and location
+ *         functionality
  */
 public abstract class LifeForm {
 
@@ -15,6 +16,8 @@ public abstract class LifeForm {
   protected int currentLifePoints;
   protected int attackStrength;
   protected Weapon weapon;
+  protected int row;
+  protected int col;
 
   /**
    * Creates an instance
@@ -26,6 +29,8 @@ public abstract class LifeForm {
     myName = string;
     currentLifePoints = i;
     attackStrength = 1;
+    row = -1;
+    col = -1;
   }
 
   /**
@@ -38,6 +43,8 @@ public abstract class LifeForm {
   public LifeForm(String string, int i, int atk) {
     this(string, i);
     attackStrength = atk;
+    row = -1;
+    col = -1;
   }
 
   /**
@@ -135,5 +142,32 @@ public abstract class LifeForm {
     } else {
       return false;
     }
+  }
+
+  /**
+   * Sets the current location of the life form in the environment
+   * 
+   * @param r the row the life form resides in
+   * @param c the column the life form resides in
+   */
+  public void setLocation(int r, int c) {
+    if(r >= -1 && c >= -1) {
+      row = r;
+      col = c;
+    }
+  }
+  
+  /**
+   * @return the row the life form resides in
+   */
+  public int getRow() {
+    return row;
+  }
+  
+  /**
+   * @return the column the life form resides in
+   */
+  public int getCol() {
+    return col;
   }
 }
