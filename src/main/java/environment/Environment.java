@@ -105,4 +105,13 @@ public class Environment {
     int col2 = life2.getCol();
     return getDistance(row1, col1, row2, col2);
   }
+
+  public void clearBoard() {
+    for (int r = 0; r < this.cells.length; r++) {
+      for (int c = 0; c < this.cells[0].length; c++) {
+        cells[r][c] = new Cell();
+      }
+    }
+  }
+
 }
