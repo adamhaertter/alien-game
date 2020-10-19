@@ -14,7 +14,7 @@ public class Environment {
 
   /**
    * Sets up the environment by creating a 2D array of cells
-   * 
+   *
    * @param rows the number of rows for the Cell matrix
    * @param cols the number of columns for the Cell matrix
    */
@@ -31,12 +31,12 @@ public class Environment {
    * Attempts to add a LifeForm to the specified Cell. Will not add a LifeForm if
    * the Cell is already full or if the parameters fall outside the possible
    * values.
-   * 
+   *
    * @param lf  the life form to be added to the cell
    * @param row the row index where the life form should be added
    * @param col the column index where the life form should be added
    * @return false if the life form is unable to be added, true if it is added
-   *         successfully
+   * successfully
    */
   public boolean addLifeForm(LifeForm lf, int row, int col) {
     if (row > cells.length || col > cells[0].length || row < 0 || col < 0) {
@@ -54,7 +54,7 @@ public class Environment {
   /**
    * Removes the LifeForm present in the specified cell if one exists. If invalid
    * parameters are given, this method will do nothing
-   * 
+   *
    * @param row the row index where the life form should be removed from
    * @param col the column index where the life form should be removed from
    */
@@ -67,7 +67,7 @@ public class Environment {
 
   /**
    * Retrieves the LifeForm at the given Cell index
-   * 
+   *
    * @param row the row index where the life form should be stored
    * @param col the column index where the life form should be stored
    * @return the LifeForm present in the cell if one exists, null otherwise
@@ -89,9 +89,8 @@ public class Environment {
         throw new EnvironmentException("One or Both Areas Are Invalid");
       }
     }
-    double height = Math.abs(row1 - row2);
-    double length = Math.abs(col1 - col2);
-    return Math.sqrt((height * height) + (length * length));
+
+    return Math.sqrt(Math.pow(row1 - row2, 2) + Math.pow(col1 - col2, 2));
   }
 
   /**
