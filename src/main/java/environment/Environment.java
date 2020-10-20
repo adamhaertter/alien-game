@@ -2,6 +2,7 @@ package environment;
 
 import exceptions.EnvironmentException;
 import lifeform.LifeForm;
+import weapon.Weapon;
 
 /**
  * The Environment in which Cells are stored in a 2D Array configuration
@@ -10,7 +11,7 @@ import lifeform.LifeForm;
  */
 public class Environment {
 
-  Cell[][] cells;
+  static Cell[][] cells;
 
   /**
    * Sets up the environment by creating a 2D array of cells
@@ -117,7 +118,27 @@ public class Environment {
     }
   }
 
-  public static Environment getEnvironment(int row, int col) {
-    
+  public boolean addWeapon(Weapon weapon, int row, int col) {
+    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0) return false;
+    return (cells[row][col].wOne == null || cells[row][col].wTwo == null) && (cells[row][col].wOne != weapon && cells[row][col].wTwo != weapon);
   }
+
+  public Weapon removeWeapon(Weapon weapon, int row, int col) {
+    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0) return null;
+    if (cells[row][col].wOne == weapon) {
+      Weapon removedWeapon = cells[row][col].wOne;
+      cells[row][col].wOne = null;
+      return removedWeapon;
+    } else if (cells[row][col].wTwo == weapon) {
+      Weapon removedWeapon = cells[row][col].wTwo;
+      cells[row][col].wTwo = null;
+      return removedWeapon;
+    }
+    return null;
+  }
+
+  public Weapon[] getWeapons(int row, int col) {
+    return new Weapon[]{cells[row][col].wOne, cells[row][col].wTwo};
+  }
+
 }
