@@ -195,7 +195,7 @@ public class TestEnvironment {
   }
 
   /**
-   * Creates an Environment and adds two LifeForms of separate rows and columns.
+   * Creates an Environment and adds two LifeForms on entirely separate rows and columns.
    * Checks that the distance between the two LifeForms is calculated correctly.
    * 
    * @throws EnvironmentException
@@ -203,8 +203,8 @@ public class TestEnvironment {
   @Test
   public void testComplexDistance() throws EnvironmentException {
     Environment e = new Environment(6, 7);
-    LifeForm one = new MockLifeForm("Scott", 10, 0);
-    LifeForm two = new MockLifeForm("Brennan", 10, 0);
+    LifeForm one = new MockLifeForm("Brennan", 10, 0);
+    LifeForm two = new MockLifeForm("Josh", 10, 0);
     assertTrue(e.addLifeForm(one, 0, 0));
     assertTrue(e.addLifeForm(two, 3, 4));
     assertEquals(e.getDistance(one, two), 5.0, 0.05);
