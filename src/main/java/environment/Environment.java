@@ -110,7 +110,7 @@ public class Environment {
   }
 
   /**
-   * Removes all items from the cells
+   * Removes all items from the cells to clear the board
    */
   public void clearBoard() {
     for (int r = 0; r < this.cells.length; r++) {
@@ -120,6 +120,14 @@ public class Environment {
     }
   }
 
+  /**
+   * Add a weapon to this certain cell
+   *
+   * @param weapon - weapon being added to this cell
+   * @param row - row of the cell
+   * @param col - column of the cell
+   * @return true if the weapon was added, false if it failed
+   */
   public boolean addWeapon(Weapon weapon, int row, int col) {
     if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0)
       return false;
@@ -128,6 +136,14 @@ public class Environment {
     //    && (cells[row][col].wOne != weapon && cells[row][col].wTwo != weapon);
   }
 
+  /**
+   * Removes the specified weapon from the cell
+   *
+   * @param weapon - weapon to be removed from the cell
+   * @param row - row of the cell
+   * @param col = coulmn of the cell
+   * @return - the weapon removed from the cell (null if it wasn't removed)
+   */
   public Weapon removeWeapon(Weapon weapon, int row, int col) {
     if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0)
       return null;
