@@ -12,6 +12,7 @@ import weapon.Weapon;
 public class Environment {
 
   static Cell[][] cells;
+  private static Environment uniqueInstance;
 
   /**
    * Sets up the environment by creating a 2D array of cells
@@ -37,7 +38,7 @@ public class Environment {
    * @param row the row index where the life form should be added
    * @param col the column index where the life form should be added
    * @return false if the life form is unable to be added, true if it is added
-   * successfully
+   *         successfully
    */
   public boolean addLifeForm(LifeForm lf, int row, int col) {
     if (row > cells.length || col > cells[0].length || row < 0 || col < 0) {
@@ -46,6 +47,7 @@ public class Environment {
     Cell inst = cells[row][col];
     if (inst.getLifeForm() == null) {
       inst.addLifeForm(lf);
+      lf.setLocation(row, col);
       return true;
     } else {
       return false;
@@ -119,12 +121,16 @@ public class Environment {
   }
 
   public boolean addWeapon(Weapon weapon, int row, int col) {
-    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0) return false;
-    return (cells[row][col].wOne == null || cells[row][col].wTwo == null) && (cells[row][col].wOne != weapon && cells[row][col].wTwo != weapon);
+    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0)
+      return false;
+    cells[row][col].addWeapon(weapon);
+    return (cells[row][col].wOne == null || cells[row][col].wTwo == null)
+        && (cells[row][col].wOne != weapon && cells[row][col].wTwo != weapon);
   }
 
   public Weapon removeWeapon(Weapon weapon, int row, int col) {
-    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0) return null;
+    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0)
+      return null;
     if (cells[row][col].wOne == weapon) {
       Weapon removedWeapon = cells[row][col].wOne;
       cells[row][col].wOne = null;
@@ -138,7 +144,19 @@ public class Environment {
   }
 
   public Weapon[] getWeapons(int row, int col) {
-    return new Weapon[]{cells[row][col].wOne, cells[row][col].wTwo};
+    return new Weapon[] { cells[row][col].wOne, cells[row][col].wTwo };
   }
 
+  /**
+   * @param rows the number of rows for the Environment
+   * @param cols the number of columns for the Environment
+   * @return the Singleton instance of the Environment
+   */
+  public static Environment getEnvironment(int rows, int cols) {
+    if (uniqueInstance == null) {
+      uniqueInstance = new Environment(rows, cols);
+    }
+
+    return uniqueInstance;
+  }
 }

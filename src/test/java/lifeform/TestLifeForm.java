@@ -213,5 +213,65 @@ public class TestLifeForm {
     pistol.reload();
     assertEquals(pistol.getCurrentAmmo(), pistol.getMaxAmmo());
   }
-  
+
+  /**
+   * Creates a LifeForm and sets its location to a specific row and column
+   * position. Checks that the LifeForm knows where it is located. Then, changes
+   * the position and checks to see that the LifeForm tracks this change.
+   */
+  @Test
+  public void testStorePosition() {
+    LifeForm lf = new MockLifeForm("Test", 10, 1);
+    // First Position
+    int r = 10;
+    int c = 5;
+    lf.setLocation(r, c);
+    assertEquals(r, lf.getRow());
+    assertEquals(c, lf.getCol());
+    // Position Change
+    r = 2;
+    c = 3;
+    lf.setLocation(r, c);
+    assertEquals(r, lf.getRow());
+    assertEquals(c, lf.getCol());
+  }
+
+  /**
+   * Creates a LifeForm and checks that its initial position is (-1, -1).
+   */
+  @Test
+  public void testInitialPosition() {
+    LifeForm lf = new MockLifeForm("Test", 10, 1);
+    assertEquals(lf.getCol(), -1);
+    assertEquals(lf.getRow(), -1);
+  }
+
+  /**
+   * Creates a LifeForm and sets its position to two negative integers. Checks
+   * that its true position is (-1, -1). Then, checks the individual effects of
+   * negative positions on the row and column values. If either row or column is
+   * negative, the LifeForm should be set to position (-1, -1)
+   */
+  @Test
+  public void testNegativePosition() {
+    LifeForm lf = new MockLifeForm("Test", 10, 1);
+    // Double Negative
+    int r = -20;
+    int c = -5;
+    lf.setLocation(r, c);
+    assertEquals(lf.getCol(), -1);
+    assertEquals(lf.getRow(), -1);
+    // Row Positive
+    r = 20;
+    c = -10;
+    lf.setLocation(r, c);
+    assertEquals(lf.getCol(), -1);
+    assertEquals(lf.getRow(), -1);
+    // Col Positive
+    r = -5;
+    c = 15;
+    lf.setLocation(r, c);
+    assertEquals(lf.getCol(), -1);
+    assertEquals(lf.getRow(), -1);
+  }
 }
