@@ -6,7 +6,7 @@ import lifeform.LifeForm;
 /**
  * The Environment in which Cells are stored in a 2D Array configuration
  *
- * @author Adam Haertter - modified by Brennan Mulligan with getDistance methods
+ * @author Adam Haertter - modified by Brennan Mulligan and Scott Bucher
  */
 public class Environment {
 
@@ -106,6 +106,9 @@ public class Environment {
     return getDistance(row1, col1, row2, col2);
   }
 
+  /**
+   * Removes all items from the cells
+   */
   public void clearBoard() {
     for (int r = 0; r < this.cells.length; r++) {
       for (int c = 0; c < this.cells[0].length; c++) {
@@ -114,4 +117,7 @@ public class Environment {
     }
   }
 
+  public static Environment getEnvironment(int row, int col) {
+    
+  }
 }

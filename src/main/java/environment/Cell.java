@@ -70,7 +70,7 @@ public class Cell {
     return wTwo;
   }
   
-  public int getWeaonsCount() {
+  public int getWeaponsCount() {
     int count = 0;
     if (wOne != null) {
       count++;
