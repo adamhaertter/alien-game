@@ -51,3 +51,5 @@ of class.
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
 | 1 | 11:30a-12:50a 10/07/2020 | Zoom | Everyone | Meet the team & Planning |
+| 2 | 5:00a-7:30p 10/19/2020 | Discord | Everyone | Work and Progress Update |
+| 3 | 6:30p-8:00p 10/20/2020 | Discord | Everyone | Work and Finalization |
