@@ -11,7 +11,7 @@ import weapon.Weapon;
  */
 public class Environment {
 
-  static Cell[][] cells;
+  Cell[][] cells;
   private static Environment uniqueInstance;
 
   /**
@@ -93,7 +93,7 @@ public class Environment {
       }
     }
 
-    return Math.sqrt(Math.pow(row1 - row2, 2) + Math.pow(col1 - col2, 2));
+    return 5.0 * Math.sqrt(Math.pow(row1 - row2, 2) + Math.pow(col1 - col2, 2));
   }
 
   /**
@@ -123,9 +123,9 @@ public class Environment {
   public boolean addWeapon(Weapon weapon, int row, int col) {
     if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0)
       return false;
-    cells[row][col].addWeapon(weapon);
-    return (cells[row][col].wOne == null || cells[row][col].wTwo == null)
-        && (cells[row][col].wOne != weapon && cells[row][col].wTwo != weapon);
+    return cells[row][col].addWeapon(weapon);
+    //return (cells[row][col].wOne == null || cells[row][col].wTwo == null)
+    //    && (cells[row][col].wOne != weapon && cells[row][col].wTwo != weapon);
   }
 
   public Weapon removeWeapon(Weapon weapon, int row, int col) {
@@ -143,6 +143,11 @@ public class Environment {
     return null;
   }
 
+  /**
+   * @param row the row index to pull Weapons from
+   * @param col the column index to pull Weapons from
+   * @return the array of weapons present in a specified cell
+   */
   public Weapon[] getWeapons(int row, int col) {
     return new Weapon[] { cells[row][col].wOne, cells[row][col].wTwo };
   }
@@ -158,5 +163,19 @@ public class Environment {
     }
 
     return uniqueInstance;
+  }
+
+  /**
+   * @return the number of rows in the Environment
+   */
+  public int getNumRows() {
+    return cells.length;
+  }
+
+  /**
+   * @return the number of columns in the Environment.
+   */
+  public int getNumCols() {
+    return cells[0].length;
   }
 }

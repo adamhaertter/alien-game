@@ -175,7 +175,7 @@ public class TestEnvironment {
     LifeForm two = new MockLifeForm("Scott", 10, 0);
     assertTrue(e.addLifeForm(one, 0, 0));
     assertTrue(e.addLifeForm(two, 0, 5));
-    assertEquals(e.getDistance(one, two), 5.0, 0.05);
+    assertEquals(e.getDistance(one, two), 25.0, 0.05);
   }
 
   /**
@@ -191,7 +191,7 @@ public class TestEnvironment {
     LifeForm two = new MockLifeForm("Brennan", 10, 0);
     assertTrue(e.addLifeForm(one, 0, 0));
     assertTrue(e.addLifeForm(two, 5, 0));
-    assertEquals(e.getDistance(one, two), 5.0, 0.05);
+    assertEquals(e.getDistance(one, two), 25.0, 0.05);
   }
 
   /**
@@ -207,6 +207,6 @@ public class TestEnvironment {
     LifeForm two = new MockLifeForm("Josh", 10, 0);
     assertTrue(e.addLifeForm(one, 0, 0));
     assertTrue(e.addLifeForm(two, 3, 4));
-    assertEquals(e.getDistance(one, two), 5.0, 0.05);
+    assertEquals(e.getDistance(one, two), 25.0, 0.05);
   }
 }

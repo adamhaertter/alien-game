@@ -55,7 +55,7 @@ public class Cell {
     if (wOne == null) {
       wOne = weapon;
       return true;
-    } else if(wTwo == null) {
+    } else if(wTwo == null && wOne != weapon) {
       wTwo = weapon;
       return true;
     }
