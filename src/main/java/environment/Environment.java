@@ -129,8 +129,9 @@ public class Environment {
    * @return true if the weapon was added, false if it failed
    */
   public boolean addWeapon(Weapon weapon, int row, int col) {
-    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0)
+    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0) {
       return false;
+    }
     return cells[row][col].addWeapon(weapon);
     //return (cells[row][col].wOne == null || cells[row][col].wTwo == null)
     //    && (cells[row][col].wOne != weapon && cells[row][col].wTwo != weapon);
@@ -145,15 +146,16 @@ public class Environment {
    * @return - the weapon removed from the cell (null if it wasn't removed)
    */
   public Weapon removeWeapon(Weapon weapon, int row, int col) {
-    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0)
+    if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0) {
       return null;
-    if (cells[row][col].wOne == weapon) {
-      Weapon removedWeapon = cells[row][col].wOne;
-      cells[row][col].wOne = null;
+    }
+    if (cells[row][col].wepOne == weapon) {
+      Weapon removedWeapon = cells[row][col].wepOne;
+      cells[row][col].wepOne = null;
       return removedWeapon;
-    } else if (cells[row][col].wTwo == weapon) {
-      Weapon removedWeapon = cells[row][col].wTwo;
-      cells[row][col].wTwo = null;
+    } else if (cells[row][col].wepTwo == weapon) {
+      Weapon removedWeapon = cells[row][col].wepTwo;
+      cells[row][col].wepTwo = null;
       return removedWeapon;
     }
     return null;
@@ -165,7 +167,7 @@ public class Environment {
    * @return the array of weapons present in a specified cell
    */
   public Weapon[] getWeapons(int row, int col) {
-    return new Weapon[] { cells[row][col].wOne, cells[row][col].wTwo };
+    return new Weapon[] { cells[row][col].wepOne, cells[row][col].wepTwo };
   }
 
   /**

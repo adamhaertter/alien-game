@@ -151,7 +151,7 @@ public abstract class LifeForm {
    * @param c the column the life form resides in
    */
   public void setLocation(int r, int c) {
-    if(r >= -1 && c >= -1) {
+    if (r >= -1 && c >= -1) {
       row = r;
       col = c;
     }

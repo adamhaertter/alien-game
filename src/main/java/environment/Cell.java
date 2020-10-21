@@ -10,8 +10,8 @@ import weapon.Weapon;
 public class Cell {
 
   LifeForm entity;
-  Weapon wOne;
-  Weapon wTwo;
+  Weapon wepOne;
+  Weapon wepTwo;
 
   /**
    * Constructs an empty cell in which entity is automatically null until a
@@ -51,43 +51,63 @@ public class Cell {
     return entity;
   }
   
+  /**
+   * adds weapon to the cell
+   * @param weapon
+   * @return true/false, if weapon was added or not
+   */
   public boolean addWeapon(Weapon weapon) {
-    if (wOne == null) {
-      wOne = weapon;
+    if (wepOne == null) {
+      wepOne = weapon;
       return true;
-    } else if(wTwo == null && wOne != weapon) {
-      wTwo = weapon;
+    } else if (wepTwo == null && wepOne != weapon) {
+      wepTwo = weapon;
       return true;
     }
     return false;
   }
   
+  /**
+   * @return Weapon one
+   */
   public Weapon getWeapon1() {
-    return wOne;
+    return wepOne;
   }
   
+  /**
+   * @return Weapon two
+   */
   public Weapon getWeapon2() {
-    return wTwo;
+    return wepTwo;
   }
   
+  /**
+   * Gets weapons count
+   * @return The weapon count
+   */
   public int getWeaponsCount() {
     int count = 0;
-    if (wOne != null) {
+    if (wepOne != null) {
       count++;
     }
-    if (wTwo != null) {
+    if (wepTwo != null) {
       count++;
     }
     return count;
   }
   
+  /**
+   * Removes a weapon from a cell
+   * @param weapon
+   * @return The weapon that was removed
+   */
   public Weapon removeWeapon(Weapon weapon) {
-    if (wOne == weapon) {
-      wOne = null;
+    if (wepOne == weapon) {
+      wepOne = null;
       return weapon;
     }
-    if (wTwo == weapon) {
-      wTwo = null;
+    if (wepTwo == weapon) {
+      wepTwo = null;
       return weapon;
     }
     return null;
