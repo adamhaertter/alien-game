@@ -22,7 +22,7 @@ public class TestStabilizer {
    * @throws WeaponException
    */
   @Test
-  public void TestPlasmaStabilizer() throws AttachmentException, WeaponException {
+  public void testPlasmaStabilizer() throws AttachmentException, WeaponException {
     PlasmaCannon plasma = new PlasmaCannon();
     assertEquals(plasma.getBaseDamage(), 50);
     assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
@@ -47,7 +47,7 @@ public class TestStabilizer {
    * @throws WeaponException
    */
   @Test
-  public void TestPlasmaTwoStabilizers() throws AttachmentException, WeaponException {
+  public void testPlasmaTwoStabilizers() throws AttachmentException, WeaponException {
     PlasmaCannon plasma = new PlasmaCannon();
     assertEquals(plasma.getBaseDamage(), 50);
     assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
@@ -82,7 +82,7 @@ public class TestStabilizer {
    * @throws WeaponException
    */
   @Test
-  public void TestPistolScopeStabilizer() throws AttachmentException, WeaponException {
+  public void testPistolScopeStabilizer() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
@@ -110,7 +110,7 @@ public class TestStabilizer {
    * @throws WeaponException
    */
   @Test
-  public void TestChainPowerStabilizer() throws AttachmentException, WeaponException {
+  public void testChainPowerStabilizer() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
     assertEquals(chain.getBaseDamage(), 15);
     assertEquals(chain.getCurrentAmmo(), chain.getMaxAmmo());

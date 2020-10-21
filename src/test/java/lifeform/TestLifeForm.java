@@ -114,9 +114,9 @@ public class TestLifeForm {
   public void testCarryingWeapon() {
     LifeForm lf = new MockLifeForm("Test", 10);
     Weapon weapon = new MockWeapon();
-    Weapon weaponTwo = new MockWeapon();
     assertFalse(lf.hasWeapon());
     assertTrue(lf.pickUpWeapon(weapon));
+    Weapon weaponTwo = new MockWeapon();
     assertTrue(lf.hasWeapon());
     assertFalse(lf.pickUpWeapon(weaponTwo));
   }

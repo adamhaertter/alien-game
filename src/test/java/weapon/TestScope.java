@@ -25,7 +25,7 @@ public class TestScope {
    * @throws WeaponException
    */
   @Test
-  public void TestPistolAndScope() throws AttachmentException, WeaponException {
+  public void testPistolAndScope() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
@@ -43,7 +43,7 @@ public class TestScope {
    * @throws WeaponException
    */
   @Test
-  public void TestPistolTwoScopes() throws AttachmentException, WeaponException {
+  public void testPistolTwoScopes() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
@@ -65,7 +65,7 @@ public class TestScope {
    * @throws WeaponException
    */
   @Test
-  public void TestChainPowerScope() throws AttachmentException, WeaponException {
+  public void testChainPowerScope() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
     assertEquals(chain.getBaseDamage(), 15);
     assertEquals(chain.getMaxRange(), 60);
@@ -88,7 +88,7 @@ public class TestScope {
    * @throws WeaponException
    */
   @Test
-  public void TestPlasmaStabilizerScope() throws AttachmentException, WeaponException {
+  public void testPlasmaStabilizerScope() throws AttachmentException, WeaponException {
     Weapon plasma = new PlasmaCannon();
     assertEquals(plasma.getBaseDamage(), 50);
     assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());

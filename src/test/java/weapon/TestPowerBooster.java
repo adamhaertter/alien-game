@@ -22,7 +22,7 @@ public class TestPowerBooster {
    * @throws WeaponException
    */
   @Test
-  public void TestChainPower() throws AttachmentException, WeaponException {
+  public void testChainPower() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
     int shot = chain.fire(10);
     chain.reload();
@@ -40,7 +40,7 @@ public class TestPowerBooster {
    * @throws WeaponException
    */
   @Test
-  public void TestPistolScopePower() throws AttachmentException, WeaponException {
+  public void testPistolScopePower() throws AttachmentException, WeaponException {
     Weapon pistol = new Pistol();
     assertEquals(pistol.getBaseDamage(), 10);
     assertEquals(pistol.getMaxRange(), 50);
@@ -64,7 +64,7 @@ public class TestPowerBooster {
    * @throws WeaponException
    */
   @Test
-  public void TestChainTwoPowerBoosters() throws AttachmentException, WeaponException {
+  public void testChainTwoPowerBoosters() throws AttachmentException, WeaponException {
     Weapon chain = new ChainGun();
     assertEquals(chain.getBaseDamage(), 15);
 
@@ -88,7 +88,7 @@ public class TestPowerBooster {
    * @throws WeaponException
    */
   @Test
-  public void TestPlasmaStabilizerPowerBooster() throws AttachmentException, WeaponException {
+  public void testPlasmaStabilizerPowerBooster() throws AttachmentException, WeaponException {
     PlasmaCannon plasma = new PlasmaCannon();
     assertEquals(plasma.getBaseDamage(), 50);
     assertEquals(plasma.getCurrentAmmo(), plasma.getMaxAmmo());
