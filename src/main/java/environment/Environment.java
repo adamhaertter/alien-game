@@ -7,7 +7,7 @@ import weapon.Weapon;
 /**
  * The Environment in which Cells are stored in a 2D Array configuration
  *
- * @author Adam Haertter - modified by Brennan Mulligan and Scott Bucher
+ * @author Adam Haertter - modified by Brennan Mulligan, Scott Bucher and Josh Lewis
  */
 public class Environment {
 
@@ -77,6 +77,7 @@ public class Environment {
    */
   public LifeForm getLifeForm(int row, int col) {
     return cells[row][col].getLifeForm();
+    
   }
 
   /**
@@ -195,5 +196,12 @@ public class Environment {
    */
   public int getNumCols() {
     return cells[0].length;
+  }
+  
+  public void move(LifeForm life) {
+    String N = "North";
+    if(life.currentDirection.equals(N) && (getNumCols() - life.maxSpeed) < 0) {
+      removeLifeForm(life.getRow(), life.getCol());
+    }
   }
 }

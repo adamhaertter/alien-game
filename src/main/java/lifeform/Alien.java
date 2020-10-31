@@ -24,6 +24,7 @@ public class Alien extends LifeForm implements TimerObserver {
     attackStrength = 10;
     maxHealth = maxHp;
     recoveryBehavior = new RecoveryNone();
+    maxSpeed = 2;
   }
 
   /**
@@ -35,6 +36,7 @@ public class Alien extends LifeForm implements TimerObserver {
    */
   public Alien(String string, int maxHp, RecoveryBehavior behavior) {
     this(string, maxHp);
+    maxSpeed = 2;
     recoveryBehavior = behavior;
   }
 
@@ -50,6 +52,7 @@ public class Alien extends LifeForm implements TimerObserver {
       throws RecoveryRateException {
     this(string, maxHp, behavior);
     recoveryRate = rate;
+    maxSpeed = 2;
     if (recoveryRate < 0) {
       throw new RecoveryRateException("Recovery Rate is less than 0");
     }

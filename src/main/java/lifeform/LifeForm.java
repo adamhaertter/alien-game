@@ -18,6 +18,8 @@ public abstract class LifeForm {
   protected Weapon weapon;
   protected int row;
   protected int col;
+  public String currentDirection = "North";
+  public int maxSpeed;
 
   /**
    * Creates an instance
@@ -170,4 +172,46 @@ public abstract class LifeForm {
   public int getCol() {
     return col;
   }
+  
+  /**
+   * This will turn the lifeForm the desired direction.
+   * @param direction
+   */
+  public void turn(String direction) {
+    if (direction.equals("North")) {
+      currentDirection = "North";
+    }
+    
+    if (direction.equals("South")) {
+      currentDirection = "South";
+    }
+    
+    if (direction.equals("East")) {
+      currentDirection = "East";
+    }
+    
+    if (direction.equals("West")) {
+      currentDirection = "West";
+    }
+  }
+  
+  public void move() {
+    if (currentDirection.equals("North") && col - maxSpeed > 0) {
+      col = col - maxSpeed;
+    }
+    
+    if (currentDirection.equals("South")) {
+      col = col + maxSpeed;
+    }
+    
+    if (currentDirection.equals("East")) {
+      row = row + maxSpeed;
+    }
+    
+    if (currentDirection.equals("West")) {
+      row = row - maxSpeed;
+    }
+  }
+  
+  
 }
