@@ -9,7 +9,7 @@ import weapon.Weapon;
  *
  * @author Adam Haertter - modified by Brennan Mulligan, Scott Bucher and Josh Lewis
  */
-public class Environment {
+public class Environment implements Commands {
 
   Cell[][] cells;
   private static Environment uniqueInstance;
@@ -133,9 +133,8 @@ public class Environment {
     if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0) {
       return false;
     }
-    return cells[row][col].addWeapon(weapon);
-    //return (cells[row][col].wOne == null || cells[row][col].wTwo == null)
-    //    && (cells[row][col].wOne != weapon && cells[row][col].wTwo != weapon);
+    return true;
+//    return cells[row][col].addWeapon(weapon);
   }
 
   /**
@@ -202,6 +201,103 @@ public class Environment {
     String N = "North";
     if(life.currentDirection.equals(N) && (getNumCols() - life.maxSpeed) < 0) {
       removeLifeForm(life.getRow(), life.getCol());
+    }
+  }
+
+  @Override
+  public void reloadCommand(LifeForm lf) {
+    if (lf.hasWeapon()) {
+      lf.weapon.reload();
+    }
+  }
+
+  @Override
+  public void turnNorthCommand(LifeForm lf) {
+    lf.currentDirection = "North";
+  }
+
+  @Override
+  public void turnSouthCommand(LifeForm lf) {
+    lf.currentDirection = "South";
+
+  }
+
+  @Override
+  public void turnWestCommand(LifeForm lf) {
+    lf.currentDirection = "West";
+
+  }
+
+  @Override
+  public void turnEastCommand(LifeForm lf) {
+    lf.currentDirection = "East";
+  }
+
+  @Override
+  public void moveCommand(LifeForm life) {
+    if (life.currentDirection.equals("North") && (getNumRows() - life.maxSpeed) > 0) {
+      if (cells[life.getRow() - life.maxSpeed][life.getCol()].getLifeForm() == null) {
+        removeLifeForm(life.getRow(), life.getCol());
+        addLifeForm(life, life.getRow() - life.maxSpeed, life.getCol());
+      }
+    }
+
+    if (life.currentDirection.equals("South") && (getNumRows() + life.maxSpeed) < getNumRows()) {
+      if (cells[life.getRow() + life.maxSpeed][life.getCol()].getLifeForm() == null) {
+        removeLifeForm(life.getRow(), life.getCol());
+        addLifeForm(life, life.getRow() + life.maxSpeed, life.getCol());
+      }
+    }
+
+    if (life.currentDirection.equals("West") && (getNumCols() - life.maxSpeed) > 0) {
+      if (cells[life.getRow()][life.getCol() - life.maxSpeed].getLifeForm() == null) {
+        removeLifeForm(life.getRow(), life.getCol());
+        addLifeForm(life, life.getRow() - life.maxSpeed, life.getCol());
+      }
+    }
+
+    if (life.currentDirection.equals("East") && (getNumCols() + life.maxSpeed) > 0) {
+      if (cells[life.getRow()][life.getCol() + life.maxSpeed].getLifeForm() == null) {
+        removeLifeForm(life.getRow(), life.getCol());
+        addLifeForm(life, life.getRow() + life.maxSpeed, life.getCol());
+      }
+    }
+  }
+
+  @Override
+  public void attackCommand(LifeForm lf) {
+    // Find and attack closest target in the line of sight of the LifeForm
+
+  }
+
+  @Override
+  public void dropCommand(LifeForm lf) {
+    if (addWeapon(lf.weapon, lf.getRow(), lf.getCol())) {
+      lf.dropWeapon();
+    }
+  }
+
+  @Override
+  public void acquireCommand(LifeForm lf) {
+    Cell cell = cells[lf.getRow()][lf.getCol()];
+    // There are at least one weapon in this cell
+    if (cell.wepOne != null || cell.wepTwo != null) {
+      // Check if the life form already has a weapon
+      if (lf.hasWeapon()) {
+        Weapon weapon;
+        // Try and get a weapon from the first and then second cell spot
+        if (cell.wepOne != null) {
+          weapon = cell.getWeapon1();
+          cell.wepOne = lf.dropWeapon();
+        } else {
+          weapon = cell.getWeapon2();
+          cell.wepTwo = lf.dropWeapon();
+        }
+        lf.pickUpWeapon(weapon);
+      } else {
+        // pickup weapon from either spot 1 or two
+        lf.pickUpWeapon(cell.wepOne != null && cell.wepTwo != null ? cell.removeWeapon(cell.wepOne) : cell.removeWeapon(cell.wepTwo));
+      }
     }
   }
 }
