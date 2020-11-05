@@ -15,7 +15,7 @@ public abstract class LifeForm {
   private String myName;
   protected int currentLifePoints;
   protected int attackStrength;
-  protected Weapon weapon;
+  public Weapon weapon;
   protected int row;
   protected int col;
   public String currentDirection = "North";
@@ -194,24 +194,4 @@ public abstract class LifeForm {
       currentDirection = "West";
     }
   }
-  
-  public void move() {
-    if (currentDirection.equals("North") && col - maxSpeed > 0) {
-      col = col - maxSpeed;
-    }
-    
-    if (currentDirection.equals("South")) {
-      col = col + maxSpeed;
-    }
-    
-    if (currentDirection.equals("East")) {
-      row = row + maxSpeed;
-    }
-    
-    if (currentDirection.equals("West")) {
-      row = row - maxSpeed;
-    }
-  }
-  
-  
 }
