@@ -50,9 +50,10 @@ public class Cell {
   public LifeForm getLifeForm() {
     return entity;
   }
-  
+
   /**
    * adds weapon to the cell
+   * 
    * @param weapon
    * @return true/false, if weapon was added or not
    */
@@ -66,23 +67,24 @@ public class Cell {
     }
     return false;
   }
-  
+
   /**
    * @return Weapon one
    */
   public Weapon getWeapon1() {
     return wepOne;
   }
-  
+
   /**
    * @return Weapon two
    */
   public Weapon getWeapon2() {
     return wepTwo;
   }
-  
+
   /**
    * Gets weapons count
+   * 
    * @return The weapon count
    */
   public int getWeaponsCount() {
@@ -95,9 +97,10 @@ public class Cell {
     }
     return count;
   }
-  
+
   /**
    * Removes a weapon from a cell
+   * 
    * @param weapon
    * @return The weapon that was removed
    */

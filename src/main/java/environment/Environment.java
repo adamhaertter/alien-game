@@ -296,7 +296,8 @@ public class Environment implements Commands {
         lf.pickUpWeapon(weapon);
       } else {
         // pickup weapon from either spot 1 or two
-        lf.pickUpWeapon(cell.wepOne != null && cell.wepTwo != null ? cell.removeWeapon(cell.wepOne) : cell.removeWeapon(cell.wepTwo));
+        lf.pickUpWeapon(cell.wepOne != null && cell.wepTwo != null ? cell.removeWeapon(cell.wepOne)
+            : cell.removeWeapon(cell.wepTwo));
       }
     }
   }

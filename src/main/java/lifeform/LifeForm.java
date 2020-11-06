@@ -158,38 +158,39 @@ public abstract class LifeForm {
       col = c;
     }
   }
-  
+
   /**
    * @return the row the life form resides in
    */
   public int getRow() {
     return row;
   }
-  
+
   /**
    * @return the column the life form resides in
    */
   public int getCol() {
     return col;
   }
-  
+
   /**
    * This will turn the lifeForm the desired direction.
+   * 
    * @param direction
    */
   public void turn(String direction) {
     if (direction.equals("North")) {
       currentDirection = "North";
     }
-    
+
     if (direction.equals("South")) {
       currentDirection = "South";
     }
-    
+
     if (direction.equals("East")) {
       currentDirection = "East";
     }
-    
+
     if (direction.equals("West")) {
       currentDirection = "West";
     }
