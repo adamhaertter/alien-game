@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
@@ -17,6 +20,7 @@ public class GameGUI extends JFrame implements ActionListener {
 
   JButton testButton = new JButton("The Test Button");
   JPanel mainPanel, legend, focus;
+  JLabel currentCellDisplay, currentLFData, currentWeaponData;
   
   public GameGUI() {
     mainPanel = new JPanel();
@@ -26,29 +30,45 @@ public class GameGUI extends JFrame implements ActionListener {
     setSize(800, 700);            //TODO NO HARDCODE
     setLocation(300, 50);         //TODO NO HARDCODE
     
-    mainPanel.setSize((int)(getWidth()*0.7), (int)(getHeight()*0.7));
-    legend.setSize((int)(getWidth()*0.3), (int)(getHeight()*0.7));
+    mainPanel.setSize((int)(getWidth()*0.8), (int)(getHeight()*0.7));
+    legend.setPreferredSize(new Dimension((int)(getWidth()*0.2), (int)(getHeight()*0.7)));
     legend.setLocation(mainPanel.getWidth(), 0);
-    focus.setSize(getWidth(), (int)(getHeight()*0.3));
-    focus.setLocation(0, mainPanel.getHeight());
+    focus.setPreferredSize(new Dimension(getWidth(), (int)(getHeight()*0.3)));
+    //focus.setLocation(0, mainPanel.getHeight());
     
-    this.getContentPane().setLayout(null);
+    this.getContentPane().setLayout(new BorderLayout());
     
-    mainPanel.add(new JLabel("Main Panel"));
+    //mainPanel.add(new JLabel("Main Panel"));
     legend.add(new JLabel("Legend"));
-    focus.add(new JLabel("Focus"));
+    //focus.add(new JLabel("Focus"));
     
     testButton.addActionListener(this);
-    focus.add(testButton);
+    //focus.add(testButton);
+    
+    mainPanel.setLayout(new GridLayout(1,1));
+    mainPanel.add(new JLabel("Main Grid Panel"));
+    
+    focus.setLayout(new BorderLayout());
+    focus.add("North", new JLabel("Focus Panel"));
+    currentCellDisplay = new JLabel("Current Cell Here", JLabel.CENTER);
+    focus.add("West", currentCellDisplay);
+    currentLFData = new JLabel("Current LifeForm Data", JLabel.CENTER);
+    focus.add("Center", currentLFData);
+    currentWeaponData = new JLabel("Current Weapon Data", JLabel.CENTER);
+    focus.add("East", currentWeaponData);
+    focus.add("South", testButton);
+    
     
     mainPanel.setBackground(java.awt.Color.RED);
     legend.setBackground(java.awt.Color.BLUE);
     focus.setBackground(java.awt.Color.YELLOW);
     
-    add(mainPanel);
-    add(legend);
-    add(focus);
-    setResizable(false);
+    //setSize(getWidth(), testButton.getLocation().y+testButton.getHeight());
+    getContentPane().add("Center", mainPanel);
+    getContentPane().add("East", legend);
+    getContentPane().add("South", focus);
+    //pack();
+    //setResizable(false);
     setVisible(true);
   }
 
