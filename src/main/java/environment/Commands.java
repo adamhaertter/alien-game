@@ -21,6 +21,4 @@ public interface Commands {
   void dropCommand(LifeForm lf);
 
   void acquireCommand(LifeForm lf);
-
-
 }

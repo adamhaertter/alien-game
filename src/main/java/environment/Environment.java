@@ -7,7 +7,8 @@ import weapon.Weapon;
 /**
  * The Environment in which Cells are stored in a 2D Array configuration
  *
- * @author Adam Haertter - modified by Brennan Mulligan, Scott Bucher and Josh Lewis
+ * @author Adam Haertter - modified by Brennan Mulligan, Scott Bucher and Josh
+ *         Lewis
  */
 public class Environment implements Commands {
 
@@ -77,7 +78,7 @@ public class Environment implements Commands {
    */
   public LifeForm getLifeForm(int row, int col) {
     return cells[row][col].getLifeForm();
-    
+
   }
 
   /**
@@ -125,8 +126,8 @@ public class Environment implements Commands {
    * Add a weapon to this certain cell
    *
    * @param weapon - weapon being added to this cell
-   * @param row - row of the cell
-   * @param col - column of the cell
+   * @param row    - row of the cell
+   * @param col    - column of the cell
    * @return true if the weapon was added, false if it failed
    */
   public boolean addWeapon(Weapon weapon, int row, int col) {
@@ -141,8 +142,8 @@ public class Environment implements Commands {
    * Removes the specified weapon from the cell
    *
    * @param weapon - weapon to be removed from the cell
-   * @param row - row of the cell
-   * @param col = coulmn of the cell
+   * @param row    - row of the cell
+   * @param col    = coulmn of the cell
    * @return - the weapon removed from the cell (null if it wasn't removed)
    */
   public Weapon removeWeapon(Weapon weapon, int row, int col) {
@@ -196,10 +197,10 @@ public class Environment implements Commands {
   public int getNumCols() {
     return cells[0].length;
   }
-  
+
   public void move(LifeForm life) {
     String N = "North";
-    if(life.currentDirection.equals(N) && (getNumCols() - life.maxSpeed) < 0) {
+    if (life.currentDirection.equals(N) && (getNumCols() - life.maxSpeed) < 0) {
       removeLifeForm(life.getRow(), life.getCol());
     }
   }
