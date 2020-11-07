@@ -16,11 +16,16 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import environment.Cell;
+import environment.Environment;
+import lifeform.LifeForm;
+
 public class GameGUI extends JFrame implements ActionListener {
 
   JButton testButton = new JButton("The Test Button");
   JPanel mainPanel, legend, focus;
   JLabel currentCellDisplay, currentLFData, currentWeaponData;
+  //Environment environment;
 
   public GameGUI() {
     mainPanel = new JPanel();
@@ -45,19 +50,22 @@ public class GameGUI extends JFrame implements ActionListener {
     testButton.addActionListener(this);
     // focus.add(testButton);
 
-    mainPanel.setLayout(new GridLayout(1, 1));
-    mainPanel.add(new JLabel("Main Grid Panel"));
-
+    mainPanel.setLayout(new GridLayout());
+    //mainPanel.setLayout(new GridLayout(environment.getNumRows(), environment.getNumCols()));
+    // Double check that this is the right way later when less tired ^
+    //TODO Populate Grid
+    
     focus.setLayout(new BorderLayout());
     focus.add("North", new JLabel("Focus Panel"));
     currentCellDisplay = new JLabel("Current Cell Here", JLabel.CENTER);
     focus.add("West", currentCellDisplay);
-    currentLFData = new JLabel("Current LifeForm Data", JLabel.CENTER);
+    currentLFData = new JLabel("Current LifeForm Data");
     focus.add("Center", currentLFData);
-    currentWeaponData = new JLabel("Current Weapon Data", JLabel.CENTER);
+    currentWeaponData = new JLabel("Current Weapon Data");
     focus.add("East", currentWeaponData);
     focus.add("South", testButton);
-
+    createCellText(new Cell());
+    
     mainPanel.setBackground(java.awt.Color.RED);
     legend.setBackground(java.awt.Color.BLUE);
     focus.setBackground(java.awt.Color.YELLOW);
@@ -95,4 +103,46 @@ public class GameGUI extends JFrame implements ActionListener {
 
   }
 
+  public void createCellText(Cell cell) {
+    LifeForm lf = cell.getLifeForm();
+    String str = "";
+    
+    if(lf!=null) {
+    str = "<html>LifeForm Type: " + lf.toString() + "<br>";
+    str += "Current Health: " + lf.getCurrentLifePoints() + "<br>";
+    if(lf.hasWeapon()) { str += "Current Weapon: " + lf.getWeapon().toString() + "<br>"; }
+    else { str += "Current Weapon: N/A<br>"; }
+    str += "Direction: " + lf.getDirection() + "<br></html>";
+    } else {
+      str = "<html>LifeForm Type: N/A<br>Current Health: N/A<br>Current Weapon: N/A<br>Direction: N/A<br></html>";
+    }
+    currentLFData.setText(str);
+    
+    str = "<html>";
+    str += "Weapons Here:<br>";
+    if(cell.getWeapon1()!=null) { str += "Weapon 1: " + cell.getWeapon1().toString() + "<br>"; }
+    else { str += "Weapon 1: N/A<br>"; }
+    if(cell.getWeapon2()!=null) { str += "Weapon 2: " + cell.getWeapon2().toString() + "<br>"; }
+    else { str += "Weapon 2: N/A<br>"; }
+    str += "</html>";
+    currentWeaponData.setText(str);
+  }
+  
+  public void updateCellImage(Cell cell) {
+    LifeForm lf = cell.getLifeForm();
+    String str = "";
+    
+    if(lf != null) {
+      str = lf.toString();
+          if(lf.hasWeapon()) {
+            str += " " + lf.getWeapon().toString();
+          }
+    }
+    
+    currentCellDisplay.setText(str);
+    //Change this to work with the necessary images;
+    
+    repaint();    
+  }
+  
 }

@@ -1,5 +1,7 @@
 package lifeform;
 
+import java.awt.image.BufferedImage;
+
 import exceptions.WeaponException;
 import weapon.Weapon;
 
@@ -194,5 +196,23 @@ public abstract class LifeForm {
     if (direction.equals("West")) {
       currentDirection = "West";
     }
+  }
+  
+  /**
+   * @return the current weapon held by the LifeForm if applicable, otherwise null
+   */
+  public Weapon getWeapon() {
+    if(hasWeapon()) {
+      return weapon;
+    } else {
+      return null;
+    }
+  }
+  
+  /**
+   * @return the current direction the lifeform is facing
+   */
+  public String getDirection() {
+    return currentDirection;
   }
 }
