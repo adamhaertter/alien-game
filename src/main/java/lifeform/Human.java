@@ -56,4 +56,10 @@ public class Human extends LifeForm {
     }
   }
 
+  /**
+   * Prints "Human"
+   */
+  public String toString() {
+    return "Human";
+  }
 }

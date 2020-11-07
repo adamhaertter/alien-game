@@ -24,4 +24,11 @@ public class MockLifeForm extends LifeForm {
   public MockLifeForm(String name, int points, int atk) {
     super(name, points, atk);
   }
+  
+  /**
+   * Prints "Mock"
+   */
+  public String toString() {
+    return "Mock";
+  }
 }

@@ -8,6 +8,6 @@ public class CommandInvoker {
 
   public String executeCommand(Commands cmd) {
     cmds.add(cmd);
-    return cmd.execute();
+    return "";//cmd.execute();
   }
 }

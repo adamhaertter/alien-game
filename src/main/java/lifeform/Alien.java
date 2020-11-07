@@ -97,5 +97,12 @@ public class Alien extends LifeForm implements TimerObserver {
       recover();
     }
   }
+  
+  /**
+   * Prints "Alien"
+   */
+  public String toString() {
+    return "Alien";
+  }
 
 }

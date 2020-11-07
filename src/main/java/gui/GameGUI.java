@@ -12,20 +12,27 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import environment.Cell;
 import environment.Environment;
+import lifeform.Alien;
+import lifeform.Human;
 import lifeform.LifeForm;
+import lifeform.MockLifeForm;
 
 public class GameGUI extends JFrame implements ActionListener {
 
   JButton testButton = new JButton("The Test Button");
   JPanel mainPanel, legend, focus;
   JLabel currentCellDisplay, currentLFData, currentWeaponData;
-  //Environment environment;
+  static Environment environment = Environment.getEnvironment(5, 6);
+  JButton cellsOnBoard[][];
+  List<JButton> cellScreen = new ArrayList<>();
 
   public GameGUI() {
     mainPanel = new JPanel();
@@ -50,11 +57,13 @@ public class GameGUI extends JFrame implements ActionListener {
     testButton.addActionListener(this);
     // focus.add(testButton);
 
-    mainPanel.setLayout(new GridLayout());
-    //mainPanel.setLayout(new GridLayout(environment.getNumRows(), environment.getNumCols()));
+    // mainPanel.setLayout(new GridLayout());
+    mainPanel.setLayout(new GridLayout(environment.getNumRows(), environment.getNumCols()));
     // Double check that this is the right way later when less tired ^
-    //TODO Populate Grid
-    
+    // TODO Populate Grid
+    cellsOnBoard = new JButton[environment.getNumRows()][environment.getNumCols()];
+    buildCellGrid();
+
     focus.setLayout(new BorderLayout());
     focus.add("North", new JLabel("Focus Panel"));
     currentCellDisplay = new JLabel("Current Cell Here", JLabel.CENTER);
@@ -64,8 +73,8 @@ public class GameGUI extends JFrame implements ActionListener {
     currentWeaponData = new JLabel("Current Weapon Data");
     focus.add("East", currentWeaponData);
     focus.add("South", testButton);
-    createCellText(new Cell());
-    
+    createCellText(0, 0);
+
     mainPanel.setBackground(java.awt.Color.RED);
     legend.setBackground(java.awt.Color.BLUE);
     focus.setBackground(java.awt.Color.YELLOW);
@@ -80,6 +89,9 @@ public class GameGUI extends JFrame implements ActionListener {
   }
 
   public static void main(String[] args) {
+    environment.addLifeForm(new Human("TestHuman", 10, 10), 1, 1);
+    environment.addLifeForm(new Alien("TestAlien", 10), 1, 2);
+    environment.addLifeForm(new MockLifeForm("TestMock", 10, 10), 1, 0);
     GameGUI gui = new GameGUI();
   }
 
@@ -99,50 +111,108 @@ public class GameGUI extends JFrame implements ActionListener {
         focus.setBackground(java.awt.Color.YELLOW);
         testButton.setText("The Test Button");
       }
+      return;
+    }
+
+    if (cellScreen.contains(e.getSource())) {
+      JButton src = (JButton) e.getSource();
+      int r = cellScreen.indexOf(src)/environment.getNumCols();
+      int c = cellScreen.indexOf(src)%environment.getNumCols();
+      createCellText(r, c);
+      updateCellImage(r, c);
+      try {
+        //src.setIcon(new ImageIcon(ImageIO.read(new File("testimg.png"))));
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+      return;
     }
 
   }
 
-  public void createCellText(Cell cell) {
-    LifeForm lf = cell.getLifeForm();
+  public void buildCellGrid() {
+    /*
+     * for (int r = 0; r < environment.getNumRows(); r++) { for (int c = 0; c <
+     * environment.getNumCols(); c++) { cellsOnBoard[r][c] = new
+     * JButton("r: "+r+", c: "+c); mainPanel.add(cellsOnBoard[r][c]); } }
+     */
+
+    for (int i = 0; i < environment.getNumRows() * environment.getNumCols(); i++) {
+      cellScreen.add(new JButton("i: " + i));
+      cellScreen.get(i).addActionListener(this);
+      mainPanel.add(cellScreen.get(i));
+    }
+  }
+
+  public void createCellText(int row, int col) {
+    LifeForm lf = environment.getLifeForm(row, col);
     String str = "";
-    
-    if(lf!=null) {
-    str = "<html>LifeForm Type: " + lf.toString() + "<br>";
-    str += "Current Health: " + lf.getCurrentLifePoints() + "<br>";
-    if(lf.hasWeapon()) { str += "Current Weapon: " + lf.getWeapon().toString() + "<br>"; }
-    else { str += "Current Weapon: N/A<br>"; }
-    str += "Direction: " + lf.getDirection() + "<br></html>";
+
+    if (lf != null) {
+      str = "<html>LifeForm Type: " + lf.toString() + "<br>";
+      str += "Current Health: " + lf.getCurrentLifePoints() + "<br>";
+      if (lf.hasWeapon()) {
+        str += "Current Weapon: " + lf.getWeapon().toString() + "<br>";
+      } else {
+        str += "Current Weapon: N/A<br>";
+      }
+      str += "Direction: " + lf.getDirection() + "<br></html>";
     } else {
       str = "<html>LifeForm Type: N/A<br>Current Health: N/A<br>Current Weapon: N/A<br>Direction: N/A<br></html>";
     }
     currentLFData.setText(str);
-    
+
     str = "<html>";
     str += "Weapons Here:<br>";
-    if(cell.getWeapon1()!=null) { str += "Weapon 1: " + cell.getWeapon1().toString() + "<br>"; }
-    else { str += "Weapon 1: N/A<br>"; }
-    if(cell.getWeapon2()!=null) { str += "Weapon 2: " + cell.getWeapon2().toString() + "<br>"; }
-    else { str += "Weapon 2: N/A<br>"; }
+    if (environment.getWeapons(row, col)[0] != null) {
+      str += "Weapon 1: " + environment.getWeapons(row, col)[0].toString() + "<br>";
+    } else {
+      str += "Weapon 1: N/A<br>";
+    }
+    if (environment.getWeapons(row, col)[1] != null) {
+      str += "Weapon 2: " + environment.getWeapons(row, col)[1].toString() + "<br>";
+    } else {
+      str += "Weapon 2: N/A<br>";
+    }
     str += "</html>";
     currentWeaponData.setText(str);
   }
-  
-  public void updateCellImage(Cell cell) {
-    LifeForm lf = cell.getLifeForm();
+
+  public void updateCellImage(int row, int col) {
+    LifeForm lf = environment.getLifeForm(row, col);
     String str = "";
+    Image img = null;
     
-    if(lf != null) {
+
+    if (lf != null) {
       str = lf.toString();
-          if(lf.hasWeapon()) {
-            str += " " + lf.getWeapon().toString();
-          }
+      /*if (lf.hasWeapon()) {
+        str += " " + lf.getWeapon().toString();
+      }*/
+      
+      try {
+        img = ImageIO.read(new File("img/test" + str + ".png"));
+        img = img.getScaledInstance(focus.getHeight()*3/4, focus.getHeight()*3/4, Image.SCALE_DEFAULT);
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        System.out.println("Image not found, displaying text instead");
+      }
+      
+    } else {
+      str = "No LifeForm Present in this Cell";
     }
-    
-    currentCellDisplay.setText(str);
-    //Change this to work with the necessary images;
-    
-    repaint();    
+
+    if(img!=null) {
+      currentCellDisplay.setIcon(new ImageIcon(img));
+      currentCellDisplay.setText("");
+    }
+    else { 
+      currentCellDisplay.setText(str);
+      currentCellDisplay.setIcon(null);
+    }
+    // Change this to work with the necessary images;
+
+    repaint();
   }
-  
+
 }
