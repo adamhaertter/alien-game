@@ -205,6 +205,7 @@ public class Environment implements Commands {
     }
   }
 
+  /**
   @Override
   public void reloadCommand(LifeForm lf) {
     if (lf.hasWeapon()) {
@@ -232,7 +233,7 @@ public class Environment implements Commands {
   @Override
   public void turnEastCommand(LifeForm lf) {
     lf.currentDirection = "East";
-  }
+  }**/
 
   @Override
   public void moveCommand(LifeForm life) {
@@ -271,12 +272,13 @@ public class Environment implements Commands {
 
   }
 
+  /**
   @Override
   public void dropCommand(LifeForm lf) {
     if (addWeapon(lf.weapon, lf.getRow(), lf.getCol())) {
       lf.dropWeapon();
     }
-  }
+  }**/
 
   @Override
   public void acquireCommand(LifeForm lf) {
