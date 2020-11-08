@@ -35,7 +35,8 @@ public class GameGUI extends JFrame implements ActionListener {
   JLabel currentCellDisplay, currentLFData, currentWeaponData;
   static Environment environment = Environment.getEnvironment(5, 6);
   JButton cellsOnBoard[][];
-  List<JButton> cellScreen = new ArrayList<>();
+  static List<JButton> cellScreen = new ArrayList<>();
+  static List<JLabel> legendList = new ArrayList<>();
 
   public GameGUI() {
     mainPanel = new JPanel();
@@ -45,8 +46,8 @@ public class GameGUI extends JFrame implements ActionListener {
     setSize(800, 700); // TODO NO HARDCODE
     setLocation(300, 50); // TODO NO HARDCODE
 
-    mainPanel.setSize((int) (getWidth() * 0.8), (int) (getHeight() * 0.7));
-    legend.setPreferredSize(new Dimension((int) (getWidth() * 0.2), (int) (getHeight() * 0.7)));
+    mainPanel.setSize((int) (getWidth() * 0.775), (int) (getHeight() * 0.7));
+    legend.setPreferredSize(new Dimension((int) (getWidth() * 0.225), (int) (getHeight() * 0.7)));
     legend.setLocation(mainPanel.getWidth(), 0);
     focus.setPreferredSize(new Dimension(getWidth(), (int) (getHeight() * 0.3)));
     // focus.setLocation(0, mainPanel.getHeight());
@@ -54,7 +55,7 @@ public class GameGUI extends JFrame implements ActionListener {
     this.getContentPane().setLayout(new BorderLayout());
 
     // mainPanel.add(new JLabel("Main Panel"));
-    legend.add(new JLabel("Legend"));
+    // legend.add(new JLabel("Legend"));
     // focus.add(new JLabel("Focus"));
 
     testButton.addActionListener(this);
@@ -62,8 +63,6 @@ public class GameGUI extends JFrame implements ActionListener {
 
     // mainPanel.setLayout(new GridLayout());
     mainPanel.setLayout(new GridLayout(environment.getNumRows(), environment.getNumCols()));
-    // Double check that this is the right way later when less tired ^
-    // TODO Populate Grid
     cellsOnBoard = new JButton[environment.getNumRows()][environment.getNumCols()];
     buildCellGrid();
 
@@ -78,6 +77,13 @@ public class GameGUI extends JFrame implements ActionListener {
     focus.add("South", testButton);
     createCellText(0, 0);
 
+    legend.setLayout(new GridLayout(5, 2));
+    for (int i = 0; i < 10; i++) {
+      JLabel label = new JLabel("", SwingConstants.CENTER);
+      legend.add(label);
+      legendList.add(label);
+    }
+
     mainPanel.setBackground(java.awt.Color.RED);
     legend.setBackground(java.awt.Color.BLUE);
     focus.setBackground(java.awt.Color.YELLOW);
@@ -86,9 +92,34 @@ public class GameGUI extends JFrame implements ActionListener {
     getContentPane().add("Center", mainPanel);
     getContentPane().add("East", legend);
     getContentPane().add("South", focus);
-    // pack();
-    // setResizable(false);
+    pack();
+    setResizable(false);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
+
+    // Setting up Legend sidebar
+    Image img = drawSingleCell("Alien", "", "", 0);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    legendList.get(0).setIcon(new ImageIcon(img));
+    legendList.get(1).setText("Alien");
+    img = drawSingleCell("Human", "", "", 0);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    legendList.get(2).setIcon(new ImageIcon(img));
+    legendList.get(3).setText("Human");
+    img = drawSingleCell("", "", "", 1);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    legendList.get(4).setIcon(new ImageIcon(img));
+    legendList.get(5).setText("# of Weapons");
+    img = drawSingleCell("", "Pistol", "", 0);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    legendList.get(6).setIcon(new ImageIcon(img));
+    legendList.get(7).setText("Specific Item");
+    img = drawSingleCell("", "", "North", 0);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    legendList.get(8).setIcon(new ImageIcon(img));
+    legendList.get(9).setText("Direction");
+
+    pack();
   }
 
   public static void main(String[] args) {
@@ -101,6 +132,12 @@ public class GameGUI extends JFrame implements ActionListener {
     environment.getLifeForm(0, 1).pickUpWeapon(new PlasmaCannon());
     environment.addWeapon(new ChainGun(), 0, 1);
     GameGUI gui = new GameGUI();
+
+    for (int i = 0; i < cellScreen.size(); i++) {
+      int r = i / environment.getNumCols();
+      int c = i % environment.getNumCols();
+      cellScreen.get(i).setIcon(new ImageIcon(drawSingleCell(r, c)));
+    }
   }
 
   @Override
@@ -141,14 +178,8 @@ public class GameGUI extends JFrame implements ActionListener {
   }
 
   public void buildCellGrid() {
-    /*
-     * for (int r = 0; r < environment.getNumRows(); r++) { for (int c = 0; c <
-     * environment.getNumCols(); c++) { cellsOnBoard[r][c] = new
-     * JButton("r: "+r+", c: "+c); mainPanel.add(cellsOnBoard[r][c]); } }
-     */
-
     for (int i = 0; i < environment.getNumRows() * environment.getNumCols(); i++) {
-      cellScreen.add(new JButton("i: " + i));
+      cellScreen.add(new JButton());
       cellScreen.get(i).addActionListener(this);
       mainPanel.add(cellScreen.get(i));
     }
@@ -230,7 +261,7 @@ public class GameGUI extends JFrame implements ActionListener {
     repaint();
   }
 
-  public Image drawSingleCell(int row, int col) {
+  public static Image drawSingleCell(int row, int col) {
     Image img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
     LifeForm lf = environment.getLifeForm(row, col);
     if (lf != null) {
@@ -265,10 +296,63 @@ public class GameGUI extends JFrame implements ActionListener {
         // TODO Auto-generated catch block
         System.out.println("Image not found, displaying text instead");
       }
+    } else {
+      Graphics defaultGraphics = img.getGraphics();
+      defaultGraphics.setColor(java.awt.Color.WHITE);
+      defaultGraphics.fillRect(0, 0, img.getWidth(null), img.getHeight(null));
+      defaultGraphics.dispose();
     }
 
     JButton me = cellScreen.get((row * col) + col);
     img = img.getScaledInstance(me.getWidth(), me.getHeight(), Image.SCALE_SMOOTH);
+    return img;
+  }
+
+  public static Image drawSingleCell(String lifeForm, String weapon, String direction, int weaponCount) {
+    Image img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+    try {
+      if (lifeForm != null && !lifeForm.equals("")) {
+        img = ImageIO.read(new File("img/" + lifeForm + ".png"));
+      } else {
+        Graphics defaultGraphics = img.getGraphics();
+        defaultGraphics.setColor(java.awt.Color.WHITE);
+        defaultGraphics.fillRect(0, 0, img.getWidth(null), img.getHeight(null));
+        defaultGraphics.dispose();
+      }
+
+      Graphics gi = img.getGraphics();
+      // Draw Held Weapon to Bottom-Left Corner
+      if (weapon != null && !weapon.equals("")) {
+        String weaponText = weapon;
+        if (weapon.contains(" +"))
+          weaponText = weapon.substring(0, weapon.indexOf(" +"));
+        Image subImage = ImageIO.read(new File("img/" + weaponText + ".png"));
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 2, img.getHeight(null) / 2, Image.SCALE_SMOOTH);
+        gi.drawImage(subImage, 0, img.getHeight(null) / 2, null);
+      }
+
+      // Draw Direction Icon to Bottom-Right Corner
+      if (direction != null && !direction.equals("")) {
+        Image subImage = ImageIO.read(new File("img/" + direction + ".png"));
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, img.getHeight(null) / 4, Image.SCALE_SMOOTH);
+        gi.drawImage(subImage, img.getWidth(null) * 3 / 4, img.getHeight(null) * 3 / 4, null);
+      }
+
+      // Draw Weapon Count in Top-Left Corner
+      if (weaponCount > 0 && weaponCount < 3) {
+        Image subImage = ImageIO.read(new File("img/" + weaponCount + "_weapon.png"));
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, img.getHeight(null) / 4, Image.SCALE_SMOOTH);
+        gi.drawImage(subImage, img.getWidth(null) / 16, img.getHeight(null) / 16, null);
+      }
+
+      gi.setColor(java.awt.Color.GRAY);
+      gi.drawRect(0, 0, img.getWidth(null), img.getHeight(null));
+      gi.dispose();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      System.out.println("Image not found, displaying text instead");
+    }
+
     return img;
   }
 
