@@ -3,5 +3,5 @@ package environment;
 import lifeform.LifeForm;
 
 public interface InvokerBuilder {
-  public void execute(LifeForm lf);
+  public void execute(LifeForm lf, Environment env);
 }

@@ -234,12 +234,22 @@ public class Environment implements Commands {
         removeLifeForm(life.getRow(), life.getCol());
         addLifeForm(life, life.getRow() - life.maxSpeed, life.getCol());
       }
+    } else {
+      if (cells[0][life.getCol()].getLifeForm() == null) {
+        removeLifeForm(0, life.getCol());
+        addLifeForm(life, 0, life.getCol());
+      }
     }
 
     if (life.currentDirection.equals("South") && (getNumRows() + life.maxSpeed) < getNumRows()) {
       if (cells[life.getRow() + life.maxSpeed][life.getCol()].getLifeForm() == null) {
         removeLifeForm(life.getRow(), life.getCol());
         addLifeForm(life, life.getRow() + life.maxSpeed, life.getCol());
+      }
+    } else {
+      if (cells[getNumRows() - 1][life.getCol()].getLifeForm() == null) {
+        removeLifeForm(getNumRows() - 1, life.getCol());
+        addLifeForm(life, getNumRows() - 1, life.getCol());
       }
     }
 
@@ -248,12 +258,22 @@ public class Environment implements Commands {
         removeLifeForm(life.getRow(), life.getCol());
         addLifeForm(life, life.getRow() - life.maxSpeed, life.getCol());
       }
+    } else {
+      if (cells[life.getRow()][0].getLifeForm() == null) {
+        removeLifeForm(life.getRow(), 0);
+        addLifeForm(life, life.getRow(), 0);
+      }
     }
 
     if (life.currentDirection.equals("East") && (getNumCols() + life.maxSpeed) > 0) {
       if (cells[life.getRow()][life.getCol() + life.maxSpeed].getLifeForm() == null) {
         removeLifeForm(life.getRow(), life.getCol());
         addLifeForm(life, life.getRow() + life.maxSpeed, life.getCol());
+      }
+    } else {
+      if (cells[life.getRow()][getNumCols() - 1].getLifeForm() == null) {
+        removeLifeForm(life.getRow(), getNumCols() - 1);
+        addLifeForm(life, life.getRow(), getNumCols() - 1);
       }
     }
   }

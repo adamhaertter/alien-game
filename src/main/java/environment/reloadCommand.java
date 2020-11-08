@@ -4,9 +4,7 @@ import lifeform.LifeForm;
 
 public class reloadCommand implements InvokerBuilder {
   @Override
-  public void execute(LifeForm lf) {
-    if (lf.hasWeapon()) {
-      lf.weapon.reload();
-    }
+  public void execute(LifeForm lf, Environment env) {
+    env.reloadCommand(lf);
   }
 }
