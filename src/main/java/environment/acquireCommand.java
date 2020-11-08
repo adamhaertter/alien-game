@@ -7,9 +7,4 @@ public class acquireCommand implements InvokerBuilder {
   public void execute(LifeForm lf) {
     // TODO Fix eventually
   }
-  @Override
-  public void execute() {
-    // Nothing is here intentionally ATM
-    // Ask Brennan later to either delete or change
-  }
 }

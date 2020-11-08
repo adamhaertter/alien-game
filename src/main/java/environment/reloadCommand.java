@@ -9,10 +9,4 @@ public class reloadCommand implements InvokerBuilder {
       lf.weapon.reload();
     }
   }
-
-  @Override
-  public void execute() {
-    // Nothing is here intentionally ATM
-    // Ask Brennan later to either delete or change
-  }
 }

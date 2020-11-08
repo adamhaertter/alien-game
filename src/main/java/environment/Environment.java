@@ -198,14 +198,6 @@ public class Environment implements Commands {
     return cells[0].length;
   }
 
-  public void move(LifeForm life) {
-    String N = "North";
-    if (life.currentDirection.equals(N) && (getNumCols() - life.maxSpeed) < 0) {
-      removeLifeForm(life.getRow(), life.getCol());
-    }
-  }
-
-  
   @Override
   public void reloadCommand(LifeForm lf) {
     if (lf.hasWeapon()) {
@@ -215,24 +207,24 @@ public class Environment implements Commands {
 
   @Override
   public void turnNorthCommand(LifeForm lf) {
-    lf.currentDirection = "North";
+    lf.turn("North");
   }
 
   @Override
   public void turnSouthCommand(LifeForm lf) {
-    lf.currentDirection = "South";
+    lf.turn("South");
 
   }
 
   @Override
   public void turnWestCommand(LifeForm lf) {
-    lf.currentDirection = "West";
+    lf.turn("West");
 
   }
 
   @Override
   public void turnEastCommand(LifeForm lf) {
-    lf.currentDirection = "East";
+    lf.turn("East");
   }
 
   @Override
@@ -272,7 +264,6 @@ public class Environment implements Commands {
 
   }
 
-  
   @Override
   public void dropCommand(LifeForm lf) {
     if (addWeapon(lf.weapon, lf.getRow(), lf.getCol())) {
