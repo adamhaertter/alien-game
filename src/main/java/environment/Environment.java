@@ -134,8 +134,7 @@ public class Environment implements Commands {
     if (row >= cells.length || col >= cells[0].length || row < 0 || col < 0) {
       return false;
     }
-    return true;
-//    return cells[row][col].addWeapon(weapon);
+    return cells[row][col].addWeapon(weapon);
   }
 
   /**

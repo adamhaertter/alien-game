@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.LayoutManager;
@@ -20,10 +21,12 @@ import javax.swing.*;
 
 import environment.Cell;
 import environment.Environment;
+import exceptions.AttachmentException;
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
+import weapon.*;
 
 public class GameGUI extends JFrame implements ActionListener {
 
@@ -92,6 +95,11 @@ public class GameGUI extends JFrame implements ActionListener {
     environment.addLifeForm(new Human("TestHuman", 10, 10), 1, 1);
     environment.addLifeForm(new Alien("TestAlien", 10), 1, 2);
     environment.addLifeForm(new MockLifeForm("TestMock", 10, 10), 1, 0);
+
+    environment.addWeapon(new Pistol(), 0, 1);
+    environment.addLifeForm(new Human("T", 5, 1), 0, 1);
+    environment.getLifeForm(0, 1).pickUpWeapon(new PlasmaCannon());
+    environment.addWeapon(new ChainGun(), 0, 1);
     GameGUI gui = new GameGUI();
   }
 
@@ -118,10 +126,12 @@ public class GameGUI extends JFrame implements ActionListener {
       JButton src = (JButton) e.getSource();
       int r = cellScreen.indexOf(src) / environment.getNumCols();
       int c = cellScreen.indexOf(src) % environment.getNumCols();
-      createCellText(r, c);
       updateCellImage(r, c);
+      src.setIcon(new ImageIcon(drawSingleCell(r, c)));
+      src.setText("");
+      createCellText(r, c);
       try {
-        // src.setIcon(new ImageIcon(ImageIO.read(new File("testimg.png"))));
+        // src.setIcon(new ImageIcon(ImageIO.read(new File("img/testimg.png"))));
       } catch (Exception ex) {
         ex.printStackTrace();
       }
@@ -185,12 +195,19 @@ public class GameGUI extends JFrame implements ActionListener {
 
     if (lf != null) {
       str = lf.toString();
-      /*
-       * if (lf.hasWeapon()) { str += " " + lf.getWeapon().toString(); }
-       */
 
       try {
-        img = ImageIO.read(new File("img/test" + str + ".png"));
+        img = ImageIO.read(new File("img/" + str + ".png"));
+        if (lf.hasWeapon()) {
+          Graphics gi = img.getGraphics();
+          String weaponText = lf.getWeapon().toString();
+          if (lf.getWeapon().getNumAttachments() > 0)
+            weaponText = weaponText.substring(0, weaponText.indexOf(" +"));
+          Image subImage = ImageIO.read(new File("img/" + weaponText + ".png"));
+          subImage = subImage.getScaledInstance(img.getWidth(null) / 2, img.getHeight(null) / 2, Image.SCALE_SMOOTH);
+          gi.drawImage(subImage, img.getWidth(null) / 2, img.getHeight(null) / 2, null);
+          gi.dispose();
+        }
         img = img.getScaledInstance(focus.getHeight() * 3 / 4, focus.getHeight() * 3 / 4, Image.SCALE_DEFAULT);
       } catch (IOException e) {
         // TODO Auto-generated catch block
@@ -211,6 +228,48 @@ public class GameGUI extends JFrame implements ActionListener {
     // Change this to work with the necessary images;
 
     repaint();
+  }
+
+  public Image drawSingleCell(int row, int col) {
+    Image img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+    LifeForm lf = environment.getLifeForm(row, col);
+    if (lf != null) {
+      try {
+        img = ImageIO.read(new File("img/" + lf.toString() + ".png"));
+        Graphics gi = img.getGraphics();
+        // Draw Held Weapon to Bottom-Left Corner
+        if (lf.hasWeapon()) {
+          String weaponText = lf.getWeapon().toString();
+          if (lf.getWeapon().getNumAttachments() > 0)
+            weaponText = weaponText.substring(0, weaponText.indexOf(" +"));
+          Image subImage = ImageIO.read(new File("img/" + weaponText + ".png"));
+          subImage = subImage.getScaledInstance(img.getWidth(null) / 2, img.getHeight(null) / 2, Image.SCALE_SMOOTH);
+          gi.drawImage(subImage, 0, img.getHeight(null) / 2, null);
+        }
+
+        // Draw Direction Icon to Bottom-Right Corner
+        Image subImage = ImageIO.read(new File("img/" + lf.getDirection() + ".png"));
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, img.getHeight(null) / 4, Image.SCALE_SMOOTH);
+        gi.drawImage(subImage, img.getWidth(null) * 3 / 4, img.getHeight(null) * 3 / 4, null);
+
+        // Draw Weapon Count in Top-Left Corner
+        Weapon[] weaponsInCell = environment.getWeapons(row, col);
+        if (weaponsInCell[0] != null || weaponsInCell[1] != null) {
+          subImage = ImageIO.read(new File("img/" + weaponsInCell.length + "_weapon.png"));
+          subImage = subImage.getScaledInstance(img.getWidth(null) / 4, img.getHeight(null) / 4, Image.SCALE_SMOOTH);
+          gi.drawImage(subImage, img.getWidth(null) / 16, img.getHeight(null) / 16, null);
+        }
+
+        gi.dispose();
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        System.out.println("Image not found, displaying text instead");
+      }
+    }
+
+    JButton me = cellScreen.get((row * col) + col);
+    img = img.getScaledInstance(me.getWidth(), me.getHeight(), Image.SCALE_SMOOTH);
+    return img;
   }
 
 }
