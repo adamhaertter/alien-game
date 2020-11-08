@@ -116,12 +116,12 @@ public class GameGUI extends JFrame implements ActionListener {
 
     if (cellScreen.contains(e.getSource())) {
       JButton src = (JButton) e.getSource();
-      int r = cellScreen.indexOf(src)/environment.getNumCols();
-      int c = cellScreen.indexOf(src)%environment.getNumCols();
+      int r = cellScreen.indexOf(src) / environment.getNumCols();
+      int c = cellScreen.indexOf(src) % environment.getNumCols();
       createCellText(r, c);
       updateCellImage(r, c);
       try {
-        //src.setIcon(new ImageIcon(ImageIO.read(new File("testimg.png"))));
+        // src.setIcon(new ImageIcon(ImageIO.read(new File("testimg.png"))));
       } catch (Exception ex) {
         ex.printStackTrace();
       }
@@ -182,31 +182,29 @@ public class GameGUI extends JFrame implements ActionListener {
     LifeForm lf = environment.getLifeForm(row, col);
     String str = "";
     Image img = null;
-    
 
     if (lf != null) {
       str = lf.toString();
-      /*if (lf.hasWeapon()) {
-        str += " " + lf.getWeapon().toString();
-      }*/
-      
+      /*
+       * if (lf.hasWeapon()) { str += " " + lf.getWeapon().toString(); }
+       */
+
       try {
         img = ImageIO.read(new File("img/test" + str + ".png"));
-        img = img.getScaledInstance(focus.getHeight()*3/4, focus.getHeight()*3/4, Image.SCALE_DEFAULT);
+        img = img.getScaledInstance(focus.getHeight() * 3 / 4, focus.getHeight() * 3 / 4, Image.SCALE_DEFAULT);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         System.out.println("Image not found, displaying text instead");
       }
-      
+
     } else {
       str = "No LifeForm Present in this Cell";
     }
 
-    if(img!=null) {
+    if (img != null) {
       currentCellDisplay.setIcon(new ImageIcon(img));
       currentCellDisplay.setText("");
-    }
-    else { 
+    } else {
       currentCellDisplay.setText(str);
       currentCellDisplay.setIcon(null);
     }
