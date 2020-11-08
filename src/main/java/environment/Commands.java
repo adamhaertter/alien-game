@@ -1,5 +1,7 @@
 package environment;
 
+import exceptions.EnvironmentException;
+import exceptions.WeaponException;
 import lifeform.LifeForm;
 
 public interface Commands {
@@ -16,7 +18,7 @@ public interface Commands {
 
   void moveCommand(LifeForm lf);
 
-  void attackCommand(LifeForm lf);
+  void attackCommand(LifeForm lf) throws EnvironmentException, WeaponException;
 
   void dropCommand(LifeForm lf);
 

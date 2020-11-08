@@ -1,6 +1,7 @@
 package environment;
 
 import exceptions.EnvironmentException;
+import exceptions.WeaponException;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
@@ -278,9 +279,46 @@ public class Environment implements Commands {
   }
 
   @Override
-  public void attackCommand(LifeForm lf) {
+  public void attackCommand(LifeForm lf) throws EnvironmentException, WeaponException {
     // Find and attack closest target in the line of sight of the LifeForm
+    String direction = lf.getDirection();
+    // North = decrease col
+    // South = increase col
+    // West = decrease row
+    // East = increase row
 
+    int distance;
+    if (direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("south")) {
+      // Dealing with cols
+      distance = direction.equalsIgnoreCase("north") ? lf.getCol() - 1 : (cells.length - lf.getCol());
+      Cell checkCell = null;
+      for (int i = 1; i <= distance; i++) {
+        checkCell = direction.equalsIgnoreCase("north") ? cells[lf.getRow()][lf.getCol() + 1] : cells[lf.getRow()][lf.getCol() - 1];
+        if(checkCell.getLifeForm() != null) {
+          // We found a close enough life form!
+          i = distance + 1;
+          lf.attack(checkCell.getLifeForm(), ((int) getDistance(lf, checkCell.getLifeForm())));
+        }
+      }
+
+      // We never found someone to attack but we should still fire.... right?
+      if (checkCell == null && lf.hasWeapon()) lf.getWeapon().fire(distance);
+    } else {
+      // Dealing with rows
+      distance = direction.equalsIgnoreCase("west") ? lf.getRow() - 1 : (cells[0].length - lf.getRow());
+      Cell checkCell = null;
+      for (int i = 1; i <= distance; i++) {
+        checkCell = direction.equalsIgnoreCase("west") ? cells[lf.getRow() + 1][lf.getCol()] : cells[lf.getRow() - 1][lf.getCol()];
+        if(checkCell.getLifeForm() != null) {
+          // We found a close enough life form!
+          i = distance + 1;
+          lf.attack(checkCell.getLifeForm(), ((int) getDistance(lf, checkCell.getLifeForm())));
+        }
+      }
+
+      // We never found someone to attack but we should still fire.... right?
+      if (checkCell == null && lf.hasWeapon()) lf.getWeapon().fire(distance);
+    }
   }
 
   @Override
