@@ -1,10 +1,19 @@
 package lifeform;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class TestHuman {
+
+  /*
+   * Creates a Human and checks that its max speed is 3
+   */
+  @Test
+  public void testMaxSpeed() {
+    Human human = new Human("Jeffery", 20, 10);
+    assertEquals(human.maxSpeed, 3);
+  }
 
   /**
    * Tests the Human's initialization by checking its default name and life

@@ -19,6 +19,26 @@ import weapon.Weapon;
 public class TestLifeForm {
 
   /**
+   * Test the default direction of a life form
+   */
+  @Test
+  public void testDefaultDirection() {
+    LifeForm lf = new MockLifeForm("Lab 6", 10, 10);
+    assertEquals(lf.getDirection(), "North");
+  }
+
+  /**
+   * Test turning of a life form
+   */
+  @Test
+  public void testChangeDirection() {
+    LifeForm lf = new MockLifeForm("Lab 6", 10, 10);
+    assertEquals(lf.getDirection(), "North");
+    lf.turn("East");
+    assertEquals(lf.getDirection(), "East");
+  }
+
+  /**
    * When a LifeForm is created, it should know how many life points it has.
    */
   @Test
