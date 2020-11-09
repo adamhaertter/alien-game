@@ -11,6 +11,7 @@ public class MockLifeForm extends LifeForm {
    */
   public MockLifeForm(String name, int points) {
     super(name, points);
+    maxSpeed = 1;
   }
 
   /**
@@ -23,6 +24,7 @@ public class MockLifeForm extends LifeForm {
    */
   public MockLifeForm(String name, int points, int atk) {
     super(name, points, atk);
+    maxSpeed = 1;
   }
   
   /**
