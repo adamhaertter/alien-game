@@ -33,7 +33,7 @@ public class GameGUI extends JFrame implements ActionListener {
   JButton testButton = new JButton("The Test Button");
   JPanel mainPanel, legend, focus;
   JLabel currentCellDisplay, currentLFData, currentWeaponData;
-  static Environment environment = Environment.getEnvironment(5, 6);
+  static Environment environment = Environment.getEnvironment(10, 10);
   static List<JButton> cellScreen = new ArrayList<>();
   static List<JLabel> legendList = new ArrayList<>();
   Cell focusedCell;

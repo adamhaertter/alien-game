@@ -9,7 +9,7 @@ import weapon.Weapon;
  * The Environment in which Cells are stored in a 2D Array configuration
  *
  * @author Adam Haertter - modified by Brennan Mulligan, Scott Bucher and Josh
- *         Lewis
+ * Lewis
  */
 public class Environment implements Commands {
 
@@ -40,7 +40,7 @@ public class Environment implements Commands {
    * @param row the row index where the life form should be added
    * @param col the column index where the life form should be added
    * @return false if the life form is unable to be added, true if it is added
-   *         successfully
+   * successfully
    */
   public boolean addLifeForm(LifeForm lf, int row, int col) {
     if (row > cells.length || col > cells[0].length || row < 0 || col < 0) {
@@ -168,7 +168,7 @@ public class Environment implements Commands {
    * @return the array of weapons present in a specified cell
    */
   public Weapon[] getWeapons(int row, int col) {
-    return new Weapon[] { cells[row][col].wepOne, cells[row][col].wepTwo };
+    return new Weapon[]{cells[row][col].wepOne, cells[row][col].wepTwo};
   }
 
   /**
@@ -229,52 +229,58 @@ public class Environment implements Commands {
 
   @Override
   public void moveCommand(LifeForm life) {
-    if (life.currentDirection.equals("North") && (life.getRow() - life.maxSpeed) >= 0) {
-      if (cells[life.getCol()][life.getRow() - life.maxSpeed].getLifeForm() == null) {
-        removeLifeForm(life.getRow(), life.getCol());
-        addLifeForm(life, life.getCol(), life.getRow() - life.maxSpeed);
+    if (life.currentDirection.equalsIgnoreCase("north")) {
+      int row = life.getRow() - life.maxSpeed;
+
+      if (row < 0) {
+        row = 0;
       }
-      return;
-    } else if (life.currentDirection.equals("North") && cells[life.getCol()][0].getLifeForm() == null) {
-        removeLifeForm(life.getCol(), life.getRow());
-        addLifeForm(life, life.getCol(), 0);
+
+      if (cells[row][life.getCol()].getLifeForm() != null) {
         return;
       }
 
-    if (life.currentDirection.equals("South") && (life.getRow() + life.maxSpeed) < getNumRows()) {
-      if (cells[life.getCol()][life.getRow() + life.maxSpeed].getLifeForm() == null) {
-        removeLifeForm(life.getCol(), life.getRow());
-        addLifeForm(life, life.getCol(), life.getRow() + life.maxSpeed);
-      }
-      return;
-    } else if (life.currentDirection.equals("South") && cells[life.getCol()][getNumRows() - 1].getLifeForm() == null) {
-        removeLifeForm(life.getCol(), life.getRow());
-        addLifeForm(life, life.getCol(), getNumRows() - 1);
-        return;
-    }
+      removeLifeForm(life.getRow(), life.getCol());
+      addLifeForm(life, row, life.getCol());
+    } else if (life.currentDirection.equalsIgnoreCase("south")) {
+      int row = life.getRow() + life.maxSpeed;
 
-    if (life.currentDirection.equals("West") && (life.getCol() - life.maxSpeed) >= 0) {
-      if (cells[life.getCol() - life.maxSpeed][life.getRow()].getLifeForm() == null) {
-        removeLifeForm(life.getCol(), life.getRow());
-        addLifeForm(life, life.getCol() - life.maxSpeed, life.getRow());
+      if (row >= cells.length) {
+        row = cells.length - 1;
       }
-      return;
-    } else if (life.currentDirection.equals("West") && cells[0][life.getRow()].getLifeForm() == null) {
-        removeLifeForm(life.getCol(), life.getRow());
-        addLifeForm(life, 0, life.getRow());
-        return;
-    }
 
-    if (life.currentDirection.equals("East") && (life.getCol() + life.maxSpeed) < getNumCols()) {
-      if (cells[life.getCol() + life.maxSpeed][life.getRow()].getLifeForm() == null) {
-        removeLifeForm(life.getCol(), life.getRow());
-        addLifeForm(life, life.getCol() + life.maxSpeed, life.getRow());
-      }
-      return;
-    } else if (life.currentDirection.equals("East") && cells[getNumCols() - 1][life.getRow()].getLifeForm() == null) {
-        removeLifeForm(life.getCol(), life.getRow());
-        addLifeForm(life, getNumCols() - 1, life.getRow());
+      if (cells[row][life.getCol()].getLifeForm() != null) {
         return;
+      }
+
+      removeLifeForm(life.getRow(), life.getCol());
+      addLifeForm(life, row, life.getCol());
+    } else if (life.currentDirection.equalsIgnoreCase("east")) {
+      int col = life.getCol() + life.maxSpeed;
+
+      if (col >= cells[0].length) {
+        col = cells[0].length - 1;
+      }
+
+      if (cells[life.getRow()][col].getLifeForm() != null) {
+        return;
+      }
+
+      removeLifeForm(life.getRow(), life.getCol());
+      addLifeForm(life, life.getRow(), col);
+    } else if (life.currentDirection.equalsIgnoreCase("west")) {
+      int col = life.getCol() - life.maxSpeed;
+
+      if (col < 0) {
+        col = 0;
+      }
+
+      if (cells[life.getRow()][col].getLifeForm() != null) {
+        return;
+      }
+
+      removeLifeForm(life.getRow(), life.getCol());
+      addLifeForm(life, life.getRow(), col);
     }
   }
 
@@ -294,7 +300,7 @@ public class Environment implements Commands {
       Cell checkCell = null;
       for (int i = 1; i <= distance; i++) {
         checkCell = direction.equalsIgnoreCase("north") ? cells[lf.getRow()][lf.getCol() + 1] : cells[lf.getRow()][lf.getCol() - 1];
-        if(checkCell.getLifeForm() != null) {
+        if (checkCell.getLifeForm() != null) {
           // We found a close enough life form!
           i = distance + 1;
           lf.attack(checkCell.getLifeForm(), ((int) getDistance(lf, checkCell.getLifeForm())));
@@ -309,7 +315,7 @@ public class Environment implements Commands {
       Cell checkCell = null;
       for (int i = 1; i <= distance; i++) {
         checkCell = direction.equalsIgnoreCase("west") ? cells[lf.getRow() + 1][lf.getCol()] : cells[lf.getRow() - 1][lf.getCol()];
-        if(checkCell.getLifeForm() != null) {
+        if (checkCell.getLifeForm() != null) {
           // We found a close enough life form!
           i = distance + 1;
           lf.attack(checkCell.getLifeForm(), ((int) getDistance(lf, checkCell.getLifeForm())));
@@ -352,7 +358,7 @@ public class Environment implements Commands {
       }
     }
   }
-  
+
   public Cell getCell(int row, int col) {
     return cells[row][col];
   }
