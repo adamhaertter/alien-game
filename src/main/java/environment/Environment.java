@@ -229,7 +229,7 @@ public class Environment implements Commands {
 
   @Override
   public void moveCommand(LifeForm life) {
-    if (life.currentDirection.equals("North") && (getNumRows() - life.maxSpeed) > 0) {
+    if (life.currentDirection.equals("North") && (life.getRow() - life.maxSpeed) > 0) {
       if (cells[life.getRow() - life.maxSpeed][life.getCol()].getLifeForm() == null) {
         removeLifeForm(life.getRow(), life.getCol());
         addLifeForm(life, life.getRow() - life.maxSpeed, life.getCol());
@@ -239,9 +239,10 @@ public class Environment implements Commands {
         removeLifeForm(0, life.getCol());
         addLifeForm(life, 0, life.getCol());
       }
+      return;
     }
 
-    if (life.currentDirection.equals("South") && (getNumRows() + life.maxSpeed) < getNumRows()) {
+    if (life.currentDirection.equals("South") && (life.getRow() + life.maxSpeed) < getNumRows()) {
       if (cells[life.getRow() + life.maxSpeed][life.getCol()].getLifeForm() == null) {
         removeLifeForm(life.getRow(), life.getCol());
         addLifeForm(life, life.getRow() + life.maxSpeed, life.getCol());
@@ -251,9 +252,10 @@ public class Environment implements Commands {
         removeLifeForm(getNumRows() - 1, life.getCol());
         addLifeForm(life, getNumRows() - 1, life.getCol());
       }
+      return;
     }
 
-    if (life.currentDirection.equals("West") && (getNumCols() - life.maxSpeed) > 0) {
+    if (life.currentDirection.equals("West") && (life.getCol() - life.maxSpeed) > 0) {
       if (cells[life.getRow()][life.getCol() - life.maxSpeed].getLifeForm() == null) {
         removeLifeForm(life.getRow(), life.getCol());
         addLifeForm(life, life.getRow() - life.maxSpeed, life.getCol());
@@ -263,9 +265,10 @@ public class Environment implements Commands {
         removeLifeForm(life.getRow(), 0);
         addLifeForm(life, life.getRow(), 0);
       }
+      return;
     }
 
-    if (life.currentDirection.equals("East") && (getNumCols() + life.maxSpeed) > 0) {
+    if (life.currentDirection.equals("East") && (life.getCol() + life.maxSpeed) > 0) {
       if (cells[life.getRow()][life.getCol() + life.maxSpeed].getLifeForm() == null) {
         removeLifeForm(life.getRow(), life.getCol());
         addLifeForm(life, life.getRow() + life.maxSpeed, life.getCol());
@@ -275,6 +278,7 @@ public class Environment implements Commands {
         removeLifeForm(life.getRow(), getNumCols() - 1);
         addLifeForm(life, life.getRow(), getNumCols() - 1);
       }
+      return;
     }
   }
 
@@ -351,5 +355,9 @@ public class Environment implements Commands {
             : cell.removeWeapon(cell.wepTwo));
       }
     }
+  }
+  
+  public Cell getCell(int row, int col) {
+    return cells[row][col];
   }
 }

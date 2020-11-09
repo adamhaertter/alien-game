@@ -34,9 +34,9 @@ public class GameGUI extends JFrame implements ActionListener {
   JPanel mainPanel, legend, focus;
   JLabel currentCellDisplay, currentLFData, currentWeaponData;
   static Environment environment = Environment.getEnvironment(5, 6);
-  JButton cellsOnBoard[][];
   static List<JButton> cellScreen = new ArrayList<>();
   static List<JLabel> legendList = new ArrayList<>();
+  Cell focusedCell;
 
   public GameGUI() {
     mainPanel = new JPanel();
@@ -63,7 +63,6 @@ public class GameGUI extends JFrame implements ActionListener {
 
     // mainPanel.setLayout(new GridLayout());
     mainPanel.setLayout(new GridLayout(environment.getNumRows(), environment.getNumCols()));
-    cellsOnBoard = new JButton[environment.getNumRows()][environment.getNumCols()];
     buildCellGrid();
 
     focus.setLayout(new BorderLayout());
@@ -132,7 +131,7 @@ public class GameGUI extends JFrame implements ActionListener {
     environment.getLifeForm(0, 1).pickUpWeapon(new PlasmaCannon());
     environment.addWeapon(new ChainGun(), 0, 1);
     GameGUI gui = new GameGUI();
-    ControllerGUI cgui = new ControllerGUI();
+    ControllerGUI cgui = new ControllerGUI(gui);
 
     for (int i = 0; i < cellScreen.size(); i++) {
       int r = i / environment.getNumCols();
@@ -168,11 +167,7 @@ public class GameGUI extends JFrame implements ActionListener {
       src.setIcon(new ImageIcon(drawSingleCell(r, c)));
       src.setText("");
       createCellText(r, c);
-      try {
-        // src.setIcon(new ImageIcon(ImageIO.read(new File("img/testimg.png"))));
-      } catch (Exception ex) {
-        ex.printStackTrace();
-      }
+      focusedCell = environment.getCell(r, c);
       return;
     }
 
@@ -355,6 +350,17 @@ public class GameGUI extends JFrame implements ActionListener {
     }
 
     return img;
+  }
+  
+  public void boardUpdate() {
+    for (int i = 0; i < cellScreen.size(); i++) {
+      int r = cellScreen.indexOf(cellScreen.get(i)) / environment.getNumCols();
+      int c = cellScreen.indexOf(cellScreen.get(i)) % environment.getNumCols();
+      updateCellImage(r, c);
+      cellScreen.get(i).setIcon(new ImageIcon(drawSingleCell(r, c)));
+      cellScreen.get(i).setText("");
+    }
+    repaint();
   }
 
 }
