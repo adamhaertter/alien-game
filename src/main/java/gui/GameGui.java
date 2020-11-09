@@ -388,7 +388,7 @@ public class GameGui extends JFrame implements ActionListener {
       }
 
       Graphics gi = img.getGraphics();
-      // Draw Held Weapon to Bottom-Left Corner
+      // Draw Held Weapon to Bottom-Left Corner.
       if (weapon != null && !weapon.equals("")) {
         String weaponText = weapon;
         if (weapon.contains(" +")) {
