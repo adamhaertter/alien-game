@@ -229,56 +229,52 @@ public class Environment implements Commands {
 
   @Override
   public void moveCommand(LifeForm life) {
-    if (life.currentDirection.equals("North") && (life.getRow() - life.maxSpeed) > 0) {
-      if (cells[life.getRow() - life.maxSpeed][life.getCol()].getLifeForm() == null) {
+    if (life.currentDirection.equals("North") && (life.getRow() - life.maxSpeed) >= 0) {
+      if (cells[life.getCol()][life.getRow() - life.maxSpeed].getLifeForm() == null) {
         removeLifeForm(life.getRow(), life.getCol());
-        addLifeForm(life, life.getRow() - life.maxSpeed, life.getCol());
-      }
-    } else {
-      if (cells[0][life.getCol()].getLifeForm() == null) {
-        removeLifeForm(0, life.getCol());
-        addLifeForm(life, 0, life.getCol());
+        addLifeForm(life, life.getCol(), life.getRow() - life.maxSpeed);
       }
       return;
-    }
+    } else if (life.currentDirection.equals("North") && cells[life.getCol()][0].getLifeForm() == null) {
+        removeLifeForm(life.getCol(), life.getRow());
+        addLifeForm(life, life.getCol(), 0);
+        return;
+      }
 
     if (life.currentDirection.equals("South") && (life.getRow() + life.maxSpeed) < getNumRows()) {
-      if (cells[life.getRow() + life.maxSpeed][life.getCol()].getLifeForm() == null) {
-        removeLifeForm(life.getRow(), life.getCol());
-        addLifeForm(life, life.getRow() + life.maxSpeed, life.getCol());
-      }
-    } else {
-      if (cells[getNumRows() - 1][life.getCol()].getLifeForm() == null) {
-        removeLifeForm(getNumRows() - 1, life.getCol());
-        addLifeForm(life, getNumRows() - 1, life.getCol());
+      if (cells[life.getCol()][life.getRow() + life.maxSpeed].getLifeForm() == null) {
+        removeLifeForm(life.getCol(), life.getRow());
+        addLifeForm(life, life.getCol(), life.getRow() + life.maxSpeed);
       }
       return;
+    } else if (life.currentDirection.equals("South") && cells[life.getCol()][getNumRows() - 1].getLifeForm() == null) {
+        removeLifeForm(life.getCol(), life.getRow());
+        addLifeForm(life, life.getCol(), getNumRows() - 1);
+        return;
     }
 
-    if (life.currentDirection.equals("West") && (life.getCol() - life.maxSpeed) > 0) {
-      if (cells[life.getRow()][life.getCol() - life.maxSpeed].getLifeForm() == null) {
-        removeLifeForm(life.getRow(), life.getCol());
-        addLifeForm(life, life.getRow() - life.maxSpeed, life.getCol());
-      }
-    } else {
-      if (cells[life.getRow()][0].getLifeForm() == null) {
-        removeLifeForm(life.getRow(), 0);
-        addLifeForm(life, life.getRow(), 0);
+    if (life.currentDirection.equals("West") && (life.getCol() - life.maxSpeed) >= 0) {
+      if (cells[life.getCol() - life.maxSpeed][life.getRow()].getLifeForm() == null) {
+        removeLifeForm(life.getCol(), life.getRow());
+        addLifeForm(life, life.getCol() - life.maxSpeed, life.getRow());
       }
       return;
+    } else if (life.currentDirection.equals("West") && cells[0][life.getRow()].getLifeForm() == null) {
+        removeLifeForm(life.getCol(), life.getRow());
+        addLifeForm(life, 0, life.getRow());
+        return;
     }
 
-    if (life.currentDirection.equals("East") && (life.getCol() + life.maxSpeed) > 0) {
-      if (cells[life.getRow()][life.getCol() + life.maxSpeed].getLifeForm() == null) {
-        removeLifeForm(life.getRow(), life.getCol());
-        addLifeForm(life, life.getRow() + life.maxSpeed, life.getCol());
-      }
-    } else {
-      if (cells[life.getRow()][getNumCols() - 1].getLifeForm() == null) {
-        removeLifeForm(life.getRow(), getNumCols() - 1);
-        addLifeForm(life, life.getRow(), getNumCols() - 1);
+    if (life.currentDirection.equals("East") && (life.getCol() + life.maxSpeed) < getNumCols()) {
+      if (cells[life.getCol() + life.maxSpeed][life.getRow()].getLifeForm() == null) {
+        removeLifeForm(life.getCol(), life.getRow());
+        addLifeForm(life, life.getCol() + life.maxSpeed, life.getRow());
       }
       return;
+    } else if (life.currentDirection.equals("East") && cells[getNumCols() - 1][life.getRow()].getLifeForm() == null) {
+        removeLifeForm(life.getCol(), life.getRow());
+        addLifeForm(life, getNumCols() - 1, life.getRow());
+        return;
     }
   }
 
