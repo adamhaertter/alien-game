@@ -128,7 +128,7 @@ public class GameGUI extends JFrame implements ActionListener {
 
     environment.addWeapon(new Pistol(), 0, 1);
     environment.addLifeForm(new Human("T", 5, 1), 0, 1);
-    environment.getLifeForm(0, 1).pickUpWeapon(new PlasmaCannon());
+    environment.getLifeForm(0, 1).pickUpWeapon(new Pistol());
     environment.addWeapon(new ChainGun(), 0, 1);
     GameGUI gui = new GameGUI();
     ControllerGUI cgui = new ControllerGUI(gui);

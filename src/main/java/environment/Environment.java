@@ -288,43 +288,98 @@ public class Environment implements Commands {
   public void attackCommand(LifeForm lf) throws EnvironmentException, WeaponException {
     // Find and attack closest target in the line of sight of the LifeForm
     String direction = lf.getDirection();
-    // North = decrease col
-    // South = increase col
-    // West = decrease row
-    // East = increase row
+    // North = Decrease your row
+    // South = Increase your row
+    // West = Decrease Column
+    // East = Increase Column
 
-    int distance;
-    if (direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("south")) {
-      // Dealing with cols
-      distance = direction.equalsIgnoreCase("north") ? lf.getCol() - 1 : (cells.length - lf.getCol());
-      Cell checkCell = null;
+    if (lf.currentDirection.equalsIgnoreCase("north")) {
+      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange()/5) : 1;
+      LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
-        checkCell = direction.equalsIgnoreCase("north") ? cells[lf.getRow()][lf.getCol() + 1] : cells[lf.getRow()][lf.getCol() - 1];
-        if (checkCell.getLifeForm() != null) {
-          // We found a close enough life form!
+
+        if (lf.getRow() - i >= 0) {
+          target = cells[lf.getRow() - i][lf.getCol()].getLifeForm();
+          if (target != null) {
+            lf.attack(target, (int) getDistance(lf, target));
+            if (target.getCurrentLifePoints() <= 0) {
+              removeLifeForm(target.getRow(), target.getCol());
+            }
+            i = distance + 1;
+          }
+        } else {
           i = distance + 1;
-          lf.attack(checkCell.getLifeForm(), ((int) getDistance(lf, checkCell.getLifeForm())));
         }
       }
-
-      // We never found someone to attack but we should still fire.... right?
-      if (checkCell == null && lf.hasWeapon()) lf.getWeapon().fire(distance);
-    } else {
-      // Dealing with rows
-      distance = direction.equalsIgnoreCase("west") ? lf.getRow() - 1 : (cells[0].length - lf.getRow());
-      Cell checkCell = null;
+      if (target == null && lf.hasWeapon()) {
+        lf.getWeapon().fire(lf.getWeapon().getMaxRange());
+      }
+    } else if (lf.currentDirection.equalsIgnoreCase("south")) {
+      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange()/5) : 1;
+      LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
-        checkCell = direction.equalsIgnoreCase("west") ? cells[lf.getRow() + 1][lf.getCol()] : cells[lf.getRow() - 1][lf.getCol()];
-        if (checkCell.getLifeForm() != null) {
-          // We found a close enough life form!
+
+        if (lf.getRow() + i < cells.length) {
+          target = cells[lf.getRow() + i][lf.getCol()].getLifeForm();
+          if (target != null) {
+            lf.attack(target, (int) getDistance(lf, target));
+            if (target.getCurrentLifePoints() <= 0) {
+              removeLifeForm(target.getRow(), target.getCol());
+            }
+            i = distance + 1;
+          }
+        } else {
           i = distance + 1;
-          lf.attack(checkCell.getLifeForm(), ((int) getDistance(lf, checkCell.getLifeForm())));
         }
       }
+      if (target == null && lf.hasWeapon()) {
+        lf.getWeapon().fire(lf.getWeapon().getMaxRange());
+      }
+    } else if (lf.currentDirection.equalsIgnoreCase("east")) {
+      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange()/5) : 1;
+      LifeForm target = null;
+      for (int i = 1; i <= distance; i++) {
 
-      // We never found someone to attack but we should still fire.... right?
-      if (checkCell == null && lf.hasWeapon()) lf.getWeapon().fire(distance);
+        if (lf.getCol() + i < cells[0].length) {
+          target = cells[lf.getRow()][lf.getCol() + i].getLifeForm();
+          if (target != null) {
+            lf.attack(target, (int) getDistance(lf, target));
+            if (target.getCurrentLifePoints() <= 0) {
+              removeLifeForm(target.getRow(), target.getCol());
+            }
+            i = distance + 1;
+          }
+        } else {
+          i = distance + 1;
+        }
+      }
+      if (target == null && lf.hasWeapon()) {
+        System.out.println("IT FOUND NO TARGET");
+        lf.getWeapon().fire(lf.getWeapon().getMaxRange());
+      }
+    } else if (lf.currentDirection.equalsIgnoreCase("west")) {
+      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange()/5) : 1;
+      LifeForm target = null;
+      for (int i = 1; i <= distance; i++) {
+
+        if (lf.getCol() - i >= 0) {
+          target = cells[lf.getRow()][lf.getCol() - i].getLifeForm();
+          if (target != null) {
+            lf.attack(target, (int) getDistance(lf, target));
+            if (target.getCurrentLifePoints() <= 0) {
+              removeLifeForm(target.getRow(), target.getCol());
+            }
+            i = distance + 1;
+          }
+        } else {
+          i = distance + 1;
+        }
+      }
+      if (target == null && lf.hasWeapon()) {
+        lf.getWeapon().fire(lf.getWeapon().getMaxRange());
+      }
     }
+
   }
 
   @Override
