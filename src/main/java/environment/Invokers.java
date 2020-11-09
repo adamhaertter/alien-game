@@ -2,6 +2,6 @@ package environment;
 
 import lifeform.LifeForm;
 
-public interface InvokerBuilder {
+public interface Invokers {
   public void execute(LifeForm lf, Environment env);
 }

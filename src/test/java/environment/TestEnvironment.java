@@ -195,8 +195,9 @@ public class TestEnvironment {
   }
 
   /**
-   * Creates an Environment and adds two LifeForms on entirely separate rows and columns.
-   * Checks that the distance between the two LifeForms is calculated correctly.
+   * Creates an Environment and adds two LifeForms on entirely separate rows and
+   * columns. Checks that the distance between the two LifeForms is calculated
+   * correctly.
    * 
    * @throws EnvironmentException
    */

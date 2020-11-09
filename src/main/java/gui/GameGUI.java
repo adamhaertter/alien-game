@@ -8,7 +8,7 @@ import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -43,8 +43,8 @@ public class GameGUI extends JFrame implements ActionListener {
     legend = new JPanel();
     focus = new JPanel();
     this.setTitle("Design Patterns - Lab 6");
-    setSize(800, 700); // TODO NO HARDCODE
-    setLocation(300, 50); // TODO NO HARDCODE
+    setSize(800, 700);
+    setLocation(300, 50);
 
     mainPanel.setSize((int) (getWidth() * 0.775), (int) (getHeight() * 0.7));
     legend.setPreferredSize(new Dimension((int) (getWidth() * 0.225), (int) (getHeight() * 0.7)));
@@ -132,6 +132,7 @@ public class GameGUI extends JFrame implements ActionListener {
     environment.getLifeForm(0, 1).pickUpWeapon(new PlasmaCannon());
     environment.addWeapon(new ChainGun(), 0, 1);
     GameGUI gui = new GameGUI();
+    ControllerGUI cgui = new ControllerGUI();
 
     for (int i = 0; i < cellScreen.size(); i++) {
       int r = i / environment.getNumCols();

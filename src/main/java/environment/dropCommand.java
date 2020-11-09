@@ -2,9 +2,9 @@ package environment;
 
 import lifeform.LifeForm;
 
-public class turnSouthCommand implements Invokers {
+public class dropCommand implements Invokers {
   @Override
   public void execute(LifeForm lf, Environment env) {
-    env.turnSouthCommand(lf);
+    env.dropCommand(lf);
   }
 }

@@ -3,11 +3,13 @@ package environment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommandInvoker {
-  private final List<Commands> cmds = new ArrayList<>();
+import lifeform.LifeForm;
 
-  public String executeCommand(Commands cmd) {
+public class CommandInvoker {
+  private final List<Invokers> cmds = new ArrayList<>();
+
+  public void executeCommand(Invokers cmd, LifeForm lf, Environment env) {
     cmds.add(cmd);
-    return "";//cmd.execute();
+    cmd.execute(lf, env);
   }
 }
