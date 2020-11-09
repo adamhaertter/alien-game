@@ -202,7 +202,7 @@ public abstract class LifeForm {
    * @return the current weapon held by the LifeForm if applicable, otherwise null
    */
   public Weapon getWeapon() {
-    if(hasWeapon()) {
+    if (hasWeapon()) {
       return weapon;
     } else {
       return null;

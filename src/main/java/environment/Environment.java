@@ -198,6 +198,11 @@ public class Environment implements Commands {
     return cells[0].length;
   }
 
+  /**
+   * Command to reload the weapon the life is holding
+   *
+   * @param lf - life form who is reloading
+   */
   @Override
   public void reloadCommand(LifeForm lf) {
     if (lf.hasWeapon()) {
@@ -205,28 +210,53 @@ public class Environment implements Commands {
     }
   }
 
+  /**
+   * Turn the life form north
+   *
+   * @param lf - life form being turned
+   */
   @Override
   public void turnNorthCommand(LifeForm lf) {
     lf.turn("North");
   }
 
+  /**
+   * Turn the life form south
+   *
+   * @param lf - life form being turned
+   */
   @Override
   public void turnSouthCommand(LifeForm lf) {
     lf.turn("South");
 
   }
 
+  /**
+   * Turn the life form west
+   *
+   * @param lf - life form being turned
+   */
   @Override
   public void turnWestCommand(LifeForm lf) {
     lf.turn("West");
 
   }
 
+  /**
+   * Turn the life form east
+   *
+   * @param lf - life form being turned
+   */
   @Override
   public void turnEastCommand(LifeForm lf) {
     lf.turn("East");
   }
 
+  /**
+   * Move lf in the direction they are facing
+   *
+   * @param life - life form being moved
+   */
   @Override
   public void moveCommand(LifeForm life) {
     if (life.currentDirection.equalsIgnoreCase("north")) {
@@ -284,6 +314,13 @@ public class Environment implements Commands {
     }
   }
 
+  /**
+   * Command to have a life form attempt to attack another lf in their line of sight
+   *
+   * @param lf - life who is attacking
+   * @throws EnvironmentException
+   * @throws WeaponException
+   */
   @Override
   public void attackCommand(LifeForm lf) throws EnvironmentException, WeaponException {
     // Find and attack closest target in the line of sight of the LifeForm
@@ -294,7 +331,7 @@ public class Environment implements Commands {
     // East = Increase Column
 
     if (lf.currentDirection.equalsIgnoreCase("north")) {
-      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange()/5) : 1;
+      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange() / 5) : 1;
       LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
 
@@ -315,7 +352,7 @@ public class Environment implements Commands {
         lf.getWeapon().fire(lf.getWeapon().getMaxRange());
       }
     } else if (lf.currentDirection.equalsIgnoreCase("south")) {
-      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange()/5) : 1;
+      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange() / 5) : 1;
       LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
 
@@ -336,7 +373,7 @@ public class Environment implements Commands {
         lf.getWeapon().fire(lf.getWeapon().getMaxRange());
       }
     } else if (lf.currentDirection.equalsIgnoreCase("east")) {
-      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange()/5) : 1;
+      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange() / 5) : 1;
       LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
 
@@ -358,7 +395,7 @@ public class Environment implements Commands {
         lf.getWeapon().fire(lf.getWeapon().getMaxRange());
       }
     } else if (lf.currentDirection.equalsIgnoreCase("west")) {
-      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange()/5) : 1;
+      int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange() / 5) : 1;
       LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
 
@@ -382,6 +419,11 @@ public class Environment implements Commands {
 
   }
 
+  /**
+   * Command to drop the weapon the specified life form is holding
+   *
+   * @param lf - the specified life form
+   */
   @Override
   public void dropCommand(LifeForm lf) {
     if (addWeapon(lf.weapon, lf.getRow(), lf.getCol())) {
@@ -389,6 +431,11 @@ public class Environment implements Commands {
     }
   }
 
+  /**
+   * Command to acquire a gun in the cell the specified life form is in
+   *
+   * @param lf - the specified life form
+   */
   @Override
   public void acquireCommand(LifeForm lf) {
     Cell cell = cells[lf.getRow()][lf.getCol()];
@@ -414,6 +461,13 @@ public class Environment implements Commands {
     }
   }
 
+  /**
+   * Get a cell from this environment from the specified row and col
+   *
+   * @param row of the cell
+   * @param col of the cell
+   * @return the selected cell
+   */
   public Cell getCell(int row, int col) {
     return cells[row][col];
   }

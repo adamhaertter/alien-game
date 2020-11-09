@@ -21,7 +21,7 @@ public class TestCommand {
     LifeForm life = new MockLifeForm("Joe", 10, 2);
     env.addLifeForm(life, 4, 5);
     CommandInvoker invoker = new CommandInvoker();
-    invoker.executeCommand(new moveCommand(), life, env);
+    invoker.executeCommand(new MoveCommand(), life, env);
     assertEquals(life.getRow(), 3);
   }
 
@@ -35,7 +35,7 @@ public class TestCommand {
     life.weapon = new Pistol();
     life.weapon.fire(10);
     CommandInvoker invoker = new CommandInvoker();
-    invoker.executeCommand(new reloadCommand(), life, env);
+    invoker.executeCommand(new ReloadCommand(), life, env);
     assertEquals(life.weapon.getMaxAmmo(), life.weapon.getCurrentAmmo());
   }
 
@@ -47,8 +47,8 @@ public class TestCommand {
     env.clearBoard();
     LifeForm life = new MockLifeForm("Joe", 10, 2);
     CommandInvoker invoker = new CommandInvoker();
-    invoker.executeCommand(new turnSouthCommand(), life, env);
-    invoker.executeCommand(new turnNorthCommand(), life, env);
+    invoker.executeCommand(new TurnSouthCommand(), life, env);
+    invoker.executeCommand(new TurnNorthCommand(), life, env);
     assertEquals(life.getDirection(), "North");
   }
 
@@ -60,7 +60,7 @@ public class TestCommand {
     env.clearBoard();
     LifeForm life = new MockLifeForm("Joe", 10, 2);
     CommandInvoker invoker = new CommandInvoker();
-    invoker.executeCommand(new turnSouthCommand(), life, env);
+    invoker.executeCommand(new TurnSouthCommand(), life, env);
     assertEquals(life.getDirection(), "South");
   }
 
@@ -73,7 +73,7 @@ public class TestCommand {
     env.clearBoard();
     LifeForm life = new MockLifeForm("Joe", 10, 2);
     CommandInvoker invoker = new CommandInvoker();
-    invoker.executeCommand(new turnWestCommand(), life, env);
+    invoker.executeCommand(new TurnWestCommand(), life, env);
     assertEquals(life.getDirection(), "West");
   }
 
@@ -85,7 +85,7 @@ public class TestCommand {
     env.clearBoard();
     LifeForm life = new MockLifeForm("Joe", 10, 2);
     CommandInvoker invoker = new CommandInvoker();
-    invoker.executeCommand(new turnEastCommand(), life, env);
+    invoker.executeCommand(new TurnEastCommand(), life, env);
     assertEquals(life.getDirection(), "East");
   }
 
@@ -101,7 +101,7 @@ public class TestCommand {
 
     lf.pickUpWeapon(weapon);
     env.addLifeForm(lf, 3, 3);
-    invoker.executeCommand(new dropCommand(), lf, env);
+    invoker.executeCommand(new DropCommand(), lf, env);
     assertNotNull(env.getCell(3,3).getWeapon1());
   }
 
@@ -121,7 +121,7 @@ public class TestCommand {
     env.addWeapon(weapon2, 3,3);
     env.addWeapon(weapon3, 3,3);
     env.addLifeForm(lf, 3, 3);
-    invoker.executeCommand(new dropCommand(), lf, env);
+    invoker.executeCommand(new DropCommand(), lf, env);
     assertEquals(env.getCell(3,3).getWeapon1(), weapon2);
   }
 
@@ -157,8 +157,8 @@ public class TestCommand {
     env.addWeapon(weapon2, 3, 3);
     env.addLifeForm(lf, 3, 3);
     assertFalse(lf.hasWeapon());
-    invoker.executeCommand(new acquireCommand(), env.getLifeForm(3,3), env);
-    invoker.executeCommand(new acquireCommand(), env.getLifeForm(3,3), env);
+    invoker.executeCommand(new AcquireCommand(), env.getLifeForm(3,3), env);
+    invoker.executeCommand(new AcquireCommand(), env.getLifeForm(3,3), env);
     assertTrue(lf.hasWeapon());
     assertEquals(lf.getWeapon(), weapon2);
   }
