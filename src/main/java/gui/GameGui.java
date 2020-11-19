@@ -53,7 +53,7 @@ public class GameGui extends JFrame implements ActionListener {
     mainPanel = new JPanel();
     legend = new JPanel();
     focus = new JPanel();
-    this.setTitle("Design Patterns - Lab 6");
+    this.setTitle("Design Patterns - Lab 7");
     setSize(800, 700);
     setLocation(300, 50);
 
@@ -137,30 +137,6 @@ public class GameGui extends JFrame implements ActionListener {
     legendList.get(9).setText("Direction");
 
     pack();
-  }
-
-  /**
-   * Main function
-   *
-   * @param args - main arguments
-   */
-  public static void main(String[] args) {
-    environment.addLifeForm(new Human("TestHuman", 10, 10), 1, 1);
-    environment.addLifeForm(new Alien("TestAlien", 10), 1, 2);
-    environment.addLifeForm(new MockLifeForm("TestMock", 10, 10), 1, 0);
-
-    environment.addWeapon(new Pistol(), 0, 1);
-    environment.addLifeForm(new Human("T", 5, 1), 0, 1);
-    environment.getLifeForm(0, 1).pickUpWeapon(new PlasmaCannon());
-    environment.addWeapon(new ChainGun(), 0, 1);
-    GameGui gui = new GameGui();
-    ControllerGui cgui = new ControllerGui(gui);
-
-    for (int i = 0; i < cellScreen.size(); i++) {
-      int r = i / environment.getNumCols();
-      int c = i % environment.getNumCols();
-      cellScreen.get(i).setIcon(new ImageIcon(drawSingleCell(r, c)));
-    }
   }
 
   /**
@@ -443,4 +419,7 @@ public class GameGui extends JFrame implements ActionListener {
     repaint();
   }
 
+  public Environment getEnvironment() {
+    return environment;
+  }
 }
