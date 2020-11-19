@@ -2,6 +2,7 @@ package environment;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +19,6 @@ import weapon.Weapon;
  *
  */
 public class TestEnvironment {
-
   /**
    * Initializes an Environment and checks that nothing exists within the first
    * cell at the time of initialization (0, 0).

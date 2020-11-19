@@ -9,13 +9,13 @@ import weapon.Weapon;
  * Keeps track of the information associated with as simple life form. Also
  * provides the functionality related to the life form.
  * 
- * @author Adam Haertter - modified by Brennan Mulligan with Weapon and location
- *         functionality
+ * @author Adam Haertter - modified by Brennan Mulligan
  */
 public abstract class LifeForm {
 
   private String myName;
   protected int currentLifePoints;
+  protected int maxLifePoints;
   protected int attackStrength;
   public Weapon weapon;
   protected int row;
@@ -32,6 +32,7 @@ public abstract class LifeForm {
   public LifeForm(String string, int i) {
     myName = string;
     currentLifePoints = i;
+    maxLifePoints = i;
     attackStrength = 1;
     row = -1;
     col = -1;
@@ -99,6 +100,13 @@ public abstract class LifeForm {
    */
   public int getCurrentLifePoints() {
     return currentLifePoints;
+  }
+
+  /**
+   * @return the maximum number of life points of the life form
+   */
+  public int getMaxLifePoints() {
+    return maxLifePoints;
   }
 
   /**
@@ -197,22 +205,29 @@ public abstract class LifeForm {
       currentDirection = "West";
     }
   }
-  
+
   /**
    * @return the current weapon held by the LifeForm if applicable, otherwise null
    */
   public Weapon getWeapon() {
-    if(hasWeapon()) {
+    if (hasWeapon()) {
       return weapon;
     } else {
       return null;
     }
   }
-  
+
   /**
    * @return the current direction the lifeform is facing
    */
   public String getDirection() {
     return currentDirection;
+  }
+
+  /**
+   * "Revives" the Life Form by restoring all of its life points
+   */
+  public void revive() {
+    this.currentLifePoints = maxLifePoints;
   }
 }
