@@ -2,7 +2,7 @@ package environment;
 
 import lifeform.LifeForm;
 
-public interface Invokers {
+public class MoveCommand implements Invokers {
 
   /**
    * Execute the specified command
@@ -10,5 +10,8 @@ public interface Invokers {
    * @param lf - life form for the command
    * @param env - environment for this command
    */
-  public void execute(LifeForm lf, Environment env);
+  @Override
+  public void execute(LifeForm lf, Environment env) {
+    env.moveCommand(lf);
+  }
 }

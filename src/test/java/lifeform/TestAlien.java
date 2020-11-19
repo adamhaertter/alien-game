@@ -1,17 +1,22 @@
 package lifeform;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import org.junit.Test;
-
 import exceptions.RecoveryRateException;
 import gameplay.SimpleTimer;
+import org.junit.Test;
 import recovery.RecoveryLinear;
 
+import static org.junit.Assert.*;
+
 public class TestAlien {
+
+  /*
+   * Creates an Alien and checks that its max speed is 2
+   */
+  @Test
+  public void testMaxSpeed2() {
+    Alien alien = new Alien("Joeb", 20);
+    assertEquals(alien.maxSpeed, 2);
+  }
 
   /**
    * Tests the Alien's initialization process by checking its default life points,
@@ -50,7 +55,7 @@ public class TestAlien {
   /**
    * Creates an instance of Alien with RecoveryRate 5. Checks that the
    * RecoveryRate is set properly within the constructor.
-   * 
+   *
    * @throws RecoveryRateException
    */
   @Test
@@ -62,7 +67,7 @@ public class TestAlien {
   /**
    * Tests to ensure that an Alien abides by its RecoveryRate patterns on the
    * proper rounds.
-   * 
+   *
    * @throws RecoveryRateException
    */
   @Test
@@ -84,7 +89,7 @@ public class TestAlien {
    * Backup test to ensure that an Alien abides by its RecoveryRate patterns on
    * the proper rounds with different values. Passing this test proves that the
    * values are not hard-coded.
-   * 
+   *
    * @throws RecoveryRateException
    */
   @Test
@@ -107,7 +112,7 @@ public class TestAlien {
 
   /**
    * Ensures that if an Alien's RecoveryRate is set to 0, it will not heal.
-   * 
+   *
    * @throws RecoveryRateException
    */
   @Test
@@ -148,7 +153,7 @@ public class TestAlien {
    * Creates an Alien set to observe a SimpleTimer. The timer speeds through
    * multiple rounds, and then the test checks to ensure that the Alien can keep
    * track of what round it is.
-   * 
+   *
    * @throws RecoveryRateException
    */
   @Test
@@ -169,7 +174,7 @@ public class TestAlien {
    * within its recovery period and then is removed from observing the
    * SimpleTimer. When the timer hits the Alien's recovery period again, the
    * Aliens should no longer heal.
-   * 
+   *
    * @throws RecoveryRateException
    */
   @Test

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import exceptions.WeaponException;
 import org.junit.Test;
 
 import exceptions.EnvironmentException;
@@ -19,6 +20,111 @@ import weapon.Weapon;
  *
  */
 public class TestEnvironment {
+<<<<<<< HEAD
+=======
+  Environment env = Environment.getEnvironment(10, 10);
+
+  /**
+   *  Test moving north with an obstacle
+   */
+  @Test
+  public void testMoveNorthWithObstacle() {
+    env.clearBoard();
+    LifeForm terry = new MockLifeForm("Terry", 10);
+    LifeForm jerry = new MockLifeForm("Jerry", 10);
+
+    env.addLifeForm(terry, 5, 5);
+    env.addLifeForm(jerry, 5, 6);
+    int pos = terry.getCol();
+    env.moveCommand(terry);
+    assertEquals(terry.getCol(), pos);
+  }
+
+  /**
+   *  Test moving south with an obstacle
+   */
+  @Test
+  public void testMoveSouthWithObstacle() {
+    env.clearBoard();
+    LifeForm terry = new MockLifeForm("Terry", 10);
+    LifeForm jerry = new MockLifeForm("Jerry", 10);
+
+    env.addLifeForm(terry, 5, 5);
+    env.addLifeForm(jerry, 5, 4);
+    int pos = terry.getCol();
+    terry.turn("South");
+    env.moveCommand(terry);
+    assertEquals(terry.getCol(), pos);
+  }
+
+  /**
+   *  Test moving south with an obstacle
+   */
+  @Test
+  public void testMoveWestWithObstacle() {
+    env.clearBoard();
+    LifeForm terry = new MockLifeForm("Terry", 10);
+    LifeForm jerry = new MockLifeForm("Jerry", 10);
+
+    env.addLifeForm(terry, 5, 5);
+    env.addLifeForm(jerry, 4, 5);
+    int pos = terry.getRow();
+    terry.turn("West");
+    env.moveCommand(terry);
+    assertEquals(terry.getRow(), pos);
+  }
+
+  /**
+   *  Test moving south with an obstacle
+   */
+  @Test
+  public void testMoveEastWithObstacle() {
+    env.clearBoard();
+    LifeForm terry = new MockLifeForm("Terry", 10);
+    LifeForm jerry = new MockLifeForm("Jerry", 10);
+
+    env.addLifeForm(terry, 5, 5);
+    env.addLifeForm(jerry, 6, 5);
+    int pos = terry.getRow();
+    terry.turn("East");
+    env.moveCommand(terry);
+    assertEquals(terry.getRow(), pos);
+  }
+
+  @Test
+  public void testMoveAtEdge() {
+    env.clearBoard();
+    LifeForm terry = new MockLifeForm("Terry", 10);
+    Environment env = Environment.getEnvironment(10, 10);
+
+    env.addLifeForm(terry, 5, 0);
+    int pos = terry.getCol();
+    env.moveCommand(terry);
+    assertEquals(terry.getCol(), pos);
+
+    env.removeLifeForm(5, 0);
+    env.addLifeForm(terry, 5, 9);
+    terry.turn("South");
+    pos = terry.getCol();
+    env.moveCommand(terry);
+    assertEquals(terry.getCol(), pos);
+
+    env.removeLifeForm(5, 9);
+    env.addLifeForm(terry, 0, 5);
+    terry.turn("East");
+    pos = terry.getRow();
+    env.moveCommand(terry);
+    assertEquals(terry.getRow(), pos);
+
+    env.removeLifeForm(0, 5);
+    env.addLifeForm(terry, 9, 5);
+    terry.turn("West");
+    pos = terry.getRow();
+    env.moveCommand(terry);
+    assertEquals(terry.getRow(), pos);
+  }
+
+>>>>>>> deee087261ed7dc608fb3346f50ec531a24d3c72
   /**
    * Initializes an Environment and checks that nothing exists within the first
    * cell at the time of initialization (0, 0).
