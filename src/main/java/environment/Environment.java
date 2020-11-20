@@ -259,15 +259,15 @@ public class Environment {
 
       if (row < 0) {
         row = 0;
-      }
-      
-      i = life.getRow();
-      while(i >= row) {
-        if(cells[i][life.getCol()].getLifeForm() != null) {
-          i = -10;
-          row = life.getRow();
+      } else {
+        i = life.getRow();
+        while(i >= row) {
+          if(cells[i][life.getCol()].getLifeForm() != null) {
+            row = i++;
+            i = -10;
+          }
+          i--;
         }
-        i--;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -277,15 +277,15 @@ public class Environment {
 
       if (row >= cells.length) {
         row = cells.length - 1;
-      }
-
-      i = life.getRow();
-      while(i <= row) {
-        if(cells[i][life.getCol()].getLifeForm() != null) {
-          i = 1000;
-          row = life.getRow();
+      } else {
+        i = life.getRow();
+        while(i <= row) {
+          if(cells[i][life.getCol()].getLifeForm() != null) {
+            row = i--;
+            i = 1000;
+          }
+          i++;
         }
-        i++;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -295,15 +295,15 @@ public class Environment {
 
       if (col >= cells[0].length) {
         col = cells[0].length - 1;
-      }
-
-      i = life.getCol();
-      while(i <= col) {
-        if(cells[i][life.getCol()].getLifeForm() != null) {
-          i = 1000;
-          col = life.getCol();
+      } else {
+        i = life.getCol();
+        while(i <= col) {
+          if(cells[i][life.getCol()].getLifeForm() != null) {
+            col = i--;
+            i = 1000;
+          }
+          i++;
         }
-        i++;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -313,15 +313,15 @@ public class Environment {
 
       if (col < 0) {
         col = 0;
-      }
-
-      i = life.getCol();
-      while(i >= col) {
-        if(cells[i][life.getCol()].getLifeForm() != null) {
-          i = -10;
-          col = life.getCol();
+      } else {
+        i = life.getCol();
+        while(i >= col) {
+          if(cells[i][life.getCol()].getLifeForm() != null) {
+            col = i++;
+            i = -10;
+          }
+          i--;
         }
-        i--;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
