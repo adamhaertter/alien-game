@@ -12,6 +12,6 @@ public class DropCommand implements Invokers {
    */
   @Override
   public void execute(LifeForm lf, Environment env) {
-    env.dropCommand(lf);
+    env.drop(lf);
   }
 }

@@ -11,7 +11,7 @@ import weapon.Weapon;
  * @author Adam Haertter - modified by Brennan Mulligan, Scott Bucher and Josh
  * Lewis
  */
-public class Environment implements Commands {
+public class Environment {
 
   Cell[][] cells;
   private static Environment uniqueInstance;
@@ -143,7 +143,7 @@ public class Environment implements Commands {
    *
    * @param weapon - weapon to be removed from the cell
    * @param row    - row of the cell
-   * @param col    = coulmn of the cell
+   * @param col    = column of the cell
    * @return - the weapon removed from the cell (null if it wasn't removed)
    */
   public Weapon removeWeapon(Weapon weapon, int row, int col) {
@@ -203,8 +203,7 @@ public class Environment implements Commands {
    *
    * @param lf - life form who is reloading
    */
-  @Override
-  public void reloadCommand(LifeForm lf) {
+  public void reload(LifeForm lf) {
     if (lf.hasWeapon()) {
       lf.weapon.reload();
     }
@@ -215,8 +214,7 @@ public class Environment implements Commands {
    *
    * @param lf - life form being turned
    */
-  @Override
-  public void turnNorthCommand(LifeForm lf) {
+  public void turnNorth(LifeForm lf) {
     lf.turn("North");
   }
 
@@ -225,8 +223,7 @@ public class Environment implements Commands {
    *
    * @param lf - life form being turned
    */
-  @Override
-  public void turnSouthCommand(LifeForm lf) {
+  public void turnSouth(LifeForm lf) {
     lf.turn("South");
 
   }
@@ -236,8 +233,7 @@ public class Environment implements Commands {
    *
    * @param lf - life form being turned
    */
-  @Override
-  public void turnWestCommand(LifeForm lf) {
+  public void turnWest(LifeForm lf) {
     lf.turn("West");
 
   }
@@ -247,27 +243,31 @@ public class Environment implements Commands {
    *
    * @param lf - life form being turned
    */
-  @Override
-  public void turnEastCommand(LifeForm lf) {
+  public void turnEast(LifeForm lf) {
     lf.turn("East");
   }
 
   /**
-   * Move lf in the direction they are facing
+   * Move life form in the direction they are facing
    *
    * @param life - life form being moved
    */
-  @Override
-  public void moveCommand(LifeForm life) {
+  public void move(LifeForm life) {
+    int i = 0;
     if (life.currentDirection.equalsIgnoreCase("north")) {
       int row = life.getRow() - life.maxSpeed;
 
       if (row < 0) {
         row = 0;
       }
-
-      if (cells[row][life.getCol()].getLifeForm() != null) {
-        return;
+      
+      i = life.getRow();
+      while(i >= row) {
+        if(cells[i][life.getCol()].getLifeForm() != null) {
+          i = -10;
+          row = life.getRow();
+        }
+        i--;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -279,8 +279,13 @@ public class Environment implements Commands {
         row = cells.length - 1;
       }
 
-      if (cells[row][life.getCol()].getLifeForm() != null) {
-        return;
+      i = life.getRow();
+      while(i <= row) {
+        if(cells[i][life.getCol()].getLifeForm() != null) {
+          i = 1000;
+          row = life.getRow();
+        }
+        i++;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -292,8 +297,13 @@ public class Environment implements Commands {
         col = cells[0].length - 1;
       }
 
-      if (cells[life.getRow()][col].getLifeForm() != null) {
-        return;
+      i = life.getCol();
+      while(i <= col) {
+        if(cells[i][life.getCol()].getLifeForm() != null) {
+          i = 1000;
+          col = life.getCol();
+        }
+        i++;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -305,8 +315,13 @@ public class Environment implements Commands {
         col = 0;
       }
 
-      if (cells[life.getRow()][col].getLifeForm() != null) {
-        return;
+      i = life.getCol();
+      while(i >= col) {
+        if(cells[i][life.getCol()].getLifeForm() != null) {
+          i = -10;
+          col = life.getCol();
+        }
+        i--;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -321,8 +336,7 @@ public class Environment implements Commands {
    * @throws EnvironmentException
    * @throws WeaponException
    */
-  @Override
-  public void attackCommand(LifeForm lf) throws EnvironmentException, WeaponException {
+  public void attack(LifeForm lf) throws EnvironmentException, WeaponException {
     // Find and attack closest target in the line of sight of the LifeForm
     String direction = lf.getDirection();
     // North = Decrease your row
@@ -424,8 +438,7 @@ public class Environment implements Commands {
    *
    * @param lf - the specified life form
    */
-  @Override
-  public void dropCommand(LifeForm lf) {
+  public void drop(LifeForm lf) {
     if (addWeapon(lf.weapon, lf.getRow(), lf.getCol())) {
       lf.dropWeapon();
     }
@@ -436,8 +449,7 @@ public class Environment implements Commands {
    *
    * @param lf - the specified life form
    */
-  @Override
-  public void acquireCommand(LifeForm lf) {
+  public void acquire(LifeForm lf) {
     Cell cell = cells[lf.getRow()][lf.getCol()];
     // There are at least one weapon in this cell
     if (cell.wepOne != null || cell.wepTwo != null) {

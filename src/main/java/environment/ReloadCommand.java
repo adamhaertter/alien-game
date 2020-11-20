@@ -12,6 +12,6 @@ public class ReloadCommand implements Invokers {
    */
   @Override
   public void execute(LifeForm lf, Environment env) {
-    env.reloadCommand(lf);
+    env.reload(lf);
   }
 }

@@ -12,6 +12,6 @@ public class MoveCommand implements Invokers {
    */
   @Override
   public void execute(LifeForm lf, Environment env) {
-    env.moveCommand(lf);
+    env.move(lf);
   }
 }

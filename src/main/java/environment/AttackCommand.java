@@ -15,7 +15,7 @@ public class AttackCommand implements Invokers {
   @Override
   public void execute(LifeForm lf, Environment env) {
     try {
-      env.attackCommand(lf);
+      env.attack(lf);
     } catch (EnvironmentException | WeaponException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

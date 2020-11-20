@@ -12,6 +12,6 @@ public class AcquireCommand implements Invokers {
    */
   @Override
   public void execute(LifeForm lf, Environment env) {
-    env.acquireCommand(lf);
+    env.acquire(lf);
   }
 }

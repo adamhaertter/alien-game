@@ -12,6 +12,6 @@ public class TurnWestCommand implements Invokers {
    */
   @Override
   public void execute(LifeForm lf, Environment env) {
-    env.turnWestCommand(lf);
+    env.turnWest(lf);
   }
 }

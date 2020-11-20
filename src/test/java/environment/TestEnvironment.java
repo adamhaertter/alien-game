@@ -20,8 +20,6 @@ import weapon.Weapon;
  *
  */
 public class TestEnvironment {
-<<<<<<< HEAD
-=======
   Environment env = Environment.getEnvironment(10, 10);
 
   /**
@@ -36,7 +34,7 @@ public class TestEnvironment {
     env.addLifeForm(terry, 5, 5);
     env.addLifeForm(jerry, 5, 6);
     int pos = terry.getCol();
-    env.moveCommand(terry);
+    env.move(terry);
     assertEquals(terry.getCol(), pos);
   }
 
@@ -53,7 +51,7 @@ public class TestEnvironment {
     env.addLifeForm(jerry, 5, 4);
     int pos = terry.getCol();
     terry.turn("South");
-    env.moveCommand(terry);
+    env.move(terry);
     assertEquals(terry.getCol(), pos);
   }
 
@@ -70,7 +68,7 @@ public class TestEnvironment {
     env.addLifeForm(jerry, 4, 5);
     int pos = terry.getRow();
     terry.turn("West");
-    env.moveCommand(terry);
+    env.move(terry);
     assertEquals(terry.getRow(), pos);
   }
 
@@ -87,7 +85,7 @@ public class TestEnvironment {
     env.addLifeForm(jerry, 6, 5);
     int pos = terry.getRow();
     terry.turn("East");
-    env.moveCommand(terry);
+    env.move(terry);
     assertEquals(terry.getRow(), pos);
   }
 
@@ -99,32 +97,31 @@ public class TestEnvironment {
 
     env.addLifeForm(terry, 5, 0);
     int pos = terry.getCol();
-    env.moveCommand(terry);
+    env.move(terry);
     assertEquals(terry.getCol(), pos);
 
     env.removeLifeForm(5, 0);
     env.addLifeForm(terry, 5, 9);
     terry.turn("South");
     pos = terry.getCol();
-    env.moveCommand(terry);
+    env.move(terry);
     assertEquals(terry.getCol(), pos);
 
     env.removeLifeForm(5, 9);
     env.addLifeForm(terry, 0, 5);
     terry.turn("East");
     pos = terry.getRow();
-    env.moveCommand(terry);
+    env.move(terry);
     assertEquals(terry.getRow(), pos);
 
     env.removeLifeForm(0, 5);
     env.addLifeForm(terry, 9, 5);
     terry.turn("West");
     pos = terry.getRow();
-    env.moveCommand(terry);
+    env.move(terry);
     assertEquals(terry.getRow(), pos);
   }
 
->>>>>>> deee087261ed7dc608fb3346f50ec531a24d3c72
   /**
    * Initializes an Environment and checks that nothing exists within the first
    * cell at the time of initialization (0, 0).
