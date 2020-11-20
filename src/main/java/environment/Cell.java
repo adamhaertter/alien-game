@@ -12,6 +12,8 @@ public class Cell {
   LifeForm entity;
   Weapon wepOne;
   Weapon wepTwo;
+  int row = -1;
+  int col = -1;
 
   /**
    * Constructs an empty cell in which entity is automatically null until a
@@ -22,6 +24,18 @@ public class Cell {
   }
 
   /**
+   * Sets the current monitored location of the cell
+   * @param row the row index
+   * @param col the col index
+   */
+  public void setLocation(int row, int col) {
+    if(row > -1 && col > -1) {
+      this.row = row;
+      this.col = col;
+    }
+  }
+  
+  /**
    * Tries to add the LifeForm to the Cell. Will not add if a LifeForm is already
    * present
    * 
@@ -31,6 +45,7 @@ public class Cell {
   public boolean addLifeForm(LifeForm lf) {
     if (entity == null) {
       entity = lf;
+      entity.setLocation(row, col);
       return true;
     } else {
       return false;

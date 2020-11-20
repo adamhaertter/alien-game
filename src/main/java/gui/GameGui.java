@@ -41,7 +41,7 @@ public class GameGui extends JFrame implements ActionListener {
   JLabel currentCellDisplay;
   JLabel currentLfData;
   JLabel currentWeaponData;
-  static Environment environment = Environment.getEnvironment(10, 10);
+  static Environment environment = Environment.getEnvironment(10, 12);
   static List<JButton> cellScreen = new ArrayList<>();
   static List<JLabel> legendList = new ArrayList<>();
   Cell focusedCell;
