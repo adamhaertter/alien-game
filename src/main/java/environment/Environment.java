@@ -13,7 +13,7 @@ import weapon.Weapon;
  */
 public class Environment {
 
-  Cell[][] cells;
+  public Cell[][] cells;
   private static Environment uniqueInstance;
 
   /**
@@ -343,10 +343,10 @@ public class Environment {
     // South = Increase your row
     // West = Decrease Column
     // East = Increase Column
+    LifeForm target = null;
 
     if (lf.currentDirection.equalsIgnoreCase("north")) {
       int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange() / 5) : 1;
-      LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
 
         if (lf.getRow() - i >= 0) {
@@ -367,7 +367,6 @@ public class Environment {
       }
     } else if (lf.currentDirection.equalsIgnoreCase("south")) {
       int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange() / 5) : 1;
-      LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
 
         if (lf.getRow() + i < cells.length) {
@@ -388,7 +387,6 @@ public class Environment {
       }
     } else if (lf.currentDirection.equalsIgnoreCase("east")) {
       int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange() / 5) : 1;
-      LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
 
         if (lf.getCol() + i < cells[0].length) {
@@ -410,7 +408,6 @@ public class Environment {
       }
     } else if (lf.currentDirection.equalsIgnoreCase("west")) {
       int distance = lf.getWeapon() != null ? (lf.getWeapon().getMaxRange() / 5) : 1;
-      LifeForm target = null;
       for (int i = 1; i <= distance; i++) {
 
         if (lf.getCol() - i >= 0) {
