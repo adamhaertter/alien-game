@@ -24,6 +24,7 @@ import weapon.Weapon;
 public class Simulator implements TimerObserver {
 
   Environment environment;
+  static GameGui gui;
   static SimpleTimer timer;
   int numAliens;
   int numHumans;
@@ -52,7 +53,7 @@ public class Simulator implements TimerObserver {
   }
 
   public static void main(String[] args) {
-    GameGui gui = new GameGui();
+    gui = new GameGui();
     ControllerGui cgui = new ControllerGui(gui);
     Environment e = gui.getEnvironment();
     // We might want to create a global environment to send out instead here
@@ -64,13 +65,14 @@ public class Simulator implements TimerObserver {
     Simulator sim = new Simulator(e, timer, 15, 10);
 
     gui.boardUpdate();
-    
+
     timer.start();
 
   }
 
   public void updateTime(int time) {
-    //TODO make the timer work please
+    // TODO make the timer work please
+    gui.boardUpdate();
   }
 
   public void buildAliens() throws RecoveryRateException {
@@ -131,7 +133,7 @@ public class Simulator implements TimerObserver {
     int maxHealth = 25;
     int armorPoints;
     for (int h = 0; h < numAliens; h++) {
-      
+
       // Humans are locked to one maxHealth, defined above.
 
       // Armor points can be between 0 and 9, assigned randomly.
@@ -180,7 +182,8 @@ public class Simulator implements TimerObserver {
         // A cell is open! Add the LifeForm to it.
         int index = (int) (Math.random() * openCells.size());
         openCells.get(index).addWeapon(current);
-        clonedCells.add(openCells.remove(index));
+        if (openCells.get(index).getWeaponsCount() == 2)
+          clonedCells.add(openCells.remove(index));
       } else {
         // Looks like we ran out of open cells. The game won't be any fun like this.
         System.out.println("The Environment is full, try a different number of LifeForms.");
