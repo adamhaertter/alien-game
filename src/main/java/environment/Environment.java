@@ -253,7 +253,7 @@ public class Environment {
    * @param life - life form being moved
    */
   public void move(LifeForm life) {
-    int i = 0;
+    int i;
     if (life.currentDirection.equalsIgnoreCase("north")) {
       int row = life.getRow() - life.maxSpeed;
 
@@ -263,7 +263,7 @@ public class Environment {
         i = life.getRow();
         while(i >= row) {
           if(cells[i][life.getCol()].getLifeForm() != null) {
-            row = i++;
+            row = ++i;
             i = -10;
           }
           i--;
@@ -281,7 +281,7 @@ public class Environment {
         i = life.getRow();
         while(i <= row) {
           if(cells[i][life.getCol()].getLifeForm() != null) {
-            row = i--;
+            row = --i;
             i = 1000;
           }
           i++;
@@ -299,7 +299,7 @@ public class Environment {
         i = life.getCol();
         while(i <= col) {
           if(cells[i][life.getCol()].getLifeForm() != null) {
-            col = i--;
+            col = --i;
             i = 1000;
           }
           i++;
@@ -317,7 +317,7 @@ public class Environment {
         i = life.getCol();
         while(i >= col) {
           if(cells[i][life.getCol()].getLifeForm() != null) {
-            col = i++;
+            col = ++i;
             i = -10;
           }
           i--;
