@@ -253,21 +253,31 @@ public class Environment {
    * @param life - life form being moved
    */
   public void move(LifeForm life) {
-    int i;
     if (life.currentDirection.equalsIgnoreCase("north")) {
       int row = life.getRow() - life.maxSpeed;
 
       if (row >= 0) {
-        i = life.getRow();
-        while(i >= row) {
-          if(cells[i][life.getCol()].getLifeForm() != null) {
-            row = ++i;
-            i = -10;
+        for(int j = row; j < life.getRow(); j++) {
+          if(cells[j][life.getCol()].getLifeForm() == null) {
+            row = j;
+            j = 100000000;
+          } else {
+            row = life.getRow();
           }
-          i--;
         }
-      } else {
+      } else if(cells[0][life.getCol()].getLifeForm() != null) {
+        for(int j = 0; j < life.getRow(); j++) {
+          if(cells[j][life.getCol()].getLifeForm() == null) {
+            row = j;
+            j = 100000000;
+          } else {
+            row = life.getRow();
+          }
+        } 
+      } else if (cells[0][life.getCol()].getLifeForm() == null) {
         row = 0;
+      } else {
+        row = life.getRow();
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -276,34 +286,56 @@ public class Environment {
       int row = life.getRow() + life.maxSpeed;
 
       if (row < cells.length) {
-        i = life.getRow();
-        while(i <= row) {
-          if(cells[i][life.getCol()].getLifeForm() != null) {
-            row = --i;
-            i = 1000;
+        for(int j = row; j > life.getRow(); j--) {
+          if(cells[j][life.getCol()].getLifeForm() == null) {
+            row = j;
+            j = -100000000;
+          } else {
+            row = life.getRow();
           }
-          i++;
         }
+      } else if(cells[cells.length - 1][life.getCol()].getLifeForm() != null){
+        for(int j = cells.length - 1; j < life.getRow(); j--) {
+          if(cells[j][life.getCol()].getLifeForm() == null) {
+            row = j;
+            j = 100000000;
+          } else {
+            row = life.getRow();
+          }
+        } 
+      } else if (cells[cells.length - 1][life.getCol()].getLifeForm() == null) {
+        row = 0;
       } else {
-        row = cells.length - 1;
+        row = life.getRow();
       }
-
+      
       removeLifeForm(life.getRow(), life.getCol());
       addLifeForm(life, row, life.getCol());
     } else if (life.currentDirection.equalsIgnoreCase("east")) {
       int col = life.getCol() + life.maxSpeed;
 
       if (col < cells[0].length) {
-        i = life.getCol();
-        while(i <= col) {
-          if(cells[i][life.getCol()].getLifeForm() != null) {
-            col = --i;
-            i = 1000;
+        for(int j = col; j > life.getCol(); j--) {
+          if(cells[life.getRow()][j].getLifeForm() == null) {
+            col = j;
+            j = -100000000;
+          } else {
+            col = life.getCol();
           }
-          i++;
         }
-      } else {
+      } else if(cells[life.getRow()][cells[0].length - 1].getLifeForm() != null) {
+        for(int j = cells.length - 1; j < life.getRow(); j--) {
+          if(cells[life.getRow()][j].getLifeForm() == null) {
+            col = j;
+            j = 100000000;
+          } else {
+            col = life.getCol();
+          }
+        } 
+      } else if (cells[life.getRow()][cells[0].length - 1].getLifeForm() == null) {
         col = cells[0].length - 1;
+      } else {
+        col = life.getCol();
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -312,16 +344,27 @@ public class Environment {
       int col = life.getCol() - life.maxSpeed;
 
       if (col >= 0) {
-        i = life.getCol();
-        while(i >= col) {
-          if(cells[i][life.getCol()].getLifeForm() != null) {
-            col = ++i;
-            i = -10;
+        for(int j = col; j < life.getCol(); j++) {
+          if(cells[life.getRow()][j].getLifeForm() == null) {
+            col = j;
+            j = 100000000;
+          } else {
+            col = life.getCol();
           }
-          i--;
         }
-      } else {
+      } else if(cells[life.getRow()][0].getLifeForm() != null) {
+        for(int j = 0; j < life.getRow(); j++) {
+          if(cells[life.getRow()][j].getLifeForm() == null) {
+            col = j;
+            j = 100000000;
+          } else {
+            col = life.getCol();
+          }
+        } 
+      } else if (cells[life.getRow()][0].getLifeForm() == null) {
         col = 0;
+      } else {
+        col = life.getCol();
       }
 
       removeLifeForm(life.getRow(), life.getCol());
