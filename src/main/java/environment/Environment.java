@@ -80,7 +80,6 @@ public class Environment {
    */
   public LifeForm getLifeForm(int row, int col) {
     return cells[row][col].getLifeForm();
-
   }
 
   /**
@@ -258,9 +257,7 @@ public class Environment {
     if (life.currentDirection.equalsIgnoreCase("north")) {
       int row = life.getRow() - life.maxSpeed;
 
-      if (row < 0) {
-        row = 0;
-      } else {
+      if (row >= 0) {
         i = life.getRow();
         while(i >= row) {
           if(cells[i][life.getCol()].getLifeForm() != null) {
@@ -269,6 +266,8 @@ public class Environment {
           }
           i--;
         }
+      } else {
+        row = 0;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -276,9 +275,7 @@ public class Environment {
     } else if (life.currentDirection.equalsIgnoreCase("south")) {
       int row = life.getRow() + life.maxSpeed;
 
-      if (row >= cells.length) {
-        row = cells.length - 1;
-      } else {
+      if (row < cells.length) {
         i = life.getRow();
         while(i <= row) {
           if(cells[i][life.getCol()].getLifeForm() != null) {
@@ -287,6 +284,8 @@ public class Environment {
           }
           i++;
         }
+      } else {
+        row = cells.length - 1;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -294,9 +293,7 @@ public class Environment {
     } else if (life.currentDirection.equalsIgnoreCase("east")) {
       int col = life.getCol() + life.maxSpeed;
 
-      if (col >= cells[0].length) {
-        col = cells[0].length - 1;
-      } else {
+      if (col < cells[0].length) {
         i = life.getCol();
         while(i <= col) {
           if(cells[i][life.getCol()].getLifeForm() != null) {
@@ -305,6 +302,8 @@ public class Environment {
           }
           i++;
         }
+      } else {
+        col = cells[0].length - 1;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -312,9 +311,7 @@ public class Environment {
     } else if (life.currentDirection.equalsIgnoreCase("west")) {
       int col = life.getCol() - life.maxSpeed;
 
-      if (col < 0) {
-        col = 0;
-      } else {
+      if (col >= 0) {
         i = life.getCol();
         while(i >= col) {
           if(cells[i][life.getCol()].getLifeForm() != null) {
@@ -323,6 +320,8 @@ public class Environment {
           }
           i--;
         }
+      } else {
+        col = 0;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
