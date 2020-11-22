@@ -294,10 +294,10 @@ public class Environment {
           }
         }
       } else if(cells[cells.length - 1][life.getCol()].getLifeForm() != null){
-        for(int j = cells.length - 1; j < life.getRow(); j--) {
+        for(int j = cells.length - 1; j > life.getRow(); j--) {
           if(cells[j][life.getCol()].getLifeForm() == null) {
             row = j;
-            j = 100000000;
+            j = -100000000;
           } else {
             row = life.getRow();
           }
@@ -322,10 +322,10 @@ public class Environment {
           }
         }
       } else if(cells[life.getRow()][cells[0].length - 1].getLifeForm() != null) {
-        for(int j = cells.length - 1; j < life.getRow(); j--) {
+        for(int j = cells[0].length - 1; j > life.getCol(); j--) {
           if(cells[life.getRow()][j].getLifeForm() == null) {
             col = j;
-            j = 100000000;
+            j = -100000000;
           } else {
             col = life.getCol();
           }
@@ -350,7 +350,7 @@ public class Environment {
           }
         }
       } else if(cells[life.getRow()][0].getLifeForm() != null) {
-        for(int j = 0; j < life.getRow(); j++) {
+        for(int j = 0; j < life.getCol(); j++) {
           if(cells[life.getRow()][j].getLifeForm() == null) {
             col = j;
             j = 100000000;
