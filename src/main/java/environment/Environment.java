@@ -491,11 +491,11 @@ public class Environment {
    */
   public void acquire(LifeForm lf) {
     Cell cell = cells[lf.getRow()][lf.getCol()];
+    Weapon weapon;
     // There are at least one weapon in this cell
     if (cell.wepOne != null || cell.wepTwo != null) {
       // Check if the life form already has a weapon
       if (lf.hasWeapon()) {
-        Weapon weapon;
         // Try and get a weapon from the first and then second cell spot
         if (cell.wepOne != null) {
           weapon = cell.getWeapon1();
@@ -507,8 +507,12 @@ public class Environment {
         lf.pickUpWeapon(weapon);
       } else {
         // pickup weapon from either spot 1 or two
-        lf.pickUpWeapon(cell.wepOne != null && cell.wepTwo != null ? cell.removeWeapon(cell.wepOne)
-            : cell.removeWeapon(cell.wepTwo));
+        if(cell.wepOne != null) {
+          weapon = cell.removeWeapon(cell.wepOne);
+        } else {
+          weapon = cell.removeWeapon(cell.wepTwo);
+        }
+        lf.pickUpWeapon(weapon);
       }
     }
   }
