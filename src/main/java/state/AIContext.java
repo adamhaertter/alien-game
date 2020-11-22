@@ -4,6 +4,10 @@ import environment.Environment;
 import gameplay.TimerObserver;
 import lifeform.LifeForm;
 
+/**
+ * @author Brennan Mulligan, edited by Adam Haertter
+ *
+ */
 public class AIContext implements TimerObserver {
   LifeForm lf;
   Environment env;
@@ -12,6 +16,7 @@ public class AIContext implements TimerObserver {
   HasWeaponState hasWeapon;
   NoWeaponState noWeapon;
   OutOfAmmoState ammo;
+  public static int myTime;
   
   public AIContext(LifeForm lifeform, Environment e) {
     lf = lifeform;
@@ -57,6 +62,6 @@ public class AIContext implements TimerObserver {
   @Override
   public void updateTime(int time) {
     // TODO Auto-generated method stub
-    
+    myTime = time;
   }
 }

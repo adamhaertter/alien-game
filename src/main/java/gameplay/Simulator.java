@@ -16,6 +16,7 @@ import recovery.RecoveryBehavior;
 import recovery.RecoveryFractional;
 import recovery.RecoveryLinear;
 import recovery.RecoveryNone;
+import state.AIContext;
 import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
@@ -24,7 +25,7 @@ import weapon.Weapon;
 public class Simulator implements TimerObserver {
 
   Environment environment;
-  static GameGui gui;
+  public static GameGui gui;
   static SimpleTimer timer;
   int numAliens;
   int numHumans;
@@ -73,6 +74,7 @@ public class Simulator implements TimerObserver {
   public void updateTime(int time) {
     // TODO make the timer work please
     gui.boardUpdate();
+    AIContext.myTime = time;
   }
 
   public void buildAliens() throws RecoveryRateException {
@@ -132,7 +134,7 @@ public class Simulator implements TimerObserver {
   public void buildHumans() {
     int maxHealth = 25;
     int armorPoints;
-    for (int h = 0; h < numAliens; h++) {
+    for (int h = 0; h < numHumans; h++) {
 
       // Humans are locked to one maxHealth, defined above.
 
@@ -181,7 +183,8 @@ public class Simulator implements TimerObserver {
       if (openCells.size() > 0) {
         // A cell is open! Add the LifeForm to it.
         int index = (int) (Math.random() * openCells.size());
-        openCells.get(index).addWeapon(current);
+        if (openCells.get(index).getWeaponsCount() < 2)
+          openCells.get(index).addWeapon(current);
         if (openCells.get(index).getWeaponsCount() == 2)
           clonedCells.add(openCells.remove(index));
       } else {
