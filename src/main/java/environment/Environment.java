@@ -255,7 +255,7 @@ public class Environment {
   public void move(LifeForm life) {
     if (life.currentDirection.equalsIgnoreCase("north")) {
       int row = life.getRow() - life.maxSpeed;
-
+      
       if (row >= 0) {
         for(int j = row; j < life.getRow(); j++) {
           if(cells[j][life.getCol()].getLifeForm() == null) {
@@ -274,10 +274,9 @@ public class Environment {
             row = life.getRow();
           }
         } 
-      } else if (cells[0][life.getCol()].getLifeForm() == null) {
-        row = 0;
+      //} else if (cells[0][life.getCol()].getLifeForm() == null) {
       } else {
-        row = life.getRow();
+        row = 0;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -303,10 +302,9 @@ public class Environment {
             row = life.getRow();
           }
         } 
-      } else if (cells[cells.length - 1][life.getCol()].getLifeForm() == null) {
-        row = 0;
+      //} else if (cells[cells.length - 1][life.getCol()].getLifeForm() == null) {
       } else {
-        row = life.getRow();
+        row = cells.length - 1;
       }
       
       removeLifeForm(life.getRow(), life.getCol());
@@ -332,10 +330,9 @@ public class Environment {
             col = life.getCol();
           }
         } 
-      } else if (cells[life.getRow()][cells[0].length - 1].getLifeForm() == null) {
-        col = cells[0].length - 1;
+      //} else if (cells[life.getRow()][cells[0].length - 1].getLifeForm() == null) {
       } else {
-        col = life.getCol();
+        col = cells[0].length - 1;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
@@ -361,10 +358,9 @@ public class Environment {
             col = life.getCol();
           }
         } 
-      } else if (cells[life.getRow()][0].getLifeForm() == null) {
-        col = 0;
+      //} else if (cells[life.getRow()][0].getLifeForm() == null) {
       } else {
-        col = life.getCol();
+        col = 0;
       }
 
       removeLifeForm(life.getRow(), life.getCol());
