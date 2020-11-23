@@ -21,7 +21,8 @@ public class TestNoWeaponState {
 
     env.addWeapon(weapon, 3, 3);
     env.addLifeForm(lf, 3, 3);
-    assertFalse(state.getCurrentState(), nowep.getNoWeaponState());
+    env.removeWeapon(weapon, 3, 3);
+    assertEquals(state.getCurrentState(), nowep.getNoWeaponState());
   }
 
   @Test
@@ -33,5 +34,18 @@ public class TestNoWeaponState {
 
     env.addLifeForm(lf, 3, 3);
     assertEquals(state.getCurrentState(), nowep.getNoWeaponState());
+  }
+  
+  @Test
+  public void testIfDead() {
+    LifeForm lf = new MockLifeForm("Terry", 20);
+    Environment env = new Environment(5, 5);
+    AIContext context = new AIContext(lf, env);
+    Weapon weapon = new MockWeapon();
+    
+    lf.takeHit(20);
+    assertEquals(context.getCurrentState(), context.getDeadState());
+    lf.pickUpWeapon(weapon);
+    assertEquals(context.getCurrentState(), context.getNoWeaponState());
   }
 }

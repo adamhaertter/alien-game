@@ -75,7 +75,7 @@ public abstract class LifeForm {
    * @param distance the distance between the two life forms
    */
   public void attack(LifeForm opponent, int distance) {
-    if (currentLifePoints > 0) {
+    if (currentLifePoints > 0 && !((this.toString()).equals(opponent.toString()))) {
       if (weapon != null && weapon.getCurrentAmmo() != 0) {
         try {
           opponent.takeHit(weapon.fire(distance));
@@ -134,7 +134,7 @@ public abstract class LifeForm {
    * @return a boolean of true or false
    */
   public boolean hasWeapon() {
-    if (weapon == null) {
+    if (currentLifePoints <= 0 || weapon == null) {
       return false;
     } else {
       return true;
@@ -148,7 +148,7 @@ public abstract class LifeForm {
    * @return a boolean based on if the life form took the new weapon or not
    */
   public boolean pickUpWeapon(Weapon w) {
-    if (weapon == null) {
+    if (weapon == null && currentLifePoints > 0) {
       weapon = w;
       return true;
     } else {
