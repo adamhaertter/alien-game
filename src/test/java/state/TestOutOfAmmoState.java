@@ -27,7 +27,9 @@ public class TestOutOfAmmoState {
     Environment env = new Environment(5, 5);
     AiContext context = new AiContext(lf, env);
     Pistol weapon = new Pistol();
-
+    
+    assertEquals(context.getLifeForm(), lf);
+    
     lf.pickUpWeapon(weapon);
     weapon.fire(1);
     weapon.fire(1);
@@ -53,7 +55,9 @@ public class TestOutOfAmmoState {
     Environment env = new Environment(5, 5);
     AiContext context = new AiContext(lf, env);
     Pistol weapon = new Pistol();
-
+    
+    assertEquals(context.getLifeForm(), lf);
+    
     lf.pickUpWeapon(weapon);
     weapon.fire(1);
     weapon.fire(1);
@@ -82,7 +86,9 @@ public class TestOutOfAmmoState {
     Environment env = new Environment(5, 5);
     AiContext context = new AiContext(lf, env);
     Pistol weapon = new Pistol();
-
+    
+    assertEquals(context.getLifeForm(), lf);
+    
     lf.pickUpWeapon(weapon);
     weapon.fire(1);
     weapon.fire(1);
@@ -108,7 +114,9 @@ public class TestOutOfAmmoState {
     Environment env = new Environment(5, 5);
     AiContext context = new AiContext(lf, env);
     Pistol weapon = new Pistol();
-
+    
+    assertEquals(context.getLifeForm(), lf);
+    
     lf.pickUpWeapon(weapon);
     weapon.fire(1);
     weapon.fire(1);

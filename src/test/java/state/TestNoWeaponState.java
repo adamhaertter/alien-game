@@ -1,6 +1,6 @@
 package state;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -23,18 +23,18 @@ public class TestNoWeaponState {
   public void testWeaponInCell() {
     Environment env = new Environment(5, 5);
     LifeForm lf = new MockLifeForm("Terry", 20);
+    Weapon weapon = new MockWeapon();    
+    env.addWeapon(weapon, 3, 3);
+
     AiContext state = new AiContext(lf, env);
     AiContext nowep = new AiContext(lf, env);
-    Weapon weapon = new MockWeapon();
-
-    env.addWeapon(weapon, 3, 3);
     env.addLifeForm(lf, 3, 3);
     env.removeWeapon(weapon, 3, 3);
     assertEquals(state.getCurrentState(), nowep.getNoWeaponState());
   }
 
   /**
-   * Tests the behvaior of a LifeForm dropping its Weapon in a cell without a
+   * Tests the behavior of a LifeForm dropping its Weapon in a cell without a
    * previous Weapon.
    */
   @Test

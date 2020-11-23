@@ -1,16 +1,21 @@
 package environment;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import exceptions.WeaponException;
-import lifeform.Human;
-import lifeform.LifeForm;
-import lifeform.MockLifeForm;
 import org.junit.Test;
-import weapon.*;
+
+import weapon.Weapon;
+import weapon.Pistol;
+import weapon.ChainGun;
+import weapon.PlasmaCannon;
 
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
+import lifeform.Human;
 
 /**
  * @author Brennan Mulligan - modified by Scott Bucher
@@ -118,15 +123,17 @@ public class TestCommand {
   public void testDropFull() {
     env.clearBoard();
     LifeForm lf = new MockLifeForm("Joe", 10, 2);
-    CommandInvoker invoker = new CommandInvoker();
     Weapon weapon = new Pistol();
     Weapon weapon2 = new PlasmaCannon();
     Weapon weapon3 = new ChainGun();
 
+    
     lf.pickUpWeapon(weapon);
     env.addWeapon(weapon2, 3, 3);
     env.addWeapon(weapon3, 3, 3);
     env.addLifeForm(lf, 3, 3);
+    
+    CommandInvoker invoker = new CommandInvoker();
     invoker.executeCommand(new DropCommand(), lf, env);
     assertEquals(env.getCell(3, 3).getWeapon1(), weapon2);
   }
@@ -156,7 +163,6 @@ public class TestCommand {
   @Test
   public void testAcquireArmed() {
     env.clearBoard();
-    CommandInvoker invoker = new CommandInvoker();
     LifeForm lf = new Human("Ted", 10, 10);
     Weapon weapon = new Pistol();
     Weapon weapon2 = new ChainGun();
@@ -165,6 +171,8 @@ public class TestCommand {
     env.addWeapon(weapon2, 3, 3);
     env.addLifeForm(lf, 3, 3);
     assertFalse(lf.hasWeapon());
+    
+    CommandInvoker invoker = new CommandInvoker();
     invoker.executeCommand(new AcquireCommand(), env.getLifeForm(3, 3), env);
     invoker.executeCommand(new AcquireCommand(), env.getLifeForm(3, 3), env);
     assertTrue(lf.hasWeapon());

@@ -12,7 +12,7 @@ import lifeform.MockLifeForm;
  * @author Brennan Mulligan
  *
  */
-public class TestAIContext {
+public class TestAiContext {
   /**
    * Tests the ability of an AIContext to change state.
    */
