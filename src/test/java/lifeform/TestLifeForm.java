@@ -90,11 +90,11 @@ public class TestLifeForm {
    */
   @Test
   public void testAttack() {
-    MockLifeForm one = new MockLifeForm("One", 50);
-    MockLifeForm two = new MockLifeForm("Two", 50);
+    Human one = new Human("One", 50, 1);
+    Alien two = new Alien("Two", 50);
 
     one.attack(two, 1);
-    assertEquals(two.getCurrentLifePoints(), 49);
+    assertEquals(two.getCurrentLifePoints(), 45);
   }
 
   /**
@@ -167,13 +167,13 @@ public class TestLifeForm {
    */
   @Test
   public void testFireWeapon() throws WeaponException {
-    LifeForm range = new MockLifeForm("Range", 10, 1);
-    LifeForm melee = new MockLifeForm("Melee", 10, 1);
+    Human range = new Human("Range", 10, 1);
+    Alien melee = new Alien("Melee", 10);
     Weapon weapon = new MockWeapon();
     range.pickUpWeapon(weapon);
     int meleeMaxHealth = melee.getCurrentLifePoints();
     range.attack(melee, 1);
-    assertEquals(melee.getCurrentLifePoints(), meleeMaxHealth - weapon.fire(1));
+    assertEquals(melee.getCurrentLifePoints(), meleeMaxHealth - 10);
     assertNotEquals(melee.getCurrentLifePoints(), meleeMaxHealth - range.getAttackStrength());
   }
 
@@ -187,8 +187,8 @@ public class TestLifeForm {
    */
   @Test
   public void testMeleeDamage() throws WeaponException {
-    LifeForm range = new MockLifeForm("Range", 10, 1);
-    LifeForm melee = new MockLifeForm("Melee", 10, 1);
+    Human range = new Human("Range", 10, 1);
+    Alien melee = new Alien("Melee", 10);
     Weapon weapon = new MockWeapon();
     range.pickUpWeapon(weapon);
     int meleeMaxHealth = melee.getCurrentLifePoints();
@@ -196,7 +196,7 @@ public class TestLifeForm {
       weapon.fire(1);
     }
     range.attack(melee, 1);
-    assertNotEquals(melee.getCurrentLifePoints(), meleeMaxHealth - weapon.fire(1));
+    assertNotEquals(melee.getCurrentLifePoints(), meleeMaxHealth - 10);
     assertEquals(melee.getCurrentLifePoints(), meleeMaxHealth - range.getAttackStrength());
   }
 
@@ -222,8 +222,8 @@ public class TestLifeForm {
    */
   @Test
   public void testReloadWeapon() {
-    LifeForm lf = new MockLifeForm("Test", 10, 1);
-    LifeForm opponent = new MockLifeForm("Enemy", 10, 1);
+    Human lf = new Human("Test", 10, 1);
+    Alien opponent = new Alien("Enemy", 10);
     Pistol pistol = new Pistol();
 
     lf.pickUpWeapon(pistol);

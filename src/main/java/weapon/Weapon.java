@@ -10,7 +10,7 @@ import gameplay.TimerObserver;
 public interface Weapon extends TimerObserver {
 
   /**
-   * Fires the Weapon according to the Weaon specifications and any modifications.
+   * Fires the Weapon according to the Weapon specifications and any modifications.
    * 
    * @param distance the distance away from the target
    * @return the damage dealt by the shot

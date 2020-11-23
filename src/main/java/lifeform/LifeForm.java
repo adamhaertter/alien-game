@@ -76,7 +76,7 @@ public abstract class LifeForm {
    */
   public void attack(LifeForm opponent, int distance) {
     if (currentLifePoints > 0 && !((this.toString()).equals(opponent.toString()))) {
-      if (weapon != null && weapon.getCurrentAmmo() != 0) {
+      if (weapon != null && weapon.getCurrentAmmo() > 0) {
         try {
           opponent.takeHit(weapon.fire(distance));
         } catch (WeaponException e) {
