@@ -4,6 +4,8 @@ import environment.Cell;
 import exceptions.EnvironmentException;
 import lifeform.LifeForm;
 
+import java.util.Random;
+
 public class HasWeaponState extends ActionState {
 
   /**
@@ -87,7 +89,55 @@ public class HasWeaponState extends ActionState {
         }
       }
     } else {
-      // search
+      Random random = new Random(3);
+      int direction = random.nextInt() + 1;
+
+      switch (lifeform.currentDirection) {
+        case "North":
+          if (direction == 1) {
+            e.turnSouth(lifeform);
+          } else if (direction == 2) {
+            e.turnWest(lifeform);
+          } else if (direction == 3) {
+            e.turnEast(lifeform);
+          }
+          break;
+        case "South":
+          if (direction == 1) {
+            e.turnNorth(lifeform);
+          } else if (direction == 2) {
+            e.turnWest(lifeform);
+          } else if (direction == 3) {
+            e.turnEast(lifeform);
+          }
+
+          break;
+        case "West":
+          if (direction == 1) {
+            e.turnNorth(lifeform);
+          } else if (direction == 2) {
+            e.turnSouth(lifeform);
+          } else if (direction == 3) {
+            e.turnEast(lifeform);
+          }
+
+          break;
+        case "East":
+          if (direction == 1) {
+            e.turnNorth(lifeform);
+          } else if (direction == 2) {
+            e.turnSouth(lifeform);
+          } else if (direction == 3) {
+            e.turnWest(lifeform);
+          }
+
+          break;
+      }
+
+      int move = random.nextInt();
+      if (move == 1) {
+        e.move(lifeform);
+      }
     }
 
   }
