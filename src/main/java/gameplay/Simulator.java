@@ -16,7 +16,7 @@ import recovery.RecoveryBehavior;
 import recovery.RecoveryFractional;
 import recovery.RecoveryLinear;
 import recovery.RecoveryNone;
-import state.AIContext;
+import state.AiContext;
 import weapon.ChainGun;
 import weapon.Pistol;
 import weapon.PlasmaCannon;
@@ -66,6 +66,10 @@ public class Simulator implements TimerObserver {
     }
   }
 
+  /**
+   * Main method for running program.
+   * @param args
+   */
   public static void main(String[] args) {
     gui = new GameGui();
     ControllerGui cgui = new ControllerGui(gui);
@@ -90,7 +94,7 @@ public class Simulator implements TimerObserver {
   public void updateTime(int time) {
     // TODO make the timer work please
     gui.boardUpdate();
-    AIContext.myTime = time;
+    AiContext.myTime = time;
   }
 
   /**
@@ -100,38 +104,41 @@ public class Simulator implements TimerObserver {
    * @throws RecoveryRateException
    */
   public void buildAliens() throws RecoveryRateException {
-    int row, col;
+    int row;
+    int col;
     RecoveryBehavior behavior;
-    int maxHealth, recoveryRate, control;
+    int maxHealth;
+    int recoveryRate; 
+    int control;
     for (int a = 0; a < numAliens; a++) {
 
       // Set up unique recovery behavior
       control = (int) (Math.random() * 3);
       switch (control) {
-      case 1:
-        // Recover fractionally between 0% and 50%
-        behavior = new RecoveryFractional(Math.random() / 2);
-        break;
-      case 2:
-        // Recover linearly between 1 and 10
-        behavior = new RecoveryLinear((int) (Math.random() * 10) + 1);
-        break;
-      default:
-        // No recovery
-        behavior = new RecoveryNone();
+        case 1:
+          // Recover fractionally between 0% and 50%
+          behavior = new RecoveryFractional(Math.random() / 2);
+          break;
+        case 2:
+          // Recover linearly between 1 and 10
+          behavior = new RecoveryLinear((int) (Math.random() * 10) + 1);
+          break;
+        default:
+          // No recovery
+          behavior = new RecoveryNone();
       }
 
       // Aliens can have maxHealths of 20, 25, or 30
       control = (int) (Math.random() * 3);
       switch (control) {
-      case 1:
-        maxHealth = 25;
-        break;
-      case 2:
-        maxHealth = 30;
-        break;
-      default:
-        maxHealth = 20;
+        case 1:
+          maxHealth = 25;
+          break;
+        case 2:
+          maxHealth = 30;
+          break;
+        default:
+          maxHealth = 20;
       }
 
       // Recovery Rate can be between 1 and 5 turns
@@ -200,24 +207,26 @@ public class Simulator implements TimerObserver {
       // chance to spawn.
       control = (int) (Math.random() * 3);
       switch (control) {
-      case 1:
-        current = new ChainGun();
-        break;
-      case 2:
-        current = new PlasmaCannon();
-        break;
-      default:
-        current = new Pistol();
+        case 1:
+          current = new ChainGun();
+          break;
+        case 2:
+          current = new PlasmaCannon();
+          break;
+        default:
+          current = new Pistol();
       }
 
       // Roll for a cell
       if (openCells.size() > 0) {
         // A cell is open! Add the LifeForm to it.
         int index = (int) (Math.random() * openCells.size());
-        if (openCells.get(index).getWeaponsCount() < 2)
+        if (openCells.get(index).getWeaponsCount() < 2) {
           openCells.get(index).addWeapon(current);
-        if (openCells.get(index).getWeaponsCount() == 2)
+        }
+        if (openCells.get(index).getWeaponsCount() == 2) {
           clonedCells.add(openCells.remove(index));
+        }
       } else {
         // Looks like we ran out of open cells. The game won't be any fun like this.
         System.out.println("The Environment is full, try a different number of LifeForms.");

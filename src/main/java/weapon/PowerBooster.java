@@ -32,7 +32,8 @@ public class PowerBooster extends Attachment implements Weapon, TimerObserver {
   public int fire(int distance) throws WeaponException {
     return Double
         .valueOf(
-            Math.floor((1 + ((double) this.base.getCurrentAmmo() / this.base.getMaxAmmo())) * this.base.fire(distance)))
+            Math.floor((1 + ((double) this.base.getCurrentAmmo() / this.base.getMaxAmmo())) 
+                * this.base.fire(distance)))
         .intValue();
   }
 

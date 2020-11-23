@@ -22,7 +22,7 @@ public class TestDeadState {
   public void testWithWeapon() {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     Weapon weapon = new MockWeapon();
 
     lf.pickUpWeapon(weapon);
@@ -37,7 +37,7 @@ public class TestDeadState {
   public void testWithoutWeapon() {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
 
     lf.takeHit(20);
     assertEquals(context.getCurrentState(), context.getDeadState());

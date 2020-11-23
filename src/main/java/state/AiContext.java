@@ -8,7 +8,7 @@ import lifeform.LifeForm;
  * @author Brennan Mulligan - edited by Adam Haertter
  *
  */
-public class AIContext implements TimerObserver {
+public class AiContext implements TimerObserver {
   LifeForm lf;
   Environment env;
   ActionState action;
@@ -24,7 +24,7 @@ public class AIContext implements TimerObserver {
    * @param lifeform the LifeForm to be wrapped by the AIContext
    * @param e        the environment for the changes to occur.
    */
-  public AIContext(LifeForm lifeform, Environment e) {
+  public AiContext(LifeForm lifeform, Environment e) {
     lf = lifeform;
     env = e;
   }

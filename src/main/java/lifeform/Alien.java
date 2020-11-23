@@ -54,7 +54,8 @@ public class Alien extends LifeForm implements TimerObserver {
    * @param behavior the type of RecoveryBehavior to be used by the alien
    * @param rate     the HP recovery rate of the alien
    */
-  public Alien(String string, int maxHp, RecoveryBehavior behavior, int rate) throws RecoveryRateException {
+  public Alien(String string, int maxHp, RecoveryBehavior behavior, int rate) 
+      throws RecoveryRateException {
     this(string, maxHp, behavior);
     recoveryRate = rate;
     maxSpeed = 2;

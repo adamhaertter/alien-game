@@ -10,7 +10,7 @@ import gameplay.SimpleTimer;
 import gameplay.Simulator;
 import gui.GameGui;
 import lifeform.LifeForm;
-import state.AIContext;
+import state.AiContext;
 
 /**
  * @author Adam Haertter - modified by Brennan Mulligan
@@ -90,7 +90,7 @@ public class TestSimulator {
           if (env.getCell(r, c).getLifeForm() != null) {
             // Count the LifeForms in the environment, proof of initialization
             lf = env.getCell(r, c).getLifeForm();
-            AIContext ai = new AIContext(lf, env);
+            AiContext ai = new AiContext(lf, env);
             // Round 1
             timer.timeChanged();
             assertEquals(ai.myTime, timer.getRound());

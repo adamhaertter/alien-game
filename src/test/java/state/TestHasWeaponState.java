@@ -29,7 +29,7 @@ public class TestHasWeaponState {
   public void testNoTarget() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     Weapon weapon = new MockWeapon();
 
     lf.pickUpWeapon(weapon);
@@ -47,7 +47,7 @@ public class TestHasWeaponState {
     Environment env = new Environment(5, 5);
     env.addLifeForm(terry, 3, 3);
     env.addLifeForm(jerry, 2, 3);
-    AIContext context = new AIContext(terry, env);
+    AiContext context = new AiContext(terry, env);
     Pistol weapon = new Pistol();
 
     terry.attack(jerry, 1);
@@ -65,7 +65,7 @@ public class TestHasWeaponState {
     Environment env = new Environment(5, 5);
     env.addLifeForm(terry, 3, 3);
     env.addLifeForm(jerry, 2, 3);
-    AIContext context = new AIContext(terry, env);
+    AiContext context = new AiContext(terry, env);
     Pistol weapon = new Pistol();
 
     terry.attack(jerry, 1);
@@ -85,7 +85,7 @@ public class TestHasWeaponState {
     Environment env = new Environment(5, 5);
     env.addLifeForm(terry, 3, 3);
     env.addLifeForm(jerry, 2, 3);
-    AIContext context = new AIContext(terry, env);
+    AiContext context = new AiContext(terry, env);
     Pistol weapon = new Pistol();
 
     weapon.fire(1);
@@ -112,7 +112,7 @@ public class TestHasWeaponState {
     Environment env = new Environment(600, 5);
     env.addLifeForm(terry, 599, 3);
     env.addLifeForm(jerry, 2, 3);
-    AIContext context = new AIContext(terry, env);
+    AiContext context = new AiContext(terry, env);
     Pistol weapon = new Pistol();
 
     terry.attack(jerry, 597);
@@ -129,7 +129,7 @@ public class TestHasWeaponState {
     Environment env = new Environment(5, 5);
     env.addLifeForm(terry, 3, 3);
     env.addLifeForm(jerry, 2, 3);
-    AIContext context = new AIContext(terry, env);
+    AiContext context = new AiContext(terry, env);
     Pistol weapon = new Pistol();
 
     terry.takeHit(20);

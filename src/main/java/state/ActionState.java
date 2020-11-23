@@ -9,8 +9,8 @@ import lifeform.LifeForm;
  */
 public abstract class ActionState {
 
-  protected AIContext context;
-  protected Environment e;
+  protected AiContext context;
+  protected Environment env;
   protected LifeForm lifeform;
 
   /**
@@ -18,9 +18,9 @@ public abstract class ActionState {
    * 
    * @param ai
    */
-  ActionState(AIContext ai) {
+  ActionState(AiContext ai) {
     context = ai;
-    e = ai.env;
+    env = ai.env;
     lifeform = ai.lf;
   }
 

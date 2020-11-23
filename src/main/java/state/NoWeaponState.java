@@ -15,7 +15,7 @@ public class NoWeaponState extends ActionState {
    * 
    * @param ai AI
    */
-  public NoWeaponState(AIContext ai) {
+  public NoWeaponState(AiContext ai) {
     super(ai);
   }
 
@@ -24,7 +24,7 @@ public class NoWeaponState extends ActionState {
    */
   @Override
   public void executeAction() {
-    Cell cell = e.getCell(lifeform.getRow(), lifeform.getCol());
+    Cell cell = env.getCell(lifeform.getRow(), lifeform.getCol());
     if (lifeform.getCurrentLifePoints() <= 0) {
       context.setCurrentState(context.getDeadState());
     } else if (cell.getWeapon1() != null || cell.getWeapon2() != null) {
@@ -42,50 +42,52 @@ public class NoWeaponState extends ActionState {
       int direction = random.nextInt() + 1;
 
       switch (lifeform.currentDirection) {
-      case "North":
-        if (direction == 1) {
-          e.turnSouth(lifeform);
-        } else if (direction == 2) {
-          e.turnWest(lifeform);
-        } else if (direction == 3) {
-          e.turnEast(lifeform);
-        }
-        break;
-      case "South":
-        if (direction == 1) {
-          e.turnNorth(lifeform);
-        } else if (direction == 2) {
-          e.turnWest(lifeform);
-        } else if (direction == 3) {
-          e.turnEast(lifeform);
-        }
+        case "North":
+          if (direction == 1) {
+            env.turnSouth(lifeform);
+          } else if (direction == 2) {
+            env.turnWest(lifeform);
+          } else if (direction == 3) {
+            env.turnEast(lifeform);
+          }
+          break;
+        case "South":
+          if (direction == 1) {
+            env.turnNorth(lifeform);
+          } else if (direction == 2) {
+            env.turnWest(lifeform);
+          } else if (direction == 3) {
+            env.turnEast(lifeform);
+          }
 
-        break;
-      case "West":
-        if (direction == 1) {
-          e.turnNorth(lifeform);
-        } else if (direction == 2) {
-          e.turnSouth(lifeform);
-        } else if (direction == 3) {
-          e.turnEast(lifeform);
-        }
+          break;
+        case "West":
+          if (direction == 1) {
+            env.turnNorth(lifeform);
+          } else if (direction == 2) {
+            env.turnSouth(lifeform);
+          } else if (direction == 3) {
+            env.turnEast(lifeform);
+          }
 
-        break;
-      case "East":
-        if (direction == 1) {
-          e.turnNorth(lifeform);
-        } else if (direction == 2) {
-          e.turnSouth(lifeform);
-        } else if (direction == 3) {
-          e.turnWest(lifeform);
-        }
+          break;
+        case "East":
+          if (direction == 1) {
+            env.turnNorth(lifeform);
+          } else if (direction == 2) {
+            env.turnSouth(lifeform);
+          } else if (direction == 3) {
+            env.turnWest(lifeform);
+          }
 
-        break;
+          break;
+        default:
+          break;
       }
 
       int move = random.nextInt();
       if (move == 1) {
-        e.move(lifeform);
+        env.move(lifeform);
       }
     }
   }

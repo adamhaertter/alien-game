@@ -23,8 +23,8 @@ public class TestNoWeaponState {
   public void testWeaponInCell() {
     Environment env = new Environment(5, 5);
     LifeForm lf = new MockLifeForm("Terry", 20);
-    AIContext state = new AIContext(lf, env);
-    AIContext nowep = new AIContext(lf, env);
+    AiContext state = new AiContext(lf, env);
+    AiContext nowep = new AiContext(lf, env);
     Weapon weapon = new MockWeapon();
 
     env.addWeapon(weapon, 3, 3);
@@ -41,8 +41,8 @@ public class TestNoWeaponState {
   public void testNoWeaponInCell() {
     Environment env = new Environment(5, 5);
     LifeForm lf = new MockLifeForm("Terry", 20);
-    AIContext state = new AIContext(lf, env);
-    AIContext nowep = new AIContext(lf, env);
+    AiContext state = new AiContext(lf, env);
+    AiContext nowep = new AiContext(lf, env);
 
     env.addLifeForm(lf, 3, 3);
     assertEquals(state.getCurrentState(), nowep.getNoWeaponState());
@@ -55,7 +55,7 @@ public class TestNoWeaponState {
   public void testIfDead() {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     Weapon weapon = new MockWeapon();
 
     lf.takeHit(20);

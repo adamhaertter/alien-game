@@ -9,7 +9,7 @@ import weapon.Weapon;
  * The Environment in which Cells are stored in a 2D Array configuration
  *
  * @author Adam Haertter - modified by Brennan Mulligan, Scott Bucher and Josh
- * Lewis
+ *         Lewis
  */
 public class Environment {
 
@@ -41,7 +41,7 @@ public class Environment {
    * @param row the row index where the life form should be added
    * @param col the column index where the life form should be added
    * @return false if the life form is unable to be added, true if it is added
-   * successfully
+   *         successfully
    */
   public boolean addLifeForm(LifeForm lf, int row, int col) {
     if (row > cells.length || col > cells[0].length || row < 0 || col < 0) {
@@ -168,7 +168,7 @@ public class Environment {
    * @return the array of weapons present in a specified cell
    */
   public Weapon[] getWeapons(int row, int col) {
-    return new Weapon[]{cells[row][col].wepOne, cells[row][col].wepTwo};
+    return new Weapon[] { cells[row][col].wepOne, cells[row][col].wepTwo };
   }
 
   /**
@@ -255,26 +255,26 @@ public class Environment {
   public void move(LifeForm life) {
     if (life.currentDirection.equalsIgnoreCase("north")) {
       int row = life.getRow() - life.maxSpeed;
-      
+
       if (row >= 0) {
-        for(int j = row; j < life.getRow(); j++) {
-          if(cells[j][life.getCol()].getLifeForm() == null) {
+        for (int j = row; j < life.getRow(); j++) {
+          if (cells[j][life.getCol()].getLifeForm() == null) {
             row = j;
             j = 100000000;
           } else {
             row = life.getRow();
           }
         }
-      } else if(cells[0][life.getCol()].getLifeForm() != null) {
-        for(int j = 0; j < life.getRow(); j++) {
-          if(cells[j][life.getCol()].getLifeForm() == null) {
+      } else if (cells[0][life.getCol()].getLifeForm() != null) {
+        for (int j = 0; j < life.getRow(); j++) {
+          if (cells[j][life.getCol()].getLifeForm() == null) {
             row = j;
             j = 100000000;
           } else {
             row = life.getRow();
           }
-        } 
-      //} else if (cells[0][life.getCol()].getLifeForm() == null) {
+        }
+        // } else if (cells[0][life.getCol()].getLifeForm() == null) {
       } else {
         row = 0;
       }
@@ -285,52 +285,52 @@ public class Environment {
       int row = life.getRow() + life.maxSpeed;
 
       if (row < cells.length) {
-        for(int j = row; j > life.getRow(); j--) {
-          if(cells[j][life.getCol()].getLifeForm() == null) {
+        for (int j = row; j > life.getRow(); j--) {
+          if (cells[j][life.getCol()].getLifeForm() == null) {
             row = j;
             j = -100000000;
           } else {
             row = life.getRow();
           }
         }
-      } else if(cells[cells.length - 1][life.getCol()].getLifeForm() != null){
-        for(int j = cells.length - 1; j > life.getRow(); j--) {
-          if(cells[j][life.getCol()].getLifeForm() == null) {
+      } else if (cells[cells.length - 1][life.getCol()].getLifeForm() != null) {
+        for (int j = cells.length - 1; j > life.getRow(); j--) {
+          if (cells[j][life.getCol()].getLifeForm() == null) {
             row = j;
             j = -100000000;
           } else {
             row = life.getRow();
           }
-        } 
-      //} else if (cells[cells.length - 1][life.getCol()].getLifeForm() == null) {
+        }
+        // } else if (cells[cells.length - 1][life.getCol()].getLifeForm() == null) {
       } else {
         row = cells.length - 1;
       }
-      
+
       removeLifeForm(life.getRow(), life.getCol());
       addLifeForm(life, row, life.getCol());
     } else if (life.currentDirection.equalsIgnoreCase("east")) {
       int col = life.getCol() + life.maxSpeed;
 
       if (col < cells[0].length) {
-        for(int j = col; j > life.getCol(); j--) {
-          if(cells[life.getRow()][j].getLifeForm() == null) {
+        for (int j = col; j > life.getCol(); j--) {
+          if (cells[life.getRow()][j].getLifeForm() == null) {
             col = j;
             j = -100000000;
           } else {
             col = life.getCol();
           }
         }
-      } else if(cells[life.getRow()][cells[0].length - 1].getLifeForm() != null) {
-        for(int j = cells[0].length - 1; j > life.getCol(); j--) {
-          if(cells[life.getRow()][j].getLifeForm() == null) {
+      } else if (cells[life.getRow()][cells[0].length - 1].getLifeForm() != null) {
+        for (int j = cells[0].length - 1; j > life.getCol(); j--) {
+          if (cells[life.getRow()][j].getLifeForm() == null) {
             col = j;
             j = -100000000;
           } else {
             col = life.getCol();
           }
-        } 
-      //} else if (cells[life.getRow()][cells[0].length - 1].getLifeForm() == null) {
+        }
+        // } else if (cells[life.getRow()][cells[0].length - 1].getLifeForm() == null) {
       } else {
         col = cells[0].length - 1;
       }
@@ -341,24 +341,24 @@ public class Environment {
       int col = life.getCol() - life.maxSpeed;
 
       if (col >= 0) {
-        for(int j = col; j < life.getCol(); j++) {
-          if(cells[life.getRow()][j].getLifeForm() == null) {
+        for (int j = col; j < life.getCol(); j++) {
+          if (cells[life.getRow()][j].getLifeForm() == null) {
             col = j;
             j = 100000000;
           } else {
             col = life.getCol();
           }
         }
-      } else if(cells[life.getRow()][0].getLifeForm() != null) {
-        for(int j = 0; j < life.getCol(); j++) {
-          if(cells[life.getRow()][j].getLifeForm() == null) {
+      } else if (cells[life.getRow()][0].getLifeForm() != null) {
+        for (int j = 0; j < life.getCol(); j++) {
+          if (cells[life.getRow()][j].getLifeForm() == null) {
             col = j;
             j = 100000000;
           } else {
             col = life.getCol();
           }
-        } 
-      //} else if (cells[life.getRow()][0].getLifeForm() == null) {
+        }
+        // } else if (cells[life.getRow()][0].getLifeForm() == null) {
       } else {
         col = 0;
       }
@@ -369,7 +369,8 @@ public class Environment {
   }
 
   /**
-   * Command to have a life form attempt to attack another lf in their line of sight
+   * Command to have a life form attempt to attack another lf in their line of
+   * sight
    *
    * @param lf - life who is attacking
    * @throws EnvironmentException
@@ -503,7 +504,7 @@ public class Environment {
         lf.pickUpWeapon(weapon);
       } else {
         // pickup weapon from either spot 1 or two
-        if(cell.wepOne != null) {
+        if (cell.wepOne != null) {
           weapon = cell.removeWeapon(cell.wepOne);
         } else {
           weapon = cell.removeWeapon(cell.wepTwo);

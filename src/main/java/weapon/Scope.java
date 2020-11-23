@@ -32,7 +32,8 @@ public class Scope extends Attachment implements Weapon, TimerObserver {
     if (this.base.getMaxRange() < distance && distance <= this.getMaxRange()) {
       return 5 + this.base.fire(this.base.getMaxRange());
     } else {
-      return (int) (this.base.fire(distance) * (1 + (double) (this.getMaxRange() - distance) / this.getMaxRange()));
+      return (int) (this.base.fire(distance) * (1 + (double) (this.getMaxRange() - distance) 
+          / this.getMaxRange()));
     }
   }
 

@@ -17,7 +17,7 @@ public class HasWeaponState extends ActionState {
    * 
    * @param ai AI
    */
-  public HasWeaponState(AIContext ai) {
+  public HasWeaponState(AiContext ai) {
     super((ai));
   }
 
@@ -36,7 +36,7 @@ public class HasWeaponState extends ActionState {
       for (int i = 1; i <= distance; i++) {
 
         if (lifeform.getRow() - i >= 0) {
-          target = e.getCell(lifeform.getRow() - i, lifeform.getCol()).getLifeForm();
+          target = env.getCell(lifeform.getRow() - i, lifeform.getCol()).getLifeForm();
           if (target != null) {
             i = distance + 1;
           }
@@ -47,8 +47,8 @@ public class HasWeaponState extends ActionState {
     } else if (lifeform.currentDirection.equalsIgnoreCase("south")) {
       for (int i = 1; i <= distance; i++) {
 
-        if (lifeform.getRow() + i < e.cells.length) {
-          target = e.getCell(lifeform.getRow() + i, lifeform.getCol()).getLifeForm();
+        if (lifeform.getRow() + i < env.cells.length) {
+          target = env.getCell(lifeform.getRow() + i, lifeform.getCol()).getLifeForm();
           if (target != null) {
             i = distance + 1;
           }
@@ -59,8 +59,8 @@ public class HasWeaponState extends ActionState {
     } else if (lifeform.currentDirection.equalsIgnoreCase("east")) {
       for (int i = 1; i <= distance; i++) {
 
-        if (lifeform.getCol() + i < e.cells[0].length) {
-          target = e.getCell(lifeform.getRow(), lifeform.getCol() + i).getLifeForm();
+        if (lifeform.getCol() + i < env.cells[0].length) {
+          target = env.getCell(lifeform.getRow(), lifeform.getCol() + i).getLifeForm();
           if (target != null) {
             i = distance + 1;
           }
@@ -72,7 +72,7 @@ public class HasWeaponState extends ActionState {
       for (int i = 1; i <= distance; i++) {
 
         if (lifeform.getCol() - i >= 0) {
-          target = e.getCell(lifeform.getRow(), lifeform.getCol() - i).getLifeForm();
+          target = env.getCell(lifeform.getRow(), lifeform.getCol() - i).getLifeForm();
           if (target != null) {
             i = distance + 1;
           }
@@ -87,7 +87,7 @@ public class HasWeaponState extends ActionState {
         context.setCurrentState(context.getOutOfAmmoState());
       } else {
         try {
-          lifeform.attack(target, (int) e.getDistance(lifeform, target));
+          lifeform.attack(target, (int) env.getDistance(lifeform, target));
         } catch (EnvironmentException environmentException) {
           environmentException.printStackTrace();
         }
@@ -97,50 +97,52 @@ public class HasWeaponState extends ActionState {
       int direction = random.nextInt() + 1;
 
       switch (lifeform.currentDirection) {
-      case "North":
-        if (direction == 1) {
-          e.turnSouth(lifeform);
-        } else if (direction == 2) {
-          e.turnWest(lifeform);
-        } else if (direction == 3) {
-          e.turnEast(lifeform);
-        }
-        break;
-      case "South":
-        if (direction == 1) {
-          e.turnNorth(lifeform);
-        } else if (direction == 2) {
-          e.turnWest(lifeform);
-        } else if (direction == 3) {
-          e.turnEast(lifeform);
-        }
+        case "North":
+          if (direction == 1) {
+            env.turnSouth(lifeform);
+          } else if (direction == 2) {
+            env.turnWest(lifeform);
+          } else if (direction == 3) {
+            env.turnEast(lifeform);
+          }
+          break;
+        case "South":
+          if (direction == 1) {
+            env.turnNorth(lifeform);
+          } else if (direction == 2) {
+            env.turnWest(lifeform);
+          } else if (direction == 3) {
+            env.turnEast(lifeform);
+          }
 
-        break;
-      case "West":
-        if (direction == 1) {
-          e.turnNorth(lifeform);
-        } else if (direction == 2) {
-          e.turnSouth(lifeform);
-        } else if (direction == 3) {
-          e.turnEast(lifeform);
-        }
+          break;
+        case "West":
+          if (direction == 1) {
+            env.turnNorth(lifeform);
+          } else if (direction == 2) {
+            env.turnSouth(lifeform);
+          } else if (direction == 3) {
+            env.turnEast(lifeform);
+          }
 
-        break;
-      case "East":
-        if (direction == 1) {
-          e.turnNorth(lifeform);
-        } else if (direction == 2) {
-          e.turnSouth(lifeform);
-        } else if (direction == 3) {
-          e.turnWest(lifeform);
-        }
+          break;
+        case "East":
+          if (direction == 1) {
+            env.turnNorth(lifeform);
+          } else if (direction == 2) {
+            env.turnSouth(lifeform);
+          } else if (direction == 3) {
+            env.turnWest(lifeform);
+          }
 
-        break;
+          break;
+        default:
+          break;
       }
 
       int move = random.nextInt();
       if (move == 1) {
-        e.move(lifeform);
+        env.move(lifeform);
       }
     }
 

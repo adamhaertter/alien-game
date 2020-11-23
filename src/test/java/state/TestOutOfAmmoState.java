@@ -25,7 +25,7 @@ public class TestOutOfAmmoState {
   public void testInitialization() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     Pistol weapon = new Pistol();
 
     lf.pickUpWeapon(weapon);
@@ -51,7 +51,7 @@ public class TestOutOfAmmoState {
   public void testReload() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     Pistol weapon = new Pistol();
 
     lf.pickUpWeapon(weapon);
@@ -80,7 +80,7 @@ public class TestOutOfAmmoState {
   public void testMoveToCorrectState() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     Pistol weapon = new Pistol();
 
     lf.pickUpWeapon(weapon);
@@ -106,7 +106,7 @@ public class TestOutOfAmmoState {
   public void testIfDead() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     Pistol weapon = new Pistol();
 
     lf.pickUpWeapon(weapon);

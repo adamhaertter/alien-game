@@ -20,7 +20,7 @@ public class TestAIContext {
   public void testChangeState() {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     lf.takeHit(20);
     assertEquals(context.getCurrentState(), context.getDeadState());
   }
@@ -32,7 +32,7 @@ public class TestAIContext {
   public void testGetState() {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
-    AIContext context = new AIContext(lf, env);
+    AiContext context = new AiContext(lf, env);
     lf.takeHit(20);
     assertEquals(context.getCurrentState(), context.getDeadState());
   }

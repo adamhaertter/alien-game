@@ -36,7 +36,8 @@ public class Pistol extends GenericWeapon {
     }
 
     return distance > this.getMaxRange() ? 0
-        : (int) (this.getBaseDamage() * ((double) ((this.getMaxRange() - distance) + 10) / this.getMaxRange()));
+        : (int) (this.getBaseDamage() * ((double) ((this.getMaxRange() - distance) 
+            + 10) / this.getMaxRange()));
   }
 
   /**

@@ -62,7 +62,8 @@ public class GameGui extends JFrame implements ActionListener {
     setLocation(300, 50);
 
     mainPanel.setSize((int) (getWidth() * 0.775), (int) (getHeight() * 0.7));
-    legend.setPreferredSize(new Dimension((int) (getWidth() * 0.225), (int) (getHeight() * 0.7)));
+    legend.setPreferredSize(new Dimension((int) (getWidth() * 0.225), 
+        (int) (getHeight() * 0.7)));
     legend.setLocation(mainPanel.getWidth(), 0);
     focus.setPreferredSize(new Dimension(getWidth(), (int) (getHeight() * 0.3)));
     // focus.setLocation(0, mainPanel.getHeight());
@@ -113,23 +114,28 @@ public class GameGui extends JFrame implements ActionListener {
 
     // Setting up Legend sidebar
     Image img = drawSingleCell("Alien", "", "", 0);
-    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), 
+        legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
     legendList.get(0).setIcon(new ImageIcon(img));
     legendList.get(1).setText("Alien");
     img = drawSingleCell("Human", "", "", 0);
-    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), 
+        legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
     legendList.get(2).setIcon(new ImageIcon(img));
     legendList.get(3).setText("Human");
     img = drawSingleCell("", "", "", 1);
-    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), 
+        legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
     legendList.get(4).setIcon(new ImageIcon(img));
     legendList.get(5).setText("# of Weapons");
     img = drawSingleCell("", "Pistol", "", 0);
-    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), 
+        legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
     legendList.get(6).setIcon(new ImageIcon(img));
     legendList.get(7).setText("Specific Item");
     img = drawSingleCell("", "", "North", 0);
-    img = img.getScaledInstance(legendList.get(3).getWidth(), legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
+    img = img.getScaledInstance(legendList.get(3).getWidth(), 
+        legendList.get(3).getHeight(), Image.SCALE_SMOOTH);
     legendList.get(8).setIcon(new ImageIcon(img));
     legendList.get(9).setText("Direction");
 
@@ -205,7 +211,8 @@ public class GameGui extends JFrame implements ActionListener {
       }
       str += "Direction: " + lf.getDirection() + "<br></html>";
     } else {
-      str = "<html>LifeForm Type: N/A<br>Current Health: N/A<br>Current " + "Weapon: N/A<br>Direction: N/A<br></html>";
+      str = "<html>LifeForm Type: N/A<br>Current Health: N/A<br>Current " 
+          + "Weapon: N/A<br>Direction: N/A<br></html>";
     }
     currentLfData.setText(str);
 
@@ -248,11 +255,14 @@ public class GameGui extends JFrame implements ActionListener {
             weaponText = weaponText.substring(0, weaponText.indexOf(" +"));
           }
           Image subImage = ImageIO.read(new File("img/" + weaponText + ".png"));
-          subImage = subImage.getScaledInstance(img.getWidth(null) / 2, img.getHeight(null) / 2, Image.SCALE_SMOOTH);
-          gi.drawImage(subImage, img.getWidth(null) / 2, img.getHeight(null) * 5 / 8, null);
+          subImage = subImage.getScaledInstance(img.getWidth(null) / 2, 
+              img.getHeight(null) / 2, Image.SCALE_SMOOTH);
+          gi.drawImage(subImage, img.getWidth(null) / 2, 
+              img.getHeight(null) * 5 / 8, null);
           gi.dispose();
         }
-        img = img.getScaledInstance(focus.getHeight() * 3 / 4, focus.getHeight() * 3 / 4, Image.SCALE_DEFAULT);
+        img = img.getScaledInstance(focus.getHeight() * 3 / 4, 
+            focus.getHeight() * 3 / 4, Image.SCALE_DEFAULT);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         System.out.println("Image not found, displaying text instead");
@@ -295,14 +305,17 @@ public class GameGui extends JFrame implements ActionListener {
             weaponText = weaponText.substring(0, weaponText.indexOf(" +"));
           }
           Image subImage = ImageIO.read(new File("img/" + weaponText + ".png"));
-          subImage = subImage.getScaledInstance(img.getWidth(null) / 2, img.getHeight(null) / 2, Image.SCALE_SMOOTH);
+          subImage = subImage.getScaledInstance(img.getWidth(null) / 2,
+              img.getHeight(null) / 2, Image.SCALE_SMOOTH);
           gi.drawImage(subImage, 0, img.getHeight(null) / 2, null);
         }
 
         // Draw Direction Icon to Bottom-Right Corner
         Image subImage = ImageIO.read(new File("img/" + lf.getDirection() + ".png"));
-        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, img.getHeight(null) / 4, Image.SCALE_SMOOTH);
-        gi.drawImage(subImage, img.getWidth(null) * 3 / 4, img.getHeight(null) * 3 / 4, null);
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 4,
+            img.getHeight(null) / 4, Image.SCALE_SMOOTH);
+        gi.drawImage(subImage, img.getWidth(null) * 3 / 4, 
+            img.getHeight(null) * 3 / 4, null);
 
         gi.dispose();
       } catch (IOException e) {
@@ -320,16 +333,20 @@ public class GameGui extends JFrame implements ActionListener {
     // Draw Weapon Count in Top-Left Corner
     Weapon[] weaponsInCell = environment.getWeapons(row, col);
     int numWeapons = 0;
-    if (weaponsInCell[0] != null)
+    if (weaponsInCell[0] != null) {
       numWeapons++;
-    if (weaponsInCell[1] != null)
+    }
+    if (weaponsInCell[1] != null) {
       numWeapons++;
+    }
     if (numWeapons > 0) {
       Image subImage;
       try {
         subImage = ImageIO.read(new File("img/" + numWeapons + "_weapon.png"));
-        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, img.getHeight(null) / 4, Image.SCALE_SMOOTH);
-        gi.drawImage(subImage, img.getWidth(null) / 16, img.getHeight(null) / 16, null);
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, 
+            img.getHeight(null) / 4, Image.SCALE_SMOOTH);
+        gi.drawImage(subImage, img.getWidth(null) / 16, 
+            img.getHeight(null) / 16, null);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -350,7 +367,8 @@ public class GameGui extends JFrame implements ActionListener {
    * @param weaponCount the amount of weapons in cell
    * @return the Image of the cell
    */
-  public static Image drawSingleCell(String lifeForm, String weapon, String direction, int weaponCount) {
+  public static Image drawSingleCell(String lifeForm, String weapon, 
+      String direction, int weaponCount) {
     Image img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
     try {
       if (lifeForm != null && !lifeForm.equals("")) {
@@ -370,22 +388,27 @@ public class GameGui extends JFrame implements ActionListener {
           weaponText = weapon.substring(0, weapon.indexOf(" +"));
         }
         Image subImage = ImageIO.read(new File("img/" + weaponText + ".png"));
-        subImage = subImage.getScaledInstance(img.getWidth(null) / 2, img.getHeight(null) / 2, Image.SCALE_SMOOTH);
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 2, 
+            img.getHeight(null) / 2, Image.SCALE_SMOOTH);
         gi.drawImage(subImage, 0, img.getHeight(null) / 2, null);
       }
 
       // Draw Direction Icon to Bottom-Right Corner
       if (direction != null && !direction.equals("")) {
         Image subImage = ImageIO.read(new File("img/" + direction + ".png"));
-        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, img.getHeight(null) / 4, Image.SCALE_SMOOTH);
-        gi.drawImage(subImage, img.getWidth(null) * 3 / 4, img.getHeight(null) * 3 / 4, null);
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, 
+            img.getHeight(null) / 4, Image.SCALE_SMOOTH);
+        gi.drawImage(subImage, img.getWidth(null) * 3 / 4, 
+            img.getHeight(null) * 3 / 4, null);
       }
 
       // Draw Weapon Count in Top-Left Corner
       if (weaponCount > 0 && weaponCount < 3) {
         Image subImage = ImageIO.read(new File("img/" + weaponCount + "_weapon.png"));
-        subImage = subImage.getScaledInstance(img.getWidth(null) / 4, img.getHeight(null) / 4, Image.SCALE_SMOOTH);
-        gi.drawImage(subImage, img.getWidth(null) / 16, img.getHeight(null) / 16, null);
+        subImage = subImage.getScaledInstance(img.getWidth(null) / 4,
+            img.getHeight(null) / 4, Image.SCALE_SMOOTH);
+        gi.drawImage(subImage, img.getWidth(null) / 16, 
+            img.getHeight(null) / 16, null);
       }
 
       gi.setColor(java.awt.Color.GRAY);
