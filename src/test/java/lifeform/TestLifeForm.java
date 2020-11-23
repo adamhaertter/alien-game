@@ -18,7 +18,7 @@ import weapon.Weapon;
  * @author Adam Haertter - modified by Brennan Mulligan and Scott Bucher
  */
 public class TestLifeForm {
-
+  
   /**
    * Test the default direction of a life form
    */
