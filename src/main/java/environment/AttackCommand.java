@@ -4,12 +4,16 @@ import exceptions.EnvironmentException;
 import exceptions.WeaponException;
 import lifeform.LifeForm;
 
+/**
+ * @author Brennan Mulligan - modified by Scott Bucher
+ *
+ */
 public class AttackCommand implements Invokers {
 
   /**
    * Execute the specified command
    *
-   * @param lf - life form for the command
+   * @param lf  - life form for the command
    * @param env - environment for this command
    */
   @Override

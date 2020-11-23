@@ -3,6 +3,10 @@ package gameplay;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class SimpleTimer extends Thread implements Timer {
 
   private List<TimerObserver> theObservers = new ArrayList<TimerObserver>();

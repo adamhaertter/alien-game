@@ -8,7 +8,7 @@ import gameplay.TimerObserver;
  * Stabilizer is an extension of Attachment and uses Weapon and TimerObserver Interfaces.
  * This Modifies a weapons damage and reload speed
  * 
- * @author Evan Paules
+ * @author Evan Paules - modified by Brennan Mulligan, Adam Haertter, and Scott Bucher
  */
 
 public class Stabilizer extends Attachment implements Weapon, TimerObserver {

@@ -1,5 +1,9 @@
 package gameplay;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public interface TimerObserver {
 
   /**

@@ -32,6 +32,10 @@ import weapon.Pistol;
 import weapon.PlasmaCannon;
 import weapon.Weapon;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class GameGui extends JFrame implements ActionListener {
 
   JButton testButton = new JButton("The Test Button");
@@ -409,6 +413,9 @@ public class GameGui extends JFrame implements ActionListener {
     repaint();
   }
 
+  /**
+   * @return the global environment
+   */
   public Environment getEnvironment() {
     return environment;
   }

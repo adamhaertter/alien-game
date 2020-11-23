@@ -7,6 +7,10 @@ import org.junit.Test;
 
 import lifeform.Alien;
 
+/**
+ * @author Adam Haertter - modified by Brennan Mulligan
+ *
+ */
 public class TestRecoveryNone {
 
   /**

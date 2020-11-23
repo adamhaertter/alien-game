@@ -15,8 +15,9 @@ import weapon.PlasmaCannon;
 import weapon.Weapon;
 
 /**
- * The test cases for the Cell class
- *
+ * The test cases for the Cell class\
+ * 
+ * @author Adam Haertter - modified by Josh Lewis
  */
 public class TestCell {
 

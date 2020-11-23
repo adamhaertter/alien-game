@@ -1,5 +1,9 @@
 package recovery;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class RecoveryLinear implements RecoveryBehavior {
 
   private int linearAmount;

@@ -12,7 +12,7 @@ import lifeform.LifeForm;
 import state.AIContext;
 
 /**
- * @author Adam Haertter
+ * @author Adam Haertter - modified by Brennan Mulligan
  *
  */
 public class TestSimulator {

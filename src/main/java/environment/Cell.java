@@ -5,7 +5,8 @@ import weapon.Weapon;
 
 /**
  * A Cell that can hold a LifeForm.
- *
+ * 
+ * @author Adam Haertter - modified by Brennan Mulligan and Josh Lewis
  */
 public class Cell {
 
@@ -25,16 +26,17 @@ public class Cell {
 
   /**
    * Sets the current monitored location of the cell
+   * 
    * @param row the row index
    * @param col the col index
    */
   public void setLocation(int row, int col) {
-    if(row > -1 && col > -1) {
+    if (row > -1 && col > -1) {
       this.row = row;
       this.col = col;
     }
   }
-  
+
   /**
    * Tries to add the LifeForm to the Cell. Will not add if a LifeForm is already
    * present

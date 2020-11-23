@@ -15,6 +15,7 @@ import weapon.Weapon;
 /**
  * Tests the functionality provided by the LifeForm class
  *
+ * @author Adam Haertter - modified by Brennan Mulligan and Scott Bucher
  */
 public class TestLifeForm {
 

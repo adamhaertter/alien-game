@@ -18,12 +18,13 @@ import weapon.Weapon;
 /**
  * The test cases for the Environment class
  *
+ * @author Adam Haertter- modified by Scott Bucher and Brennan Mulligan
  */
 public class TestEnvironment {
   Environment env = Environment.getEnvironment(10, 10);
 
   /**
-   *  Test moving north with an obstacle
+   * Test moving north with an obstacle
    */
   @Test
   public void testMoveNorthWithObstacle() {
@@ -39,7 +40,7 @@ public class TestEnvironment {
   }
 
   /**
-   *  Test moving south with an obstacle
+   * Test moving south with an obstacle
    */
   @Test
   public void testMoveSouthWithObstacle() {
@@ -56,7 +57,7 @@ public class TestEnvironment {
   }
 
   /**
-   *  Test moving south with an obstacle
+   * Test moving south with an obstacle
    */
   @Test
   public void testMoveWestWithObstacle() {
@@ -73,7 +74,7 @@ public class TestEnvironment {
   }
 
   /**
-   *  Test moving south with an obstacle
+   * Test moving south with an obstacle
    */
   @Test
   public void testMoveEastWithObstacle() {
@@ -89,6 +90,9 @@ public class TestEnvironment {
     assertEquals(terry.getRow(), pos);
   }
 
+  /**
+   * Tests the ability of a LifeForm to move at the edge of the board.
+   */
   @Test
   public void testMoveAtEdge() {
     env.clearBoard();

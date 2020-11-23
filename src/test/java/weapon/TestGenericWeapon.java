@@ -8,6 +8,10 @@ import org.junit.Test;
 import exceptions.WeaponException;
 import gameplay.SimpleTimer;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class TestGenericWeapon {
 
   /**

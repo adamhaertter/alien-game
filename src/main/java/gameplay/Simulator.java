@@ -22,6 +22,10 @@ import weapon.Pistol;
 import weapon.PlasmaCannon;
 import weapon.Weapon;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class Simulator implements TimerObserver {
 
   Environment environment;
@@ -31,6 +35,15 @@ public class Simulator implements TimerObserver {
   int numHumans;
   List<Cell> openCells;
 
+  /**
+   * Constructs an instance of Simulator that builds the game board with the
+   * specified components.
+   * 
+   * @param e         the global environment
+   * @param timer     the timer
+   * @param numHumans the number of humans to be made
+   * @param numAliens the number of aliens to be made
+   */
   public Simulator(Environment e, SimpleTimer timer, int numHumans, int numAliens) {
     this.environment = e;
     this.timer = timer;
@@ -71,12 +84,21 @@ public class Simulator implements TimerObserver {
 
   }
 
+  /**
+   * On a new round, the board and AIContexts are updated.
+   */
   public void updateTime(int time) {
     // TODO make the timer work please
     gui.boardUpdate();
     AIContext.myTime = time;
   }
 
+  /**
+   * Spawns the proper number of Aliens. Each Alien is assigned a random recovery
+   * behavior, random recovery rate, and random health of 20, 25, or 30.
+   * 
+   * @throws RecoveryRateException
+   */
   public void buildAliens() throws RecoveryRateException {
     int row, col;
     RecoveryBehavior behavior;
@@ -131,6 +153,10 @@ public class Simulator implements TimerObserver {
     }
   }
 
+  /**
+   * Spawns the proper number of Humans. Humans are locked to a maxHealth of 25
+   * and receive armor from 0 to 9 randomly.
+   */
   public void buildHumans() {
     int maxHealth = 25;
     int armorPoints;
@@ -157,6 +183,11 @@ public class Simulator implements TimerObserver {
     }
   }
 
+  /**
+   * Spawns the proper number of Weapons in the cell. The weapon has an equal
+   * chance of being a Pistol, ChainGun, or PlasmaCannon. Weapons can spawn either
+   * 1 or 2 to a cell, and spawn with the same number as the number of LifeForms.
+   */
   public void buildWeapons() {
     int numWeapons = numAliens + numHumans;
     int control;

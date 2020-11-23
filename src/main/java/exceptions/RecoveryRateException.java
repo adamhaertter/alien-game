@@ -1,5 +1,9 @@
 package exceptions;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class RecoveryRateException extends Exception {
 
   /**

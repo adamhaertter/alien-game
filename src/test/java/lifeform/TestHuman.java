@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Adam Haertter - modified by Brennan Mulligan and Scott Bucher
+ *
+ */
 public class TestHuman {
 
   /*

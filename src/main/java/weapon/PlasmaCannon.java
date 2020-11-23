@@ -3,7 +3,8 @@ package weapon;
 import exceptions.WeaponException;
 
 /**
- * @author Adam Haertter
+ * @author Adam Haertter - modified by Evan Paules, Brennan Mulligan, Scott
+ *         Bucher
  *
  */
 public class PlasmaCannon extends GenericWeapon {
@@ -36,8 +37,7 @@ public class PlasmaCannon extends GenericWeapon {
     }
 
     return distance > this.getMaxRange() ? 0
-        : (int) (this.getBaseDamage() * ((double)
-        (this.getCurrentAmmo() + 1) / this.getMaxAmmo()));
+        : (int) (this.getBaseDamage() * ((double) (this.getCurrentAmmo() + 1) / this.getMaxAmmo()));
   }
 
   /**

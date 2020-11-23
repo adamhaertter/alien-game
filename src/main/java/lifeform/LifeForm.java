@@ -9,7 +9,7 @@ import weapon.Weapon;
  * Keeps track of the information associated with as simple life form. Also
  * provides the functionality related to the life form.
  * 
- * @author Adam Haertter - modified by Brennan Mulligan
+ * @author Adam Haertter - modified by Brennan Mulligan and Scott Bucher
  */
 public abstract class LifeForm {
 

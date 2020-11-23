@@ -1,5 +1,9 @@
 package recovery;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class RecoveryFractional implements RecoveryBehavior {
 
   double fractionalAmount;

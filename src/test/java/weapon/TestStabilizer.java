@@ -11,7 +11,7 @@ import gameplay.SimpleTimer;
 /**
  * Tests the mechanisms and effects of the Stabilizer class on weapons
  * 
- * @author Brennan Mulligan
+ * @author Brennan Mulligan - modified by Adam Haertter
  */
 public class TestStabilizer {
   /**

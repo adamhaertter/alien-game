@@ -10,7 +10,14 @@ import lifeform.MockLifeForm;
 import weapon.MockWeapon;
 import weapon.Weapon;
 
+/**
+ * @author Brennan Mulligan
+ *
+ */
 public class TestDeadState {
+  /**
+   * Tests the behavior of a LifeForm dying with a weapon.
+   */
   @Test
   public void testWithWeapon() {
     LifeForm lf = new MockLifeForm("Terry", 20);
@@ -23,6 +30,9 @@ public class TestDeadState {
     assertEquals(context.getCurrentState(), context.getDeadState());
   }
 
+  /**
+   * Tests the behavior of a LifeForm dying without a weapon,
+   */
   @Test
   public void testWithoutWeapon() {
     LifeForm lf = new MockLifeForm("Terry", 20);

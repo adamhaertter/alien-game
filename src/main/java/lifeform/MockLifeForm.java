@@ -1,5 +1,9 @@
 package lifeform;
 
+/**
+ * @author Adam Haertter - modified by Scott Bucher
+ *
+ */
 public class MockLifeForm extends LifeForm {
 
   /**
@@ -26,7 +30,7 @@ public class MockLifeForm extends LifeForm {
     super(name, points, atk);
     maxSpeed = 1;
   }
-  
+
   /**
    * Prints "Mock"
    */

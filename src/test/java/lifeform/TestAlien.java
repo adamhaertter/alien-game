@@ -7,6 +7,10 @@ import recovery.RecoveryLinear;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Adam Haertter - modified by Scott Bucher
+ *
+ */
 public class TestAlien {
 
   /*

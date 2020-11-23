@@ -3,11 +3,15 @@ package weapon;
 import exceptions.WeaponException;
 
 /**
- * @author Adam Haertter
+ * @author Adam Haertter - modified by Brennan Mulligan, Evan Paules, and Scott
+ *         Bucher
  *
  */
 public class MockWeapon extends GenericWeapon {
 
+  /**
+   * Creates a MockWeapon with all fields set to 10 by default.
+   */
   public MockWeapon() {
     super(10, 10, 10, 10);
   }

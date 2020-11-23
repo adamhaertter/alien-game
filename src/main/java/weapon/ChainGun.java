@@ -3,7 +3,7 @@ package weapon;
 import exceptions.WeaponException;
 
 /**
- * @author Adam Haertter
+ * @author Adam Haertter - modified by Evan Paules and Scott Bucher
  *
  */
 public class ChainGun extends GenericWeapon {
@@ -41,7 +41,7 @@ public class ChainGun extends GenericWeapon {
     if (distance > maxRange) {
       return 0;
     }
-    return (int)Math.floor(ret);
+    return (int) Math.floor(ret);
   }
 
   /**

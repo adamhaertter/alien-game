@@ -10,14 +10,24 @@ import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 import weapon.Pistol;
 
+/**
+ * @author Brennan Mulligan
+ *
+ */
 public class TestOutOfAmmoState {
+
+  /**
+   * Ensures that OutOfAmmoState works properly on initialization.
+   * 
+   * @throws WeaponException
+   */
   @Test
   public void testInitialization() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
     AIContext context = new AIContext(lf, env);
     Pistol weapon = new Pistol();
-    
+
     lf.pickUpWeapon(weapon);
     weapon.fire(1);
     weapon.fire(1);
@@ -31,14 +41,19 @@ public class TestOutOfAmmoState {
     weapon.fire(1);
     assertEquals(context.getCurrentState(), context.getOutOfAmmoState());
   }
-  
+
+  /**
+   * Ensures that the Weapon can be reloaded in OutOfAmmoState.
+   * 
+   * @throws WeaponException
+   */
   @Test
   public void testReload() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
     AIContext context = new AIContext(lf, env);
     Pistol weapon = new Pistol();
-    
+
     lf.pickUpWeapon(weapon);
     weapon.fire(1);
     weapon.fire(1);
@@ -54,14 +69,20 @@ public class TestOutOfAmmoState {
     lf.reload();
     assertEquals(context.getCurrentState(), context.getHasWeaponState());
   }
-  
+
+  /**
+   * Ensures that the OutOfAmmoState transitions to the proper state when
+   * necessary.
+   * 
+   * @throws WeaponException
+   */
   @Test
   public void testMoveToCorrectState() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
     AIContext context = new AIContext(lf, env);
     Pistol weapon = new Pistol();
-    
+
     lf.pickUpWeapon(weapon);
     weapon.fire(1);
     weapon.fire(1);
@@ -75,14 +96,19 @@ public class TestOutOfAmmoState {
     weapon.fire(1);
     assertEquals(context.getCurrentState(), context.getOutOfAmmoState());
   }
-  
+
+  /**
+   * Tests the behavior of an OutOfAmmoState when the LifeForm has died.
+   * 
+   * @throws WeaponException
+   */
   @Test
   public void testIfDead() throws WeaponException {
     LifeForm lf = new MockLifeForm("Terry", 20);
     Environment env = new Environment(5, 5);
     AIContext context = new AIContext(lf, env);
     Pistol weapon = new Pistol();
-    
+
     lf.pickUpWeapon(weapon);
     weapon.fire(1);
     weapon.fire(1);

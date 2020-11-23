@@ -8,7 +8,14 @@ import environment.Environment;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 
+/**
+ * @author Brennan Mulligan
+ *
+ */
 public class TestAIContext {
+  /**
+   * Tests the ability of an AIContext to change state.
+   */
   @Test
   public void testChangeState() {
     LifeForm lf = new MockLifeForm("Terry", 20);
@@ -17,7 +24,10 @@ public class TestAIContext {
     lf.takeHit(20);
     assertEquals(context.getCurrentState(), context.getDeadState());
   }
-  
+
+  /**
+   * Ensures that the state retrieval matches what was set by the AIContext.
+   */
   @Test
   public void testGetState() {
     LifeForm lf = new MockLifeForm("Terry", 20);

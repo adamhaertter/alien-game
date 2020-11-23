@@ -19,6 +19,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * @author Brennan Mulligan and Adam Haertter
+ *
+ */
 public class ControllerGui extends JFrame implements ActionListener {
   JButton attack;
   JButton reload;
@@ -88,46 +92,32 @@ public class ControllerGui extends JFrame implements ActionListener {
     setVisible(true);
   }
 
+  /**
+   * Performs the appropriate action based on which button on the controller is
+   * pressed. Commands are invoked by an Invoker.
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
     // TODO Auto-generated method stub
     CommandInvoker invoker = new CommandInvoker();
     if (e.getSource() == attack && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new AttackCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new AttackCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     } else if (e.getSource() == reload && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new ReloadCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new ReloadCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     } else if (e.getSource() == drop && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new DropCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new DropCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     } else if (e.getSource() == move && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new MoveCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new MoveCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     } else if (e.getSource() == east && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new TurnEastCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new TurnEastCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     } else if (e.getSource() == north && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new TurnNorthCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new TurnNorthCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     } else if (e.getSource() == west && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new TurnWestCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new TurnWestCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     } else if (e.getSource() == south && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new TurnSouthCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new TurnSouthCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     } else if (e.getSource() == acquire && parent.focusedCell.getLifeForm() != null) {
-      invoker.executeCommand(
-          new AcquireCommand(), parent.focusedCell.getLifeForm(), parent.environment
-      );
+      invoker.executeCommand(new AcquireCommand(), parent.focusedCell.getLifeForm(), parent.environment);
     }
     parent.boardUpdate();
   }

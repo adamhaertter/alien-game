@@ -13,7 +13,7 @@ import lifeform.MockLifeForm;
 /**
  * Tests the mechanisms and effects of the Scope class on weapons
  * 
- * @author Brennan Mulligan
+ * @author Brennan Mulligan - modified by Adam Haertter
  */
 public class TestScope {
 

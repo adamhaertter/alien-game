@@ -6,10 +6,15 @@ import lifeform.LifeForm;
 
 import java.util.Random;
 
+/**
+ * @author Scott Bucher
+ *
+ */
 public class HasWeaponState extends ActionState {
 
   /**
    * Creates a HasWeapon State
+   * 
    * @param ai AI
    */
   public HasWeaponState(AIContext ai) {
@@ -17,8 +22,7 @@ public class HasWeaponState extends ActionState {
   }
 
   /**
-   * Execute the HasWeaponState's action
-   * and then sets the state to
+   * Execute the HasWeaponState's action and then sets the state to
    */
   @Override
   public void executeAction() {
@@ -93,45 +97,45 @@ public class HasWeaponState extends ActionState {
       int direction = random.nextInt() + 1;
 
       switch (lifeform.currentDirection) {
-        case "North":
-          if (direction == 1) {
-            e.turnSouth(lifeform);
-          } else if (direction == 2) {
-            e.turnWest(lifeform);
-          } else if (direction == 3) {
-            e.turnEast(lifeform);
-          }
-          break;
-        case "South":
-          if (direction == 1) {
-            e.turnNorth(lifeform);
-          } else if (direction == 2) {
-            e.turnWest(lifeform);
-          } else if (direction == 3) {
-            e.turnEast(lifeform);
-          }
+      case "North":
+        if (direction == 1) {
+          e.turnSouth(lifeform);
+        } else if (direction == 2) {
+          e.turnWest(lifeform);
+        } else if (direction == 3) {
+          e.turnEast(lifeform);
+        }
+        break;
+      case "South":
+        if (direction == 1) {
+          e.turnNorth(lifeform);
+        } else if (direction == 2) {
+          e.turnWest(lifeform);
+        } else if (direction == 3) {
+          e.turnEast(lifeform);
+        }
 
-          break;
-        case "West":
-          if (direction == 1) {
-            e.turnNorth(lifeform);
-          } else if (direction == 2) {
-            e.turnSouth(lifeform);
-          } else if (direction == 3) {
-            e.turnEast(lifeform);
-          }
+        break;
+      case "West":
+        if (direction == 1) {
+          e.turnNorth(lifeform);
+        } else if (direction == 2) {
+          e.turnSouth(lifeform);
+        } else if (direction == 3) {
+          e.turnEast(lifeform);
+        }
 
-          break;
-        case "East":
-          if (direction == 1) {
-            e.turnNorth(lifeform);
-          } else if (direction == 2) {
-            e.turnSouth(lifeform);
-          } else if (direction == 3) {
-            e.turnWest(lifeform);
-          }
+        break;
+      case "East":
+        if (direction == 1) {
+          e.turnNorth(lifeform);
+        } else if (direction == 2) {
+          e.turnSouth(lifeform);
+        } else if (direction == 3) {
+          e.turnWest(lifeform);
+        }
 
-          break;
+        break;
       }
 
       int move = random.nextInt();

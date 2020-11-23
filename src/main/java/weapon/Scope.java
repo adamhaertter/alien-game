@@ -8,10 +8,16 @@ import exceptions.WeaponException;
  * Scope is an extension of Attachment and uses Weapon and TimerObserver Interfaces.
  * This Modifies a weapons damage and distance
  * 
- * @author Evan Paules
+ * @author Evan Paules - modified by Brennan Mulligan, Adam Haertter, Scott Bucher
  */
 public class Scope extends Attachment implements Weapon, TimerObserver {
 
+  /**
+   * The Scope extends the range of the Weapon.
+   * 
+   * @param w the Weapon to be wrapped by the attachment.
+   * @throws AttachmentException
+   */
   public Scope(Weapon w) throws AttachmentException {
     super(w);
   }
@@ -26,8 +32,7 @@ public class Scope extends Attachment implements Weapon, TimerObserver {
     if (this.base.getMaxRange() < distance && distance <= this.getMaxRange()) {
       return 5 + this.base.fire(this.base.getMaxRange());
     } else {
-      return (int) (this.base.fire(distance) * (1 + (double)
-          (this.getMaxRange() - distance) / this.getMaxRange()));
+      return (int) (this.base.fire(distance) * (1 + (double) (this.getMaxRange() - distance) / this.getMaxRange()));
     }
   }
 

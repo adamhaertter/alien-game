@@ -12,6 +12,10 @@ import weapon.*;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 
+/**
+ * @author Brennan Mulligan - modified by Scott Bucher
+ *
+ */
 public class TestCommand {
   Environment env = Environment.getEnvironment(10, 10);
 
@@ -29,7 +33,7 @@ public class TestCommand {
   }
 
   /**
-   *  Tests the reload Command
+   * Tests the reload Command
    */
   @Test
   public void testReloadCommand() throws WeaponException {
@@ -66,7 +70,6 @@ public class TestCommand {
     invoker.executeCommand(new TurnSouthCommand(), life, env);
     assertEquals(life.getDirection(), "South");
   }
-
 
   /**
    * Test turning west
@@ -105,7 +108,7 @@ public class TestCommand {
     lf.pickUpWeapon(weapon);
     env.addLifeForm(lf, 3, 3);
     invoker.executeCommand(new DropCommand(), lf, env);
-    assertNotNull(env.getCell(3,3).getWeapon1());
+    assertNotNull(env.getCell(3, 3).getWeapon1());
   }
 
   /**
@@ -121,15 +124,16 @@ public class TestCommand {
     Weapon weapon3 = new ChainGun();
 
     lf.pickUpWeapon(weapon);
-    env.addWeapon(weapon2, 3,3);
-    env.addWeapon(weapon3, 3,3);
+    env.addWeapon(weapon2, 3, 3);
+    env.addWeapon(weapon3, 3, 3);
     env.addLifeForm(lf, 3, 3);
     invoker.executeCommand(new DropCommand(), lf, env);
-    assertEquals(env.getCell(3,3).getWeapon1(), weapon2);
+    assertEquals(env.getCell(3, 3).getWeapon1(), weapon2);
   }
 
   /**
-   * Tests the ability of a LifeForm to pick up a weapon from the same cell when not holding a weapon
+   * Tests the ability of a LifeForm to pick up a weapon from the same cell when
+   * not holding a weapon
    */
   @Test
   public void testAcquire() {
@@ -146,7 +150,8 @@ public class TestCommand {
   }
 
   /**
-   * Tests the ability of a LifeForm to pick up a weapon from the same cell when holding a gun
+   * Tests the ability of a LifeForm to pick up a weapon from the same cell when
+   * holding a gun
    */
   @Test
   public void testAcquireArmed() {
@@ -160,8 +165,8 @@ public class TestCommand {
     env.addWeapon(weapon2, 3, 3);
     env.addLifeForm(lf, 3, 3);
     assertFalse(lf.hasWeapon());
-    invoker.executeCommand(new AcquireCommand(), env.getLifeForm(3,3), env);
-    invoker.executeCommand(new AcquireCommand(), env.getLifeForm(3,3), env);
+    invoker.executeCommand(new AcquireCommand(), env.getLifeForm(3, 3), env);
+    invoker.executeCommand(new AcquireCommand(), env.getLifeForm(3, 3), env);
     assertTrue(lf.hasWeapon());
     assertEquals(lf.getWeapon(), weapon2);
   }

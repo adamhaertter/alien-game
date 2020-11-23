@@ -2,6 +2,10 @@ package environment;
 
 import lifeform.LifeForm;
 
+/**
+ * @author Brennan Mulligan - modified by Scott Bucher
+ *
+ */
 public class TurnWestCommand implements Invokers {
 
   /**

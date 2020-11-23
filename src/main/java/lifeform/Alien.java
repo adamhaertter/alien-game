@@ -6,6 +6,11 @@ import gameplay.TimerObserver;
 import recovery.RecoveryBehavior;
 import recovery.RecoveryNone;
 
+/**
+ * @author Adam Haertter - modified by Scott Bucher, Brennan Mulligan, and Josh
+ *         Lewis
+ *
+ */
 public class Alien extends LifeForm implements TimerObserver {
 
   private int recoveryRate;

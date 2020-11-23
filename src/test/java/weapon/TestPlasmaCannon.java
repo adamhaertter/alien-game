@@ -8,6 +8,10 @@ import org.junit.Test;
 
 import exceptions.WeaponException;
 
+/**
+ * @author Adam Haertter - modified by Brennan Mulligan
+ *
+ */
 public class TestPlasmaCannon {
 
   /**

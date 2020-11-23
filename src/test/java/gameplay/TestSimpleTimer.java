@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ * @author Adam Haertter
+ *
+ */
 public class TestSimpleTimer {
 
   /**
@@ -71,10 +75,19 @@ public class TestSimpleTimer {
       Thread.sleep(1000); // wait for the next time change
     }
   }
-  
+
+  /**
+   * A subclass intended for testing purposes
+   * 
+   * @author Adam Haertter
+   *
+   */
   class MockSimpleTimerObserver implements TimerObserver {
     public int myTime = 0;
 
+    /**
+     * Sets the current, stored time to the global round time.
+     */
     public void updateTime(int time) {
       myTime = time;
     }

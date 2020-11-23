@@ -3,11 +3,13 @@ package weapon;
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
 
+/**
+ * @author Josh Lewis - modified by Brennan Mulligan, Evan Paules, and Adam
+ *         Haertter
+ *
+ */
 public abstract class Attachment extends Object implements Weapon {
 
-  /**
-   * @author Joshua Lewis
-   */
   protected Weapon base;
 
   /**

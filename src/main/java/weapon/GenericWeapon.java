@@ -2,18 +2,20 @@ package weapon;
 
 import exceptions.WeaponException;
 
+/**
+ * @author Josh Lewis - modified by Evan Paules, Adam Haertter, Brennan
+ *         Mulligan, and Scott Bucher
+ *
+ */
 public abstract class GenericWeapon implements Weapon {
 
-  /**
-   * @author Joshua Lewis
-   */
   protected int baseDamage;
   protected int currentAmmo;
   protected int maxAmmo;
   protected int maxRange;
   protected int rateOfFire;
   protected int shotsLeft;
-  
+
   /**
    * Creates a weapon with generic parameters
    */
@@ -27,10 +29,10 @@ public abstract class GenericWeapon implements Weapon {
   }
 
   /**
-   * @param dam Base Damage
+   * @param dam  Base Damage
    * @param rang Max Range
    * @param fire Rate of Fire
-   * @param max Max Ammo and Current Ammo
+   * @param max  Max Ammo and Current Ammo
    */
   public GenericWeapon(int dam, int rang, int fire, int max) {
     baseDamage = dam;

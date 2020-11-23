@@ -1,5 +1,9 @@
 package lifeform;
 
+/**
+ * @author Adam Haertter - modified by Scott Bucher
+ *
+ */
 public class Human extends LifeForm {
 
   private int armor;

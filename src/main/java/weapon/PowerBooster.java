@@ -9,7 +9,7 @@ import gameplay.TimerObserver;
  * Interfaces. This modifies the weapon's damage depending on the amount of ammo
  * it has left.
  * 
- * @author Brennan Mulligan
+ * @author Brennan Mulligan - modified by Adam Haertter and Scott Bucher
  */
 public class PowerBooster extends Attachment implements Weapon, TimerObserver {
 
@@ -31,12 +31,11 @@ public class PowerBooster extends Attachment implements Weapon, TimerObserver {
   @Override
   public int fire(int distance) throws WeaponException {
     return Double
-        .valueOf(Math.floor(
-            (1 + ((double) this.base.getCurrentAmmo() / this.base.getMaxAmmo())
-            ) * this.base.fire(distance)))
+        .valueOf(
+            Math.floor((1 + ((double) this.base.getCurrentAmmo() / this.base.getMaxAmmo())) * this.base.fire(distance)))
         .intValue();
   }
-  
+
   /**
    * Prints " +PowerBooster"
    */
