@@ -18,9 +18,6 @@ import state.AiContext;
  */
 public class TestSimulator {
 
-  GameGui gui = new GameGui();
-  Environment env = gui.getEnvironment();
-
   /**
    * Tests that the Environment is populated properly. The number of humans and
    * aliens must be equal to the number of lifeforms and weapons, individually.
@@ -28,6 +25,9 @@ public class TestSimulator {
   @Test
   public void testPopulate() {
     try {
+      GameGui gui = new GameGui();
+      Environment env = gui.getEnvironment();
+      
       SimpleTimer timer = new SimpleTimer(1);
 
       env.clearBoard();
@@ -75,6 +75,9 @@ public class TestSimulator {
   @Test
   public void testUpdateTriggers() {
     try {
+      GameGui gui = new GameGui();
+      Environment env = gui.getEnvironment();
+      
       SimpleTimer timer = new SimpleTimer(1000);
 
       env.clearBoard();
