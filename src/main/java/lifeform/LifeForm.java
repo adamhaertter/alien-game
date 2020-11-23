@@ -230,4 +230,13 @@ public abstract class LifeForm {
   public void revive() {
     this.currentLifePoints = maxLifePoints;
   }
+
+  /**
+   * Reloads the life form's weapon if the life form has one
+   */
+  public void reload() {
+    if (this.hasWeapon()) {
+      (this.weapon).reload();
+    }
+  }
 }
