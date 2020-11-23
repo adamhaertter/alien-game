@@ -50,9 +50,9 @@ of class.
 
 | Meeting # | When | Where | Attendees | Note |
 |---|---|---|---|---|
-| 1 | 12:00a-1:00p 10/21/2020 | Zoom | Everyone | Go over lab and discuss roles |
-| 2 | 6:30p-8:45p 10/25/2020 | Discord | Everyone | Progress Update & Work |
-| 3 | 7:00p-8:45p 11/01/2020 | Discord | Everyone | Progress Update & Work |
-| 4 | 7:00p-8:45p 11/04/2020 | Discord | Everyone | Continue Work |
-| 5 | 6:30p-8:45p 11/07/2020 | Discord | Everyone | Continue to work |
-| 6 | 6:30p-8:00p 11/08/2020 | Discord | Everyone | Finalize Work |
+| 1 | 6:00p-7:00p 11/11/2020 | Discord | Everyone | Go over lab and discuss roles |
+| 2 | 7:00p-8:30p 11/14/2020 | Discord | Everyone | Work and figure out logistics of lab |
+| 3 | 7:30p-8:30p 11/18/2020 | Discord | Everyone | Progress update and work |
+| 4 | 8:00p-11:00p 11/20/2020 | Discord | Everyone | Continued work |
+| 5 | 5:30p-7:00p 11/21/2020 | Discord | Everyone | Fix issues with move |
+| 6 | 8:00p-10:00p 11/22/2020 | Discord | Everyone | Finalize Lab |
